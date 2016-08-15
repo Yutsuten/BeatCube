@@ -10,11 +10,7 @@ public class TrocaMusicas : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-	}
-	
-	// Update is called once per frame
-	void Update () 
-    {	
+        TrocaAudio(2);
 	}
 
     public void TrocaAudio(int id)

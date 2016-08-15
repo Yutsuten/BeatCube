@@ -11,13 +11,6 @@ public class ImplementaObj : ObjAlvo, I_objAlvo {
     {
         metodoAcerto = "chamaAcerto";
         metodoIncremento = "chamaIncremento";
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-        
-	
 	}*/
 
     void chamaAcerto()

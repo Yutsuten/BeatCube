@@ -59,18 +59,18 @@ public class ScriptMusica : MonoBehaviour
 
     public void RecalculaContador()
     {
-        GameObject.Find("GM").GetComponent<GameMananger>().CriaObjeto(color);
+        //GameObject.Find("GM").GetComponent<GameMananger>().CriaObjeto(color);
         //print(color);
 
         contador = Random.Range(minC, maxC);
     }
 
-    public void RecalculaContador(float c)
+    /*public void RecalculaContador(float c)
     {
         GameObject.Find("GM").GetComponent<GameMananger>().CriaObjeto(c);
 
         contador = Random.Range(minC, maxC);
-    }
+    }*/
 
     public Color DevolveCor()
     {

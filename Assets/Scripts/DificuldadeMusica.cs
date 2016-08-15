@@ -32,7 +32,7 @@ public class DificuldadeMusica : MonoBehaviour {
                     GetComponent<AudioSource>().loop = true;
                     OnGame = true;
 
-                    GameObject.Find("Fundo2").GetComponent<ScriptMusica>().RecalculaContador(0.2f);
+                    //GameObject.Find("Fundo2").GetComponent<ScriptMusica>().RecalculaContador(0.2f);
                 }
             }
         }

@@ -41,6 +41,7 @@ public class GameMananger : MonoBehaviour {
                 ResumeJogo();
             }
         }
+        CriaObjeto(Random.RandomRange(0.4f, 0.8f));
 	}
 
     void OnGUI()
@@ -68,7 +69,7 @@ public class GameMananger : MonoBehaviour {
         {
             tempoInstanciado = Time.time;
 
-            if (tempoInstanciado - tempoInstanciadoAnterior > 0.4f)
+            if (tempoInstanciado - tempoInstanciadoAnterior > 1.5f)
             {
                 if (Random.Range(0, 100) < 80)
                     CriaCubo(intensidade);
