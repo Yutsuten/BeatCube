@@ -68,7 +68,7 @@ public class ScriptAlvo : MonoBehaviour
         houveColisao = false;
     }
 
-    private void Incremento (GameObject aumento, Collider Col)
+    private void Incremento(GameObject aumento, Collider Col)
     {
 	    houveColisao = true;
 	    Invoke("DesabilitaColisao", tempoColisao);
@@ -116,7 +116,6 @@ public class ScriptAlvo : MonoBehaviour
         // ajustar angulos dos quadrados e velocidade
         obj.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         transform.parent = obj.transform;
-        //print("Transform Obj Inst: " + obj.transform.rotation + " - Transform: " + transform.rotation);
         var aux = obj.transform;
         while (aux.childCount != 8) // MUDANDO A COR DE TODOS OS QUADRADOS DO MAIOR E MENOR
         {
@@ -140,11 +139,11 @@ public class ScriptAlvo : MonoBehaviour
         }
         else if (corBola == 2) // VERMELHO
         {
-    	    aux.tag = "Target Vermelha";
+    	        aux.tag = "Target Vermelha";
         }
         else if (corBola == 3) // AMARELO
         {
-    	    aux.tag = "Target Verde";
+    	        aux.tag = "Target Verde";
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
@@ -159,7 +158,7 @@ public class ScriptAlvo : MonoBehaviour
         scripts.GetComponent<ScriptVidas>().DecLife(1);
     }
 
-    private void Acerto (Collider Col)
+    private void Acerto(Collider Col)
     {
 	    houveColisao = true;
 	    Invoke("DesabilitaColisao", tempoColisao);
@@ -212,7 +211,6 @@ public class ScriptAlvo : MonoBehaviour
         scripts.GetComponent<ScriptEspecial>().RecalculaFundo(1);
     }
 
-	// Use this for initialization
 	void Start () 
     {
         T_EXPLOSAO = tExplosao;
@@ -223,7 +221,6 @@ public class ScriptAlvo : MonoBehaviour
         scripts = GameObject.Find("Scripts");
 	}
 	
-	// Update is called once per frame
 	void Update () 
     {
         // ROTACAO DO QUADRADO

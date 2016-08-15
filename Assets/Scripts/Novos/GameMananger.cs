@@ -116,11 +116,6 @@ public class GameMananger : MonoBehaviour {
         }
 
         obj.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-IntensidadeForca(0, 200, intensidade), IntensidadeForca(0, 200, intensidade)), -IntensidadeForca(100, 200, intensidade), 0));
-        
-        /*if (Random.Range(0, 100) < 80)
-            Invoke("CriaCubo", 1.5f);
-        else
-            Invoke("CriaItem", 1.5f);*/
     }
 
     private float IntensidadeForca(float min, float max, float intensidade)
@@ -144,7 +139,6 @@ public class GameMananger : MonoBehaviour {
 
     public void CriaItem(float intensidade)
     {
-        //print("vai cria o item");
         if (Random.Range(0, 100) < 70)
         {
             GameObject obj = Instantiate(CuboGelo, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
@@ -156,7 +150,6 @@ public class GameMananger : MonoBehaviour {
         }
         else
         {
-            //print("entro no else");
             int corEscolhida = Random.Range(0, 300);
 
             GameObject obj = Instantiate(Item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
@@ -192,9 +185,6 @@ public class GameMananger : MonoBehaviour {
 
             obj.GetComponent<Rigidbody>().AddForce(new Vector3(IntensidadeForca(0, 200, intensidade), -IntensidadeForca(100, 200, intensidade), 0));
         }
-
-        /*Invoke("CriaCubo", 1.5f);
-        //Invoke("CriaItem", 1.5f);*/
     }
 
     public void AddObjLista(GameObject obj)
@@ -225,7 +215,6 @@ public class GameMananger : MonoBehaviour {
         for (int i = 0; i < ListaDeObjetos.Count; i++)
         {
             ListaDeObjetos[i].SendMessage("ChamaExplosao");
-            //print("Passo");
         }
     }
 

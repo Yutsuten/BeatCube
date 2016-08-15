@@ -95,21 +95,9 @@ public class ScriptMusica : MonoBehaviour
         audioSource.GetComponent<AudioSource>().GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 
         sumX = sumY = sumX2 = sumXY = 0;
-        //for (int i = 0; i < qSamples; i++)
-        //{
-        //    if (i % 2 == 0)  //OBS.: Apparently, spectrum[1023] is an absurdly high value that makes the sum equals to infinite, which is not cool at all =P
-        //    {
-        //        sumX += i;// / 2;
-        //        sumY += ((Mathf.Log(spectrum[i]) + 10) * 10);
-        //        sumX2 += (i /*/ 2*/) * (i /*/ 2*/);
-        //        sumXY += (i /*/ 2*/) * ((Mathf.Log(spectrum[i]) + 10) * 10);
-        //    }
-        //}
 
         for (int i = 0; i < qSamples / lossFactor - 1; i++)
         {
-            //if (i % 2 == 0)  //OBS.: Apparently, spectrum[1023] is an absurdly high value that makes the sum equals to infinite, which is not cool at all =P
-            //{
             sumX += i * lossFactor;// / 2;
             sumY += ((Mathf.Log(spectrum[i * lossFactor]) + 10) * 10);
             sumX2 += (i * lossFactor /*/ 2*/) * (i * lossFactor /*/ 2*/);
@@ -119,7 +107,6 @@ public class ScriptMusica : MonoBehaviour
             sumY += ((Mathf.Log(spectrum[(i * lossFactor) + 1]) + 10) * 10);
             sumX2 += ((i * lossFactor) + 1 /*/ 2*/) * ((i * lossFactor) + 1 /*/ 2*/);
             sumXY += ((i * lossFactor) + 1 /*/ 2*/) * ((Mathf.Log(spectrum[(i * lossFactor) + 1]) + 10) * 10);
-            //}
         }
 
         //Line adjustment
@@ -145,16 +132,5 @@ public class ScriptMusica : MonoBehaviour
 #elif UNITY_WP8
         color = ((-b / (a * qSamples)) + 0.3f) / 1.72f;// *1.2f;
 #endif
-
-        //if (color > max)
-        //{
-        //    max = color;
-        //    Debug.Log("Max: " + max);
-        //}
-        //else if (color < min)
-        //{
-        //    min = color;
-        //    Debug.Log("Min: " + min);
-        //}
     }
 }

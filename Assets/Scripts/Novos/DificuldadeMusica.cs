@@ -9,7 +9,6 @@ public class DificuldadeMusica : MonoBehaviour {
 	void Start () 
     {
         GetComponent<AudioSource>().loop = false;
-        //GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
         OnGame = false;
         Pause = false;
         incremento = 0.1f / 60;
@@ -28,7 +27,6 @@ public class DificuldadeMusica : MonoBehaviour {
             {
                 if (GetComponent<AudioSource>().time == 0)
                 {
-                    //print(GetComponent<AudioSource>().time);
                     print("Ele acha que nao ta tocando");
                     GetComponent<AudioSource>().Play();
                     GetComponent<AudioSource>().loop = true;
