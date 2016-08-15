@@ -66,7 +66,7 @@ public class Bola : MonoBehaviour
                 {
                     GameObject.Find("PainelCompleto").transform.GetChild(i).gameObject.SetActive(true);
                 }
-                //GameObject.Find("Acordes").GetComponent<DificuldadeMusica>().GameON();
+                GameObject.Find("Acordes").GetComponent<DificuldadeMusica>().GameON();
             }
             Destroy(gameObject);
         }
@@ -90,7 +90,7 @@ public class Bola : MonoBehaviour
         else if (Col.gameObject.tag.Equals("Teto"))
         {
             Destroy(gameObject);
-            GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
+            //GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
         }
     }
 

@@ -106,8 +106,8 @@ public class ScriptAlvo : MonoBehaviour
     	    }
     	    transform.DetachChildren();
     	    Destroy(transform.gameObject);
-    	    scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
-    	    scripts.GetComponent<ScriptVidas>().DecLife(3);
+    	    //scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
+    	    //scripts.GetComponent<ScriptVidas>().DecLife(3);
     	    return;
         }
         GameObject obj = Instantiate(aumento, transform.position, transform.rotation) as GameObject;
@@ -147,15 +147,15 @@ public class ScriptAlvo : MonoBehaviour
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
-        scripts.GetComponent<ScriptPontuacao>().DecCombo();
+        //scripts.GetComponent<ScriptPontuacao>().DecCombo();
     }
 
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
+        //scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
         scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
-        scripts.GetComponent<ScriptVidas>().DecLife(1);
+        //scripts.GetComponent<ScriptVidas>().DecLife(1);
     }
 
     private void Acerto(Collider Col)
@@ -205,9 +205,9 @@ public class ScriptAlvo : MonoBehaviour
     	    transform.DetachChildren();
 		    Destroy(transform.gameObject);// destruindo o que foi acertado
 	    }
-	    scripts.GetComponent<ScriptPontuacao>().AumentaPontuacao();
-	    scripts.GetComponent<ScriptVidas>().IncLife();
-        scripts.GetComponent<ScriptPontuacao>().IncCombo();
+	    //scripts.GetComponent<ScriptPontuacao>().AumentaPontuacao();
+	    //scripts.GetComponent<ScriptVidas>().IncLife();
+        //scripts.GetComponent<ScriptPontuacao>().IncCombo();
         scripts.GetComponent<ScriptEspecial>().RecalculaFundo(1);
     }
 
