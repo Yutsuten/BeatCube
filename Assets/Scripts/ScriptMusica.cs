@@ -4,9 +4,9 @@ using System.Collections;
 public class ScriptMusica : MonoBehaviour
 {
     public AudioSource audioSource;
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
     public bool on = true;
-#endif
+//#endif
 
     float[] spectrum;
     int qSamples = 1024;
@@ -113,7 +113,7 @@ public class ScriptMusica : MonoBehaviour
         a = ((qSamples * 0.5f) * sumXY - sumX * sumY) / ((qSamples * 0.5f) * sumX2 - sumX * sumX);
         b = (sumY - a * sumX) / (qSamples * 0.5f);
 
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (on)
         {
             //color = (-b / (a * qSamples));  //Base
@@ -129,7 +129,8 @@ public class ScriptMusica : MonoBehaviour
         }
         else
             color = 0;
-#elif UNITY_WP8
+//#elif UNITY_WP8
+#if UNITY_WP8
         color = ((-b / (a * qSamples)) + 0.3f) / 1.72f;// *1.2f;
 #endif
     }
