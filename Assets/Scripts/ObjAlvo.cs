@@ -5,7 +5,7 @@ public abstract class ObjAlvo : MonoBehaviour {
     
     protected string metodoAcerto, metodoIncremento;
 
-    public GameObject AudioExplosao;
+    private GameObject audioExplosao;
 
     public float tExplosao = 1.2f;
     public float minRotation = 50.0f;
@@ -31,6 +31,10 @@ public abstract class ObjAlvo : MonoBehaviour {
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
+
+        // Explosion audio
+        audioExplosao = GameObject.Find("Sounds/Explosion");
+        print(audioExplosao);
     }
 
     void Update()
@@ -164,7 +168,8 @@ public abstract class ObjAlvo : MonoBehaviour {
                 Destroy(transform.GetChild(j).gameObject, tExplosao);
             }
             transform.DetachChildren();
-            Instantiate(AudioExplosao);
+            audioExplosao.GetComponent<AudioSource>().Play();
+            this.GetComponent<AudioSource>().Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
             bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
         }
@@ -184,7 +189,8 @@ public abstract class ObjAlvo : MonoBehaviour {
                 Destroy(transform.GetChild(j).gameObject, tExplosao);
             }
             transform.DetachChildren();
-            Instantiate(AudioExplosao);
+            audioExplosao.GetComponent<AudioSource>().Play();
+            this.GetComponent<AudioSource>().Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
         }
     }
