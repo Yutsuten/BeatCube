@@ -202,7 +202,7 @@ public class GameMananger : MonoBehaviour {
     {
         for (int i = 0; i < ListaDeObjetos.Count; i++)
         {
-            ListaDeObjetos[i].SendMessage("ParalisaObj");
+            //ListaDeObjetos[i].SendMessage("ParalisaObj");
         }
 
         gameOn = false;
@@ -215,7 +215,7 @@ public class GameMananger : MonoBehaviour {
     {
         for (int i = 0; i < ListaDeObjetos.Count; i++)
         {
-            ListaDeObjetos[i].SendMessage("ChamaExplosao");
+            //ListaDeObjetos[i].SendMessage("ChamaExplosao");
         }
     }
 
@@ -223,7 +223,7 @@ public class GameMananger : MonoBehaviour {
     {
         for (int i = 0; i < ListaDeObjetos.Count; i++)
         {
-            ListaDeObjetos[i].SendMessage("ParalisaObj");
+            //ListaDeObjetos[i].SendMessage("ParalisaObj");
         }
 
         gameOn = false;

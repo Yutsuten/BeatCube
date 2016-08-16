@@ -17,6 +17,6 @@ public class GUI_Pontos : MonoBehaviour
 
     public void AtualizaPontos(int p)
     {
-        GetComponent<GUIText>().text = (p * 10).ToString();
+        GetComponent<GUIText>().text = (p).ToString();
     }
 }

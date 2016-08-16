@@ -137,7 +137,7 @@ public abstract class ObjAlvo : MonoBehaviour {
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<Pontuacao>().AumentaPontos(1);
+        GameObject.Find("GM").GetComponent<Pontuacao>().AumentaPontos(5);
         GameObject.Find("GM").GetComponent<Pontuacao>().AumentaCombo();
 
         houveColisao = true;

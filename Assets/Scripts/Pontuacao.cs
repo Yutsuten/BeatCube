@@ -3,15 +3,8 @@ using System.Collections;
 
 public class Pontuacao : MonoBehaviour 
 {
-    int pontos;
-    int combo;
-
-	// Use this for initialization
-	void Start () 
-    {
-        pontos = 0;
-        combo = 0;
-	}
+    int pontos = 0;
+    int combo = 0;
 
     public void AumentaPontos(int quantidade)
     {
