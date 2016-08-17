@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Itens : MonoBehaviour, I_Itens {
 
-    public GameObject AudioExplosao;
+    private GameObject audioExplosao;
     //protected string metodoAcerto, metodoIncremento;
 
     public float minRotation = 50.0f;
@@ -30,6 +30,9 @@ public class Itens : MonoBehaviour, I_Itens {
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
         ID = transform.GetChild(0).GetComponent<ScriptCubo>().cubeColor;
+
+        // Explosion audio
+        audioExplosao = GameObject.Find("Sounds/Explosion");
     }
 
     void Update()
@@ -88,7 +91,7 @@ public class Itens : MonoBehaviour, I_Itens {
             Destroy(transform.GetChild(j).gameObject, tExplosao);
         }
         transform.DetachChildren();
-        Instantiate(AudioExplosao);
+        audioExplosao.GetComponent<AudioSource>().Play();
         Destroy(transform.gameObject);// destruindo o que foi acertado
         //bolaMenor.collider.enabled = true; // ativando as colisoes da bola menor
         Destroy(bolaMenor.gameObject);

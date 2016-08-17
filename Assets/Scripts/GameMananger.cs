@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameMananger : MonoBehaviour {
 
     public GameObject Alvo;
-    public GameObject CuboGelo;
     public GameObject Item;
     
     
@@ -140,52 +139,40 @@ public class GameMananger : MonoBehaviour {
 
     public void CriaItem(float intensidade)
     {
-        if (Random.Range(0, 100) < 70)
+        int corEscolhida = Random.Range(0, 300);
+
+        GameObject obj = Instantiate(Item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
+        ListaDeObjetos.Add(obj);
+
+        if (corEscolhida < 100)
         {
-            GameObject obj = Instantiate(CuboGelo, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
-            ListaDeObjetos.Add(obj);
+            for (int i = 0; i < obj.transform.childCount; i += 1)
+            {
+                obj.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = 5;
+            }
 
-            obj.transform.tag = "Cubo de Gelo";
+            obj.transform.tag = "Item";
+        }
+        else if (corEscolhida < 200)
+        {
+            for (var i2 = 0; i2 < obj.transform.childCount; i2 += 1)
+            {
+                obj.transform.GetChild(i2).GetComponent<ScriptCubo>().cubeColor = 6;
+            }
 
-            obj.GetComponent<Rigidbody>().AddForce(new Vector3(IntensidadeForca(0, 200, intensidade), -IntensidadeForca(100, 200, intensidade), 0));
+            obj.transform.tag = "Item";
         }
         else
         {
-            int corEscolhida = Random.Range(0, 300);
-
-            GameObject obj = Instantiate(Item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
-            ListaDeObjetos.Add(obj);
-
-            if (corEscolhida < 100)
+            for (var i3 = 0; i3 < obj.transform.childCount; i3 += 1)
             {
-                for (int i = 0; i < obj.transform.childCount; i += 1)
-                {
-                    obj.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = 5;
-                }
-
-                obj.transform.tag = "Item";
-            }
-            else if (corEscolhida < 200)
-            {
-                for (var i2 = 0; i2 < obj.transform.childCount; i2 += 1)
-                {
-                    obj.transform.GetChild(i2).GetComponent<ScriptCubo>().cubeColor = 6;
-                }
-
-                obj.transform.tag = "Item";
-            }
-            else
-            {
-                for (var i3 = 0; i3 < obj.transform.childCount; i3 += 1)
-                {
-                    obj.transform.GetChild(i3).GetComponent<ScriptCubo>().cubeColor = 7;
-                }
-
-                obj.transform.tag = "Item";
+                obj.transform.GetChild(i3).GetComponent<ScriptCubo>().cubeColor = 7;
             }
 
-            obj.GetComponent<Rigidbody>().AddForce(new Vector3(IntensidadeForca(0, 200, intensidade), -IntensidadeForca(100, 200, intensidade), 0));
+            obj.transform.tag = "Item";
         }
+
+        obj.GetComponent<Rigidbody>().AddForce(new Vector3(IntensidadeForca(0, 200, intensidade), -IntensidadeForca(100, 200, intensidade), 0));
     }
 
     public void AddObjLista(GameObject obj)

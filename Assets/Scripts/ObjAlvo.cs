@@ -34,7 +34,6 @@ public abstract class ObjAlvo : MonoBehaviour {
 
         // Explosion audio
         audioExplosao = GameObject.Find("Sounds/Explosion");
-        print(audioExplosao);
     }
 
     void Update()
@@ -169,7 +168,6 @@ public abstract class ObjAlvo : MonoBehaviour {
             }
             transform.DetachChildren();
             audioExplosao.GetComponent<AudioSource>().Play();
-            this.GetComponent<AudioSource>().Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
             bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
         }
@@ -190,7 +188,6 @@ public abstract class ObjAlvo : MonoBehaviour {
             }
             transform.DetachChildren();
             audioExplosao.GetComponent<AudioSource>().Play();
-            this.GetComponent<AudioSource>().Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
         }
     }
