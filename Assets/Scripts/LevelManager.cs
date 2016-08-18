@@ -10,10 +10,13 @@ public class LevelManager : MonoBehaviour
     private float maxIntensity = 300.0f;
 
     private Spawn spawn;
+    private GameTime gameTime;
 
     void Start()
     {
         spawn = this.gameObject.GetComponent<Spawn>();
+        gameTime = GameObject.Find("PainelCompleto/Tempo").GetComponent<GameTime>();
+
         Invoke("NextTarget", firstTargetTime);
     }
 
@@ -26,23 +29,14 @@ public class LevelManager : MonoBehaviour
     private float Direction()
     {
         return Random.Range(-100, 100);
-        //float direction;
-        //direction = Random.Range(0, difficulty);
-        //if (Random.Range(0, 2) == 0)
-        //    direction *= -1;
-        //return direction;
     }
 
     private float Velocity()
     {
+        float velocity = 60 + Mathf.Sqrt(gameTime.TimeElapsed()) + Random.RandomRange(0f, 10f);
+        // if velocity gets too big, debuff it a little
+        if (velocity > 150)
+            velocity = 150 + ((velocity - 150) / 3);
         return Random.Range(70, 140);
-        //float velocity;
-        //velocity = Random.Range(0, Mathf.Sqrt(difficulty));
-        //return velocity;
     }
-
-	public void AtualizaLevel()
-	{
-		//difficulty = 30.0f + GetComponent<ScriptPontuacao>().RetornaPontuacao() * 0.025f;
-	}
 }

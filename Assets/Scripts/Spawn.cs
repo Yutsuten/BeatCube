@@ -64,7 +64,7 @@ public class Spawn : MonoBehaviour
 
     public void CreateItem(float direction, float intensity)
     {
-        GameObject newItem = Instantiate(item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, 0), Quaternion.identity) as GameObject;
+        GameObject newItem = Instantiate(item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1f), Quaternion.identity) as GameObject;
         gameManager.AddObjectToList(newItem);
 
         // Setting color properties (5, 6 or 7)
