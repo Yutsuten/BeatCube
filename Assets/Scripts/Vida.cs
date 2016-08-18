@@ -41,11 +41,7 @@ public class Vida : MonoBehaviour {
     public void AumentaVida()
     {
         vidas++;
-        print(vidas);
-
-        
         Instantiate(GUIVida);
-
         GameObject.Find("Vidas").GetComponent<LifeManager>().QuantidadeVida(vidas);
     }
 }

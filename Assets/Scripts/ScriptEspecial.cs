@@ -180,10 +180,6 @@ public class ScriptEspecial : MonoBehaviour
         ESPECIAL_ATIVADO = true;
         tempo = Time.time;
 
-        GameObject.Find("BotaoAmarelo").GetComponent<Botao>().ContCongela();
-        GameObject.Find("BotaoAzul").GetComponent<Botao>().ContCongela();
-        GameObject.Find("BotaoVermelho").GetComponent<Botao>().ContCongela();
-
         // DEIXANDO AS BOLAS BRANCAS
         matAzul.color = corBranco;
         matAmarelo.color = corBranco;

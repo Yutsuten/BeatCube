@@ -43,7 +43,7 @@ public class Spawn : MonoBehaviour
     {
         int cubeColor = CubeColor(); // Randomly determine the cube color
 
-        GameObject newCube = Instantiate(alvo, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, 0), Quaternion.identity) as GameObject;
+        GameObject newCube = Instantiate(alvo, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1f), Quaternion.identity) as GameObject;
         gameManager.AddObjectToList(newCube);
 
         // Setting color properties
