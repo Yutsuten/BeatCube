@@ -8,8 +8,6 @@ public class LevelManager : MonoBehaviour
 
     private float minIntensity = 100.0f;
     private float maxIntensity = 300.0f;
-    private float rotacaoGraus = 80.0f;
-	private float difficulty;
 
     private Spawn spawn;
 
@@ -45,7 +43,7 @@ public class LevelManager : MonoBehaviour
 
     public float RetornaDificuldade()
     {
-        return 0.01f * difficulty;
+        return 0;
     }
 
 	public void AtualizaLevel()
