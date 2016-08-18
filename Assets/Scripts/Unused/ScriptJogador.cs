@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ScriptJogador : MonoBehaviour 
-{
+{/*
     public Transform esferaAzulPrefab;
     public Transform esferaVerdePrefab;
     public Transform esferaVermelhoPrefab;
@@ -132,5 +132,5 @@ public class ScriptJogador : MonoBehaviour
 			    }
 		    }
 	    }
-	}
+	}*/
 }

@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ScriptBola : MonoBehaviour 
-{
+{/*
     void OnTriggerEnter(Collider Col)
     {
 	    if (Col.gameObject.tag.Equals("Parede"))
@@ -38,5 +38,5 @@ public class ScriptBola : MonoBehaviour
     {
         if (ScriptAlvo.DESTROY_ALL_TARGETS)
             Destroy(gameObject);
-	}
+	}*/
 }

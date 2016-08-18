@@ -132,7 +132,7 @@ public class Botao : MonoBehaviour
                     // Instanciar a bola
                     bola = Instantiate(Bola, transform.position, Quaternion.identity) as GameObject;
                     bola.GetComponent<Bola>().DefineCor(Id);
-                    GameObject.Find("GM").GetComponent<GameMananger>().AddObjLista(bola);
+                    GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
                     if (!foiCongelado)
                     {

@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameMananger : MonoBehaviour {
-
-    public GameObject Alvo;
-    public GameObject Item;
-    
-    
     bool gameOn;
     bool Pause;
     public List<GameObject> ListaDeObjetos = new List<GameObject>();
@@ -40,8 +35,18 @@ public class GameMananger : MonoBehaviour {
                 ResumeJogo();
             }
         }
-        CriaObjeto(Random.RandomRange(0.4f, 0.8f));
+        //CriaObjeto(Random.RandomRange(0.4f, 0.8f));
 	}
+
+    public void AddObjectToList(GameObject gameObj)
+    {
+        ListaDeObjetos.Add(gameObj);
+    }
+
+    public void RemoveObjectFromList(GameObject gameObj)
+    {
+        ListaDeObjetos.Remove(gameObj);
+    }
 
     void OnGUI()
     {
@@ -60,129 +65,6 @@ public class GameMananger : MonoBehaviour {
             {
             }
         }
-    }
-
-    public void CriaObjeto(float intensidade)
-    {
-        if(gameOn)
-        {
-            tempoInstanciado = Time.time;
-
-            if (tempoInstanciado - tempoInstanciadoAnterior > 1.5f)
-            {
-                if (Random.Range(0, 100) < 80)
-                    CriaCubo(intensidade);
-                else
-                    CriaItem(intensidade);
-
-                tempoInstanciadoAnterior = tempoInstanciado;
-            }
-        }
-    }
-
-    public void CriaCubo(float intensidade)
-    {
-        int corEscolhida = Random.Range(0, 100);
-
-        GameObject obj = Instantiate(Alvo, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
-        ListaDeObjetos.Add(obj);
-        
-        if (corEscolhida < 33)
-        {
-            for (int i = 0; i < obj.transform.childCount; i += 1)
-            {
-                obj.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = 1;
-            }
-            
-            obj.transform.tag = "Target Azul";
-        }
-        else if (corEscolhida < 66)
-        {
-            for (var i2 = 0; i2 < obj.transform.childCount; i2 += 1)
-            {
-                obj.transform.GetChild(i2).GetComponent<ScriptCubo>().cubeColor = 2;
-            }
-            
-            obj.transform.tag = "Target Vermelho";
-        }
-        else
-        {
-            for (var i3 = 0; i3 < obj.transform.childCount; i3 += 1)
-            {
-                obj.transform.GetChild(i3).GetComponent<ScriptCubo>().cubeColor = 3;
-            }
-
-            obj.transform.tag = "Target Amarelo";
-        }
-
-        obj.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-IntensidadeForca(0, 200, intensidade), IntensidadeForca(0, 200, intensidade)), -IntensidadeForca(100, 200, intensidade), 0));
-    }
-
-    private float IntensidadeForca(float min, float max, float intensidade)
-    {
-        float resultado;
-
-        if (intensidade <= 3)
-        {
-            resultado = (intensidade * max) + min;
-        }
-        else
-        {
-            intensidade = 3;
-            min = Random.Range(-min, min);
-
-            resultado = (intensidade * max) + min;
-        }
-
-        return resultado;
-    }
-
-    public void CriaItem(float intensidade)
-    {
-        int corEscolhida = Random.Range(0, 300);
-
-        GameObject obj = Instantiate(Item, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1.505835f), Quaternion.identity) as GameObject;
-        ListaDeObjetos.Add(obj);
-
-        if (corEscolhida < 100)
-        {
-            for (int i = 0; i < obj.transform.childCount; i += 1)
-            {
-                obj.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = 5;
-            }
-
-            obj.transform.tag = "Item";
-        }
-        else if (corEscolhida < 200)
-        {
-            for (var i2 = 0; i2 < obj.transform.childCount; i2 += 1)
-            {
-                obj.transform.GetChild(i2).GetComponent<ScriptCubo>().cubeColor = 6;
-            }
-
-            obj.transform.tag = "Item";
-        }
-        else
-        {
-            for (var i3 = 0; i3 < obj.transform.childCount; i3 += 1)
-            {
-                obj.transform.GetChild(i3).GetComponent<ScriptCubo>().cubeColor = 7;
-            }
-
-            obj.transform.tag = "Item";
-        }
-
-        obj.GetComponent<Rigidbody>().AddForce(new Vector3(IntensidadeForca(0, 200, intensidade), -IntensidadeForca(100, 200, intensidade), 0));
-    }
-
-    public void AddObjLista(GameObject obj)
-    {
-        ListaDeObjetos.Add(obj);
-    }
-
-    public void RetiraObjLista(GameObject obj)
-    {
-        ListaDeObjetos.Remove(obj);
     }
 
     public void FimDeJogo()

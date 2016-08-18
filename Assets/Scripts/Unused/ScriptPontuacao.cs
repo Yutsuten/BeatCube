@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ScriptPontuacao : MonoBehaviour 
-{
+{/*
 	const float taxaAtualizacao = 0.02f;
 
 	private int incrementar;
@@ -44,7 +44,7 @@ public class ScriptPontuacao : MonoBehaviour
 	/*public void fimVermelho()
 	{
 		//styleScore.normal.textColor = Color.white;
-	}*/
+	}*//*
 
     public void IncCombo()
     {
@@ -60,11 +60,11 @@ public class ScriptPontuacao : MonoBehaviour
 	public void AumentaPontuacao()
 	{
 		// VALOR A SER INCREMENTADO NA PONTUACAO
-		incrementar = pontuacaoAcerto + (int)((combo * comboMultiplier + GetComponent<ScriptNiveis>().RetornaDificuldade()) * pontuacaoAcerto);
+		incrementar = pontuacaoAcerto + (int)((combo * comboMultiplier + GetComponent<LevelManager>().RetornaDificuldade()) * pontuacaoAcerto);
 		// INCREMENTANDO A PONTUACAO REAL
         pontuacao += incrementar;
 		totalInc += incrementar * 100;
-		GetComponent<ScriptNiveis>().AtualizaLevel();
+		GetComponent<LevelManager>().AtualizaLevel();
 	}
 
 	void OnGUI()
@@ -99,5 +99,5 @@ public class ScriptPontuacao : MonoBehaviour
 				totalInc -= valorInc;
 			}
 		}
-	}
+	}*/
 }

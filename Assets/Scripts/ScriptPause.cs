@@ -44,7 +44,7 @@ public class ScriptPause : MonoBehaviour
     }
 
     void OnGUI()
-    {
+    {/*
         //GUI.Box(new Rect(0, 0, Screen.width, 0.12*Screen.height), ""); // 1 - 380.0/Screen.height
         if (!ScriptMenu.menuEnabled)
             GUI.Label(new Rect(20 * Screen.width / 100, 5 * Screen.height / 100, Screen.width / 10, Screen.height / 30), "" + lbAbout, styleAbout);
@@ -64,7 +64,7 @@ public class ScriptPause : MonoBehaviour
                 if (GUI.Button(new Rect((Screen.width - (Screen.width / 4)) * 0.5f, 45 * Screen.height / 100, Screen.width / 4, Screen.height / 15), "Restart"))
                 {  // DUPLICATA DE SCRIPT LIVES
                     GetComponent<ScriptPontuacao>().ResetaContadores();
-                    GetComponent<ScriptNiveis>().AtualizaLevel();
+                    GetComponent<LevelManager>().AtualizaLevel();
                     GetComponent<ScriptVidas>().ResetLives();
                     GetComponent<ScriptEspecial>().ResetaEspecial();
                     GetComponent<ScriptJogador>().enabled = true;
@@ -96,7 +96,7 @@ public class ScriptPause : MonoBehaviour
                     Time.timeScale = 1.0f;
                 }
             }
-        }
+        }*/
     }
 
 	// Use this for initialization

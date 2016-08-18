@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ScriptMenu : MonoBehaviour 
-{
+{/*
     public static int FRAMERATE;
     public static float T_EXP_BOTAO;
     public static bool menuEnabled = true;
@@ -77,7 +77,7 @@ public class ScriptMenu : MonoBehaviour
         GetComponent<ScriptEspecial>().CancelInvoke();
         GetComponent<ScriptPontuacao>().enabled = false;
         GetComponent<ScriptVidas>().enabled = false;
-        GetComponent<ScriptNiveis>().enabled = false;
+        GetComponent<LevelManager>().enabled = false;
         GetComponent<ScriptSpawn>().enabled = false;
         GetComponent<ScriptEspecial>().enabled = false;
         GetComponent<ScriptPause>().ResetaLbAbout();
@@ -98,8 +98,8 @@ public class ScriptMenu : MonoBehaviour
         menuEnabled = false;
         GetComponent<ScriptPontuacao>().enabled = true;
         GetComponent<ScriptVidas>().enabled = true;
-        GetComponent<ScriptNiveis>().enabled = true;
-        GetComponent<ScriptNiveis>().AtualizaLevel();
+        GetComponent<LevelManager>().enabled = true;
+        GetComponent<LevelManager>().AtualizaLevel();
         GetComponent<ScriptSpawn>().enabled = true;
         GetComponent<ScriptEspecial>().enabled = true;
         GetComponent<ScriptSpawn>().Spawn();
@@ -211,5 +211,5 @@ public class ScriptMenu : MonoBehaviour
 			else
 				tempo = 0;
 		}
-	}
+	}*/
 }

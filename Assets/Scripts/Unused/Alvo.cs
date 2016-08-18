@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Alvo : MonoBehaviour 
-{
+{/*
 	// Use this for initialization
 	void Start () 
     {
@@ -26,5 +26,5 @@ public class Alvo : MonoBehaviour
 
     void AtingidoBolaErrada()
     {
-    }
+    }*/
 }

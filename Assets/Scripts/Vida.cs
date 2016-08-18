@@ -29,7 +29,7 @@ public class Vida : MonoBehaviour {
             vidas--;
             print(vidas);
 
-            GameObject.Find("Vidas").GetComponent<Manager_VidaGui>().QuantidadeVida(vidas);
+            GameObject.Find("Vidas").GetComponent<LifeManager>().QuantidadeVida(vidas);
         }
         else
         {
@@ -46,6 +46,6 @@ public class Vida : MonoBehaviour {
         
         Instantiate(GUIVida);
 
-        GameObject.Find("Vidas").GetComponent<Manager_VidaGui>().QuantidadeVida(vidas);
+        GameObject.Find("Vidas").GetComponent<LifeManager>().QuantidadeVida(vidas);
     }
 }

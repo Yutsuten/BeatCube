@@ -100,7 +100,7 @@ public class Itens : MonoBehaviour, I_Itens {
 
     void OnDestroy()
     {
-        GameObject.Find("GM").GetComponent<GameMananger>().RetiraObjLista(this.gameObject);
+        GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
         //print(gameObject.name + " foi destruido");
     }
 

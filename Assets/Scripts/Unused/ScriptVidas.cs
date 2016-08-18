@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ScriptVidas : MonoBehaviour 
-{
+{/*
 	public int numLives = 10;
 
 	private int life;
@@ -83,7 +83,7 @@ public class ScriptVidas : MonoBehaviour
 			{  // EXISTE COPIA DISSO EM SCRIPT PAUSE
 				//print("Botao Restart pressionado.");
 				GetComponent<ScriptPontuacao>().ResetaContadores();
-				GetComponent<ScriptNiveis>().AtualizaLevel();
+				GetComponent<LevelManager>().AtualizaLevel();
 				GetComponent<ScriptEspecial>().ResetaEspecial();
 				ResetLives();
 				//GetComponent<Jogador>().enabled = true;
@@ -103,5 +103,5 @@ public class ScriptVidas : MonoBehaviour
 		styleGameOver.normal.textColor = Color.white;
 		life = numLives * 100;
 		this.enabled = !ScriptMenu.menuEnabled;	
-	}
+	}*/
 }
