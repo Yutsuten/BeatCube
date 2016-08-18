@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tempo : MonoBehaviour 
+public class GameTime : MonoBehaviour 
 {
     float tempo;
     float tempoInicio;
@@ -19,9 +19,12 @@ public class Tempo : MonoBehaviour
 	void Update () 
     {
         guiText.color = scriptMusica.DevolveCor();
-
         tempo = Time.time - tempoInicio;
-
         guiText.text = Mathf.RoundToInt(tempo).ToString();
+    }
+
+    public float TimeElapsed()
+    {
+        return Mathf.RoundToInt(tempo);
     }
 }

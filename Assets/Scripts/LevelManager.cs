@@ -41,11 +41,6 @@ public class LevelManager : MonoBehaviour
         //return velocity;
     }
 
-    public float RetornaDificuldade()
-    {
-        return 0;
-    }
-
 	public void AtualizaLevel()
 	{
 		//difficulty = 30.0f + GetComponent<ScriptPontuacao>().RetornaPontuacao() * 0.025f;
