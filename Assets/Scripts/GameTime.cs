@@ -12,7 +12,7 @@ public class GameTime : MonoBehaviour
     {
         tempo = 0;
         tempoInicio = Time.time;
-        scriptMusica = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>();
+        scriptMusica = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
         guiText = GetComponent<GUIText>();
 	}
 	

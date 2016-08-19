@@ -12,7 +12,7 @@ public class GUI_Pontos : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<GUIText>().color = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>().DevolveCor();
+        GetComponent<GUIText>().color = GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor();
 	}
 
     public void AtualizaPontos(int p)

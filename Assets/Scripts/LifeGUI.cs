@@ -12,7 +12,7 @@ public class LifeGUI : MonoBehaviour
     {
         ativa = true;
 
-        backgroundAnimation = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>();
+        backgroundAnimation = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
 	}
 	
 	// Update is called once per frame
