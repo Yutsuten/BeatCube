@@ -54,7 +54,7 @@ public class Spawn : MonoBehaviour
         newCube.transform.tag = cubeTags[cubeColor - 1]; // Set the tag
 
         // Adding the velocity and instantiate
-        print("Direction: " + direction + "; Intensity: " + intensity);
+        //print("Direction: " + direction + "; Intensity: " + intensity);
         newCube.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(direction, -intensity, 0));
 
         //obj.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-IntensidadeForca(0, 200, intensidade), IntensidadeForca(0, 200, intensidade)), -IntensidadeForca(100, 200, intensidade), 0));
@@ -75,7 +75,7 @@ public class Spawn : MonoBehaviour
         newItem.transform.tag = "Item";
 
         // Adding the velocity and instantiate
-        print("Direction: " + direction + "; Intensity: " + intensity);
+        //print("Direction: " + direction + "; Intensity: " + intensity);
         newItem.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(direction, -intensity, 0));
     }
 }

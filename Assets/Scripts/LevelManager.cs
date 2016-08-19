@@ -4,10 +4,8 @@ using System.Collections;
 public class LevelManager : MonoBehaviour 
 {
     private const float firstTargetTime = 2.0f;
-	private const float spawnSpeed = 1.4f;
 
-    private float minIntensity = 100.0f;
-    private float maxIntensity = 300.0f;
+    private float initialSpawnSpeed = 2.0f;
 
     private Spawn spawn;
     private GameTime gameTime;
@@ -23,6 +21,27 @@ public class LevelManager : MonoBehaviour
     private void NextTarget()
     {
         spawn.SpawnObject(Direction(), Velocity());
+
+        float timeNow = gameTime.TimeElapsed();
+        float spawnSpeed;
+        // Difficulties
+        if (timeNow <= 49) // easy
+        {
+            spawnSpeed = initialSpawnSpeed - (timeNow / 490); // spawn from 2.0f to 1.9f
+        }
+        else if (timeNow <= 169) // medium
+        {
+            spawnSpeed = initialSpawnSpeed - 0.1f * (Mathf.Sqrt(timeNow) - 6f); // spawn from 1.9f to 1.3f
+        }
+        else if (timeNow <= 1122) // hard
+        {
+            spawnSpeed = initialSpawnSpeed - (0.56f + 0.02f * (Mathf.Sqrt(timeNow) - 6f)); // spawn from 1.3f to 1.1f
+        }
+        else // insane
+        {
+            spawnSpeed = 1.1f;
+        }
+        print("Next in " + spawnSpeed + " seconds.");
         Invoke("NextTarget", spawnSpeed);
     }
 
@@ -33,10 +52,12 @@ public class LevelManager : MonoBehaviour
 
     private float Velocity()
     {
-        float velocity = 60 + Mathf.Sqrt(gameTime.TimeElapsed()) + Random.RandomRange(0f, 10f);
+        float velocity = 60 + 2.0f * Mathf.Sqrt(gameTime.TimeElapsed()) + Random.RandomRange(-5f, 10f);
         // if velocity gets too big, debuff it a little
         if (velocity > 150)
             velocity = 150 + ((velocity - 150) / 3);
+        else if (velocity > 200)
+            velocity = 200;
         return Random.Range(70, 140);
     }
 }
