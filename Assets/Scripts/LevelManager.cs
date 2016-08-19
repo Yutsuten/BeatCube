@@ -41,7 +41,6 @@ public class LevelManager : MonoBehaviour
         {
             spawnSpeed = 1.1f;
         }
-        print("Next in " + spawnSpeed + " seconds.");
         Invoke("NextTarget", spawnSpeed);
     }
 

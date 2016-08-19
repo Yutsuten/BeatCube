@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GUI_Vidas : MonoBehaviour 
+public class LifeGUI : MonoBehaviour 
 {
     bool ativa;
 	// Use this for initialization

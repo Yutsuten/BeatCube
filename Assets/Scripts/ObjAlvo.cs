@@ -131,7 +131,7 @@ public abstract class ObjAlvo : MonoBehaviour {
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        GameObject.Find("GM").GetComponent<Vida>().DiminuiVida();
+        GameObject.Find("PainelCompleto/Vidas").GetComponent<LifeManager>().DiminuiVida();
         GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
         /*scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
         scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
