@@ -100,8 +100,6 @@ public class GameMananger : MonoBehaviour {
         GameObject.Find("BotaoAmarelo").GetComponent<Button>().PausaJogo();
         GameObject.Find("BotaoAzul").GetComponent<Button>().PausaJogo();
         GameObject.Find("BotaoVermelho").GetComponent<Button>().PausaJogo();
-        
-        GameObject.Find("Acordes").GetComponent<DificuldadeMusica>().GamePause();
     }
 
     private void ResumeJogo()
@@ -111,8 +109,6 @@ public class GameMananger : MonoBehaviour {
         GameObject.Find("BotaoAmarelo").GetComponent<Button>().VoltaAoJogo();
         GameObject.Find("BotaoAzul").GetComponent<Button>().VoltaAoJogo();
         GameObject.Find("BotaoVermelho").GetComponent<Button>().VoltaAoJogo();
-
-        GameObject.Find("Acordes").GetComponent<DificuldadeMusica>().GameON();
     }
 
     private void ReiniciaJogo()
