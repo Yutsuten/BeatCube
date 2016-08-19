@@ -4,16 +4,21 @@ using System.Collections;
 public class LifeGUI : MonoBehaviour 
 {
     bool ativa;
+
+    BackgroundAnimation backgroundAnimation;
+
 	// Use this for initialization
 	void Start () 
     {
         ativa = true;
+
+        backgroundAnimation = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<GUITexture>().color = GameObject.Find("Fundo2").GetComponent<ScriptMusica>().DevolveCor();
+        GetComponent<GUITexture>().color = backgroundAnimation.DevolveCor();
         if(!ativa)
         {
             GetComponent<GUITexture>().color = new Color(GetComponent<GUITexture>().color.r, GetComponent<GUITexture>().color.g, GetComponent<GUITexture>().color.b, 0.3f);

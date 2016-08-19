@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScriptMusica : MonoBehaviour
+public class BackgroundAnimation : MonoBehaviour
 {
     public AudioSource audioSource;
 //#if UNITY_EDITOR

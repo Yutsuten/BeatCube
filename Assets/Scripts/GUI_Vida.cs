@@ -11,7 +11,7 @@ public class GUI_Vida : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<GUIText>().color = GameObject.Find("Fundo2").GetComponent<ScriptMusica>().DevolveCor();
+        GetComponent<GUIText>().color = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>().DevolveCor();
 
         if (transform.position.y <= 1.5)
         {

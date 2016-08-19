@@ -5,14 +5,14 @@ public class GameTime : MonoBehaviour
 {
     float tempo;
     float tempoInicio;
-    ScriptMusica scriptMusica;
+    BackgroundAnimation scriptMusica;
     GUIText guiText;
 
 	void Start () 
     {
         tempo = 0;
         tempoInicio = Time.time;
-        scriptMusica = GameObject.Find("Fundo2").GetComponent<ScriptMusica>();
+        scriptMusica = GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>();
         guiText = GetComponent<GUIText>();
 	}
 	

@@ -29,15 +29,15 @@ public class Bola : MonoBehaviour
         {
             if (Cor == 1)
             {
-                GetComponent<Renderer>().material.color = new Color(GameObject.Find("Fundo2").GetComponent<ScriptMusica>().DevolveCor().g * 1.3f, 3, 5);
+                GetComponent<Renderer>().material.color = new Color(GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 3, 5);
             }
             else if (Cor == 2)
             {
-                GetComponent<Renderer>().material.color = new Color(5, GameObject.Find("Fundo2").GetComponent<ScriptMusica>().DevolveCor().g * 1.3f, 3);
+                GetComponent<Renderer>().material.color = new Color(5, GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 3);
             }
             else if (Cor == 3)
             {
-                GetComponent<Renderer>().material.color = new Color(5, 4, GameObject.Find("Fundo2").GetComponent<ScriptMusica>().DevolveCor().g * 1.3f);
+                GetComponent<Renderer>().material.color = new Color(5, 4, GameObject.Find("Fundo2").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f);
             }
         }
     }

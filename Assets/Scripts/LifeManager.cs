@@ -15,7 +15,6 @@ public class LifeManager : MonoBehaviour {
 
     public void DiminuiVida()
     {
-        print("Lost life.");
         lifes--;
         if (lifes < 0)
             lifes = 0;
@@ -28,7 +27,6 @@ public class LifeManager : MonoBehaviour {
 
     public void AumentaVida()
     {
-        print("Won life.");
         lifes++;
         if (lifes > 10)
             lifes = 10;
