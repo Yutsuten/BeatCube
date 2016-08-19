@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bola : MonoBehaviour 
+public class Projectile : MonoBehaviour 
 {
     bool especial = false;
     int Cor;

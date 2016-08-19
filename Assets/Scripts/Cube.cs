@@ -48,7 +48,7 @@ public abstract class Cube : MonoBehaviour {
         if (!houveColisao)
         {
             // BURST ATIVADO
-            if (ScriptEspecial.ESPECIAL_ATIVADO && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")) && Col.gameObject.GetComponent<Bola>().Especial())
+            if (ScriptEspecial.ESPECIAL_ATIVADO && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")) && Col.gameObject.GetComponent<Projectile>().Especial())
             {
                 //Acerto(Col);
                 Invoke(metodoAcerto,0);

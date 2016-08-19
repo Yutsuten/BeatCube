@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Botao : MonoBehaviour 
+public class Button : MonoBehaviour 
 {
     public GameObject Bola;
     public Transform referencia;
@@ -114,12 +114,12 @@ public class Botao : MonoBehaviour
 
                 // Instanciar a bola
                 bola = Instantiate(Bola, referencia.transform.position, Quaternion.identity) as GameObject;
-                bola.GetComponent<Bola>().DefineCor(Id);
+                bola.GetComponent<Projectile>().DefineCor(Id);
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
                 if (!foiCongelado)
                 {
-                    bola.GetComponent<Bola>().AtivadoEspecial();
+                    bola.GetComponent<Projectile>().AtivadoEspecial();
                 }
 
                 bola.GetComponent<Rigidbody>().AddForce(referencia.right * forca);
