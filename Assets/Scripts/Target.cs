@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ImplementaObj : ObjAlvo, I_objAlvo {
+public class Target : Cube {
 
     public GameObject QuadradoMaior;
 

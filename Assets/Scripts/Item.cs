@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Itens : MonoBehaviour, I_Itens {
+public class Item : MonoBehaviour {
 
     private GameObject audioExplosao;
     //protected string metodoAcerto, metodoIncremento;

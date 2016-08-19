@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class ObjAlvo : MonoBehaviour {
+public abstract class Cube : MonoBehaviour {
     
     protected string metodoAcerto, metodoIncremento;
 
