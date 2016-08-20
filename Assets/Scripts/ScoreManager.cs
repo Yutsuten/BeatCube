@@ -6,10 +6,17 @@ public class Pontuacao : MonoBehaviour
     int pontos = 0;
     int combo = 0;
 
+    ScoreGUI scoreGUI;
+
+    void Start()
+    {
+        scoreGUI = GameObject.Find("Panel/Score").GetComponent<ScoreGUI>();
+    }
+
     public void AumentaPontos(int quantidade)
     {
         pontos += quantidade;
-        GameObject.Find("Panel/Score").GetComponent<ScoreGUI>().AtualizaPontos(pontos);
+        scoreGUI.AtualizaPontos(pontos);
     }
 
     public void AumentaCombo()
