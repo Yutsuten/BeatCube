@@ -66,7 +66,7 @@ public class Target : TargetCube {
             centro = transform.position; // Obtendo a posicao do centro
             for (var j = 0; j < transform.childCount - 1; j += 1)
             { // Obtendo a posicao dos outros quadrados
-                transform.GetChild(j).GetComponent<ScriptCubo>().cubeColor = 4;
+                transform.GetChild(j).GetComponent<TargetCubeFragment>().cubeColor = 4;
                 // TESTANDO CIMA
                 coordFora[j] = transform.GetChild(j).position;
                 transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
@@ -94,7 +94,7 @@ public class Target : TargetCube {
         {
             for (var i = 0; i < aux.childCount - 1; i++)
             {
-                aux.GetChild(i).GetComponent<ScriptCubo>().cubeColor = aux.GetChild(aux.childCount - 1).GetChild(0).GetComponent<ScriptCubo>().cubeColor;
+                aux.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = aux.GetChild(aux.childCount - 1).GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
             }
             // cor de todos os quadrados do maior = cor dos quadrados menor
             aux.tag = aux.GetChild(aux.childCount - 1).tag;
@@ -103,7 +103,7 @@ public class Target : TargetCube {
         // PINTANDO OS QUADRADOS DO MENOR
         for (var k = 0; k < aux.childCount; k++)
         {
-            aux.GetChild(k).GetComponent<ScriptCubo>().cubeColor = corBola;
+            aux.GetChild(k).GetComponent<TargetCubeFragment>().cubeColor = corBola;
         }
         // ARRUMANDO A TAG DO MENOR
         if (corBola == 1) // AZUL

@@ -49,7 +49,7 @@ public class Spawn : MonoBehaviour
         // Setting color properties
         for (int i = 0; i < newCube.transform.childCount; i += 1)
         {
-            newCube.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = cubeColor; // Attribute the color to child cubes
+            newCube.transform.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = cubeColor; // Attribute the color to child cubes
         }
         newCube.transform.tag = cubeTags[cubeColor - 1]; // Set the tag
 
@@ -70,7 +70,7 @@ public class Spawn : MonoBehaviour
         // Setting color properties (5, 6 or 7)
         for (int i = 0; i < newItem.transform.childCount; i += 1)
         {
-            newItem.transform.GetChild(i).GetComponent<ScriptCubo>().cubeColor = 5;
+            newItem.transform.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = 5;
         }
         newItem.transform.tag = "Item";
 

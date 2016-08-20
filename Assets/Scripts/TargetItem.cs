@@ -29,7 +29,7 @@ public class TargetItem : MonoBehaviour {
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
-        ID = transform.GetChild(0).GetComponent<ScriptCubo>().cubeColor;
+        ID = transform.GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
 
         // Explosion audio
         audioExplosao = GameObject.Find("Sounds/Explosion");
