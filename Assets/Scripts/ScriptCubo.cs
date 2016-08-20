@@ -53,7 +53,7 @@ public class ScriptCubo : MonoBehaviour
         Cor = Random.Range(100, corMax * 100); // SE FOR QUADRADOS NORMAIS
         //Cor = Random.Range(corMin, corMax);
         Cor /= 1000;
-        tExplosao = ScriptAlvo.T_EXPLOSAO;
+        //tExplosao = ScriptAlvo.T_EXPLOSAO;
 
         corTest1 = 1;
         corTest2 = 1;

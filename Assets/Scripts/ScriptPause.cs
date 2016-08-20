@@ -40,7 +40,7 @@ public class ScriptPause : MonoBehaviour
 
     private void EnableTargets()
     { // DUCPLICATA DE SCRIPTVIDAS
-        ScriptAlvo.DESTROY_ALL_TARGETS = false;
+        //ScriptAlvo.DESTROY_ALL_TARGETS = false;
     }
 
     void OnGUI()
