@@ -5,6 +5,7 @@ public class TargetCubeFragment : MonoBehaviour
 {
     public int cubeColor;
 
+    // Colors
     private float velMudaPreto = 1.2f;
     private int incrementaCor;
     private float cor;
@@ -12,7 +13,14 @@ public class TargetCubeFragment : MonoBehaviour
     private Color corRGB;
     private int corMax;
 
-	// Use this for initialization
+    // Explosion
+    private int minRotacao = 50;
+    private int maxRotacao = 120;
+    private float tempo;
+    private float tempoExplosao = 1.5f;
+    private float tamCuboInicial = 0.5f;
+    private bool destruido = false;
+
 	void Start () 
     {
         fatorIncremento = Random.Range(0.01f, 0.04f);
@@ -21,6 +29,27 @@ public class TargetCubeFragment : MonoBehaviour
         cor = Random.Range(100, corMax * 100); // SE FOR QUADRADOS NORMAIS
         cor /= 1000;
 	}
+
+    public void Destroi(float tempoExp, float tamCubo)
+    {
+        tempoExplosao = tempoExp;
+        tamCuboInicial = tamCubo;
+        destruido = true;
+        tempo = Time.time;
+    }
+
+    private void DestroyAnimation()
+    {
+        // CALCULANDO O QUANTO IRA REDUZIR OS QUADRADOS MENORES
+        float reducao = (Time.time - tempo) / (tempoExplosao * 2);
+        // CASO VA DIMINUIR MAIS DO QUE O TAMANHO QUE JA TEM, TRATAR (DARIA NEGATIVO, MAS NAO SE PODE DEIXAR DAR NEGATIVO)
+        if (reducao >= tamCuboInicial)
+            reducao = tamCuboInicial;
+        // REDUZINDO OS QUADRADOS MENORES
+        float scale = tamCuboInicial - reducao;
+        transform.localScale = new Vector3(scale, scale, scale);
+        transform.GetComponent<Rigidbody>().AddTorque(Random.Range(minRotacao, maxRotacao), Random.Range(minRotacao, maxRotacao), Random.Range(minRotacao, maxRotacao));
+    }
 
     private void CubeAnimationColor()
     {
@@ -77,5 +106,7 @@ public class TargetCubeFragment : MonoBehaviour
     {
         CubeAnimationColor();
         PaintCube();
+        if (destruido)
+            DestroyAnimation();
 	}
 }
