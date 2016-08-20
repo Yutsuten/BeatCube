@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         spawn = this.gameObject.GetComponent<Spawn>();
-        gameTime = GameObject.Find("PainelCompleto/Tempo").GetComponent<GameTime>();
+        gameTime = GameObject.Find("Panel/Time").GetComponent<GameTime>();
 
         Invoke("NextTarget", firstTargetTime);
     }

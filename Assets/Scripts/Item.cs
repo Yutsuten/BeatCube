@@ -60,7 +60,7 @@ public class Item : MonoBehaviour {
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        GameObject.Find("PainelCompleto/Vidas").GetComponent<LifeManager>().DiminuiVida();
+        GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
         GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
     }
 
@@ -117,7 +117,7 @@ public class Item : MonoBehaviour {
         if (ID == 5)
         {
             //print("Vai aumenta a vida");
-            GameObject.Find("PainelCompleto/Vidas").GetComponent<LifeManager>().AumentaVida();
+            GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().AumentaVida();
         }
         else if (ID == 6)
         {

@@ -131,7 +131,7 @@ public abstract class Cube : MonoBehaviour {
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        GameObject.Find("PainelCompleto/Vidas").GetComponent<LifeManager>().DiminuiVida();
+        GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
         GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
         /*scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
         scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
