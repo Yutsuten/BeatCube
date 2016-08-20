@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Cube : MonoBehaviour {
+public abstract class TargetCube : MonoBehaviour {
     
     protected string metodoAcerto, metodoIncremento;
 
@@ -132,7 +132,7 @@ public abstract class Cube : MonoBehaviour {
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
         /*scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
         scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
         scripts.GetComponent<ScriptVidas>().DecLife(1);*/
@@ -140,8 +140,8 @@ public abstract class Cube : MonoBehaviour {
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<Pontuacao>().AumentaPontos(5);
-        GameObject.Find("GM").GetComponent<Pontuacao>().AumentaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaPontos(5);
+        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaCombo();
 
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);

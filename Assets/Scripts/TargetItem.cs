@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class TargetItem : MonoBehaviour {
 
     private GameObject audioExplosao;
     //protected string metodoAcerto, metodoIncremento;
@@ -61,12 +61,12 @@ public class Item : MonoBehaviour {
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
     }
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<Pontuacao>().AumentaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaCombo();
 
         houveColisao = true;
         //Invoke("DesabilitaColisao", tempoColisao);

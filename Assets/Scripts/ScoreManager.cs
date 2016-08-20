@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Pontuacao : MonoBehaviour 
+public class ScoreManager : MonoBehaviour 
 {
     int pontos = 0;
     int combo = 0;

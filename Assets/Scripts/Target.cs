@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Target : Cube {
+public class Target : TargetCube {
 
     public GameObject QuadradoMaior;
 
@@ -39,7 +39,7 @@ public class Target : Cube {
     public void Incremento(Collider col)
     {
         //print("Erro imbecil");
-        GameObject.Find("GM").GetComponent<Pontuacao>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
 
 
         houveColisao = true;
