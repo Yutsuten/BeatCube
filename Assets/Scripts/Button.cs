@@ -117,11 +117,6 @@ public class Button : MonoBehaviour
                 bola.GetComponent<Projectile>().DefineCor(Id);
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
-                if (!foiCongelado)
-                {
-                    bola.GetComponent<Projectile>().AtivadoEspecial();
-                }
-
                 bola.GetComponent<Rigidbody>().AddForce(referencia.right * forca);
             }
         }

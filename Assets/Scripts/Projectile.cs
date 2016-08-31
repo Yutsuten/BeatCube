@@ -3,23 +3,22 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour 
 {
-    bool especial = false;
-    int Cor;
+    int color;
 
-    public void DefineCor(int cor)
+    public void DefineCor(int color)
     {
-        Cor = cor;
-        if (cor == 1)
+        this.color = color;
+        if (color == 1)
         {
-            GetComponent<Renderer>().material.color = new Color(0.5f, 3, 5);
+            GetComponent<Renderer>().material.color = new Color(0.5f, 1, 1);
         }
-        else if(cor == 2)
+        else if(color == 2)
         {
-            GetComponent<Renderer>().material.color = new Color(5, 0.5f, 3);
+            GetComponent<Renderer>().material.color = new Color(1, 0.5f, 1);
         }
-        else if(cor == 3)
+        else if (color == 3)
         {
-            GetComponent<Renderer>().material.color = new Color(5, 4, 0.5f);
+            GetComponent<Renderer>().material.color = new Color(1, 1, 0.5f);
         }
     }
 
@@ -27,54 +26,35 @@ public class Projectile : MonoBehaviour
     {
         if (!ScriptEspecial.ESPECIAL_ATIVADO)
         {
-            if (Cor == 1)
+            if (color == 1)
             {
-                GetComponent<Renderer>().material.color = new Color(GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 3, 5);
+                GetComponent<Renderer>().material.color = new Color(GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 1, 1);
             }
-            else if (Cor == 2)
+            else if (color == 2)
             {
-                GetComponent<Renderer>().material.color = new Color(5, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 3);
+                GetComponent<Renderer>().material.color = new Color(1, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 0.3f, 1);
             }
-            else if (Cor == 3)
+            else if (color == 3)
             {
-                GetComponent<Renderer>().material.color = new Color(5, 4, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f);
+                GetComponent<Renderer>().material.color = new Color(1, 1, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 0.3f);
             }
         }
     }
 
     void OnTriggerEnter(Collider Col)
     {
-        //print("ta entrando " + Col.gameObject.name);
+        // When hitting on the wall
         if (Col.gameObject.tag.Equals("Parede"))
         {
             Vector3 vetorAux = transform.GetComponent<Rigidbody>().velocity;
             vetorAux.x *= -1;
             transform.GetComponent<Rigidbody>().velocity = vetorAux;
         }
+        // If, form some reason, the cube is going up instead of down 
         else if (Col.gameObject.tag.Equals("Teto"))
         {
             Destroy(gameObject);
         }
-    }
-
-    public void AtivadoEspecial()
-    {
-        especial = true;
-    }
-
-    public void DesativadoEspecial()
-    {
-        especial = false;
-    }
-
-    public bool Especial()
-    {
-        return especial;
-    }
-
-    public void ParalisaObj()
-    {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
 
     void OnDestroy()
