@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScriptEspecial : MonoBehaviour 
+public class SpecialManager : MonoBehaviour 
 {
     public static float ESPECIAL_CHEIO = 30.0f;
     public static bool ESPECIAL_ATIVADO = false;

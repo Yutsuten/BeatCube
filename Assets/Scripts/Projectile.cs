@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        if (!ScriptEspecial.ESPECIAL_ATIVADO)
+        if (!SpecialManager.ESPECIAL_ATIVADO)
         {
             if (color == 1)
             {

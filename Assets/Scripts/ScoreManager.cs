@@ -22,7 +22,7 @@ public class ScoreManager : MonoBehaviour
     public void AumentaCombo()
     {
         combo++;
-        GetComponent<ScriptEspecial>().RecalculaFundo(3);
+        GetComponent<SpecialManager>().RecalculaFundo(3);
 
         if (combo >= 10)
         {
@@ -35,6 +35,6 @@ public class ScoreManager : MonoBehaviour
     public void ResetaCombo()
     {
         combo = 0;
-        GetComponent<ScriptEspecial>().ResetaEspecial();
+        GetComponent<SpecialManager>().ResetaEspecial();
     }
 }

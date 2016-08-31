@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScriptPause : MonoBehaviour 
+public class PauseManager : MonoBehaviour 
 {
     private GUIStyle styleAbout = new GUIStyle();
     private bool onPause;
