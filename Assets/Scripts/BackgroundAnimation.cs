@@ -4,55 +4,67 @@ using System.Collections;
 public class BackgroundAnimation : MonoBehaviour
 {
     public AudioSource audioSource;
-    public bool on = true;
 
     float[] spectrum;
-    int qSamples = 1024;
-    float color;
-    float a, b;
-    float sumX, sumY, sumX2, sumXY;
+    int qSamples = 1024, lossFactor = 4;
+    float color, a, b, yo, sumX, sumY, sumX2, sumXY, counter;
+    private float minC = 0.8f, maxC = 1.5f;
 
-    float min = float.MaxValue, max = float.MinValue;
-    int lossFactor = 4;
-    float yo;
-
-    float contador;
-    public float minC, maxC;
+    float specialInfluence;
+    Color backgroundColor;
 
 	void Start()
     {
-        minC = 0.8f; 
-        maxC = 1.5f;
         spectrum = new float[qSamples];
-        contador = Random.Range(minC,maxC);
+        counter = Random.Range(minC,maxC);
 	}
+
+    // 'Math' functions
+    private float NumberInInterval(float number, float min = 0f, float max = 1f)
+    {
+        number = (number < min) ? min : number;
+        number = (number > max) ? max : number;
+        return number;
+    }
 	
+    // Updating background
 	void Update()
     {
-        Method();
+        ReadSpectrumData();
 
         ParticleAnimator particleAnimator = GetComponent<ParticleAnimator>();
-        Color[] cores = particleAnimator.colorAnimation;
+        Color[] backgroundColors = particleAnimator.colorAnimation;
         yo = CorDoMeio();
-        
-        cores[0] = new Color(color, yo, 1-color);
-        cores[1] = new Color(color, yo, 1-color);
-        cores[2] = new Color(color, yo, 1-color);
-        cores[3] = new Color(color, yo, 1-color);
-        cores[4] = new Color(color, yo, 1-color);
-        particleAnimator.colorAnimation = cores;
 
-        contador -= color * Time.deltaTime;
-        
-        if (contador <= 0)
+        backgroundColor = ColorWithSpecial();
+
+        backgroundColors[0] = backgroundColor;
+        backgroundColors[1] = backgroundColor;
+        backgroundColors[2] = backgroundColor;
+        backgroundColors[3] = backgroundColor;
+        backgroundColors[4] = backgroundColor;
+        particleAnimator.colorAnimation = backgroundColors;
+
+        counter -= color * Time.deltaTime;
+        if (counter <= 0)
         {
             RecalculaContador();
         }
 	}
 
-    public void RecalculaContador()
+    public void UpdateSpecialInfluence(float ratio)
     {
-        contador = Random.Range(minC, maxC);
+        specialInfluence = ratio;
+    }
+
+    private Color ColorWithSpecial()
+    {
+        return new Color(NumberInInterval(color + specialInfluence), NumberInInterval(yo + specialInfluence), NumberInInterval(1 - color + specialInfluence));
+    }
+
+    private void RecalculaContador()
+    {
+        counter = Random.Range(minC, maxC);
     }
 
     public Color DevolveCor()
@@ -60,7 +72,7 @@ public class BackgroundAnimation : MonoBehaviour
         return new Color(color, yo, 1 - color);
     }
 
-    float CorDoMeio()
+    private float CorDoMeio()
     {
         if (color >= 0.5f)
         {
@@ -72,7 +84,7 @@ public class BackgroundAnimation : MonoBehaviour
         }
     }
 
-    void Method()
+    private void ReadSpectrumData()
     {
         audioSource.GetComponent<AudioSource>().GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
 

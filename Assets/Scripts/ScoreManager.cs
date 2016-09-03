@@ -24,6 +24,6 @@ public class ScoreManager : MonoBehaviour
 
     public void ResetCombo()
     {
-        GetComponent<SpecialManager>().ResetaEspecial();
+        GetComponent<SpecialManager>().ResetSpecial();
     }
 }

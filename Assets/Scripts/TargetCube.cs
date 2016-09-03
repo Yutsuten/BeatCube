@@ -51,7 +51,7 @@ public class TargetCube : MonoBehaviour {
         if (!houveColisao)
         {
             // BURST ATIVADO
-            if (SpecialManager.ESPECIAL_ATIVADO && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")))
+            if (SpecialManager.SpecialActivated && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")))
             {
                 //Acerto(Col);
                 Invoke(metodoAcerto,0);
