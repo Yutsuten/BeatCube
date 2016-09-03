@@ -132,7 +132,7 @@ public class TargetCube : MonoBehaviour {
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
         /*scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
         scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
         scripts.GetComponent<ScriptVidas>().DecLife(1);*/
@@ -141,7 +141,7 @@ public class TargetCube : MonoBehaviour {
     public void Incremento(Collider col)
     {
         //print("Erro imbecil");
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
 
 
         houveColisao = true;
@@ -227,8 +227,7 @@ public class TargetCube : MonoBehaviour {
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaPontos(5);
-        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);

@@ -6,9 +6,9 @@ public class SpecialManager : MonoBehaviour
     public static float ESPECIAL_CHEIO = 30.0f;
     public static bool ESPECIAL_ATIVADO = false;
 
-    public float tempoBurst = 15.0f;
-    public float rateNoBurstWithWhite = 0.85f;
-    public float rateBurstWithColors = 0.95f;
+    private float tempoBurst = 10.0f;
+    private float rateNoBurstWithWhite = 0.85f;
+    private float rateBurstWithColors = 0.95f;
     public Transform botaoAzul;
     public Transform botaoAmarelo;
     public Transform botaoVermelho;
@@ -21,20 +21,18 @@ public class SpecialManager : MonoBehaviour
     private float tempo;
     private float tempCorFundo = 0.0f;
     private float especial = 0.0f;
-    private Color corAzul;
+    /*private Color corAzul;
     private Color corAmarelo;
     private Color corVermelho;
-    private Color corBranco;
+    private Color corBranco;*/
     private ParticleAnimator animatorAzul;
     private ParticleAnimator animatorAmarelo;
     private ParticleAnimator animatorVermelho;
     private ParticleAnimator animatorFundo;
-    private Color[] trueColorsAzul = new Color[5];
-    private Color[] trueColorsAmarelo = new Color[5];
-    private Color[] trueColorsVermelho = new Color[5];
-    private Color[] vetorAzul = new Color[5];
-    private Color[] vetorAmarelo = new Color[5];
-    private Color[] vetorVermelho = new Color[5];
+    private Color[] blue = new Color[5];
+    private Color[] yellow = new Color[5];
+    private Color[] red = new Color[5];
+    private Color[] white = new Color[5];
     private Color[] corFundo = new Color[5];
     
 
@@ -45,23 +43,21 @@ public class SpecialManager : MonoBehaviour
         animatorAmarelo = botaoAmarelo.GetComponent<ParticleAnimator>();
         animatorVermelho = botaoVermelho.GetComponent<ParticleAnimator>();
 
-        corAzul = new Vector4(0f, 0f, 255.0f / 255, 255.0f / 255);
-        corAmarelo = new Vector4(255.0f / 255, 255.0f / 255, 0f, 255.0f / 255);
-        corVermelho = new Vector4(255.0f / 255, 0f, 0f, 255.0f / 255);
-        corBranco = new Vector4(255.0f / 255, 255.0f / 255, 255.0f / 255, 255.0f / 255);
+        /*corAzul = new Vector4(0f, 0f, 1f, 1f);
+        corAmarelo = new Vector4(1f,1f, 0f, 1f);
+        corVermelho = new Vector4(1f, 0f, 0f, 1f);
+        corBranco = new Vector4(1f, 1f, 1f, 1f);
 
         matAzul.color = corAzul;
         matAmarelo.color = corAmarelo;
-        matVermelho.color = corVermelho;
+        matVermelho.color = corVermelho;*/
 
         for (var i = 0; i < 5; i += 1)
         {
-            trueColorsAzul[i] = animatorAzul.colorAnimation[i];
-            trueColorsAmarelo[i] = animatorAmarelo.colorAnimation[i];
-            trueColorsVermelho[i] = animatorVermelho.colorAnimation[i];
-            vetorAzul[i] = Color.white;
-            vetorAmarelo[i] = Color.white;
-            vetorVermelho[i] = Color.white;
+            blue[i] = animatorAzul.colorAnimation[i];
+            yellow[i] = animatorAmarelo.colorAnimation[i];
+            red[i] = animatorVermelho.colorAnimation[i];
+            white[i] = Color.white;
         }
 
         animatorFundo = fundo.GetComponent<ParticleAnimator>();
@@ -74,14 +70,14 @@ public class SpecialManager : MonoBehaviour
         ESPECIAL_ATIVADO = false;
 
         // VOLTANDO OS BOTOES PARA AS CORES ORIGINAIS
-        animatorAzul.colorAnimation = trueColorsAzul;
-        animatorAmarelo.colorAnimation = trueColorsAmarelo;
-        animatorVermelho.colorAnimation = trueColorsVermelho;
+        animatorAzul.colorAnimation = blue;
+        animatorAmarelo.colorAnimation = yellow;
+        animatorVermelho.colorAnimation = red;
 
         // VOLTANDO AS BOLAS PARA AS CORES ORIGINAIS
-        matAzul.color = corAzul;
+        /*matAzul.color = corAzul;
         matAmarelo.color = corAmarelo;
-        matVermelho.color = corVermelho;
+        matVermelho.color = corVermelho;*/
 
         // DEIXANDO O FUNDO NORMAL
         corFundo[0] = new Color(0, 0, 0);
@@ -92,22 +88,6 @@ public class SpecialManager : MonoBehaviour
         animatorFundo.colorAnimation = corFundo;
 
         CancelInvoke();
-    }
-
-    public void MudaCorBola(string nomeBotao)
-    {
-        if (nomeBotao == "BotaoAzul")
-        {
-            matAzul.color = corAzul;
-        }
-        else if (nomeBotao == "BotaoAmarelo")
-        {
-            matAmarelo.color = corAmarelo;
-        }
-        else if (nomeBotao == "BotaoVermelho")
-        {
-            matVermelho.color = corVermelho;
-        }
     }
 
     private void EspecialAtivado()
@@ -130,14 +110,14 @@ public class SpecialManager : MonoBehaviour
             ESPECIAL_ATIVADO = false;
 
             // VOLTANDO OS BOTOES PARA AS CORES ORIGINAIS
-            animatorAzul.colorAnimation = trueColorsAzul;
-            animatorAmarelo.colorAnimation = trueColorsAmarelo;
-            animatorVermelho.colorAnimation = trueColorsVermelho;
+            animatorAzul.colorAnimation = blue;
+            animatorAmarelo.colorAnimation = yellow;
+            animatorVermelho.colorAnimation = red;
 
             // VOLTANDO AS BOLAS PARA AS CORES ORIGINAIS
-            matAzul.color = corAzul;
+            /*matAzul.color = corAzul;
             matAmarelo.color = corAmarelo;
-            matVermelho.color = corVermelho;
+            matVermelho.color = corVermelho;*/
 
             // DEIXANDO O FUNDO NORMAL
             corFundo[0] = new Color(0, 0, 0);
@@ -151,15 +131,11 @@ public class SpecialManager : MonoBehaviour
         }
     }
 
-    public void RecalculaFundo(int inc)
+    public void RecalculaFundo()
     {
-        
 	    if (!ESPECIAL_ATIVADO)
 	    {
-		    especial += inc;
-            //print(especial + " " + ESPECIAL_CHEIO);
-		    if (especial < 0)
-			    especial = 0;
+		    especial++;
 
 		    // VAI FICANDO BRANCO CONFORME AUMENTA O BURST
 		    tempCorFundo = Mathf.Pow((especial / ESPECIAL_CHEIO) * rateNoBurstWithWhite, 2);
@@ -181,14 +157,14 @@ public class SpecialManager : MonoBehaviour
         tempo = Time.time;
 
         // DEIXANDO AS BOLAS BRANCAS
-        matAzul.color = corBranco;
+        /*matAzul.color = corBranco;
         matAmarelo.color = corBranco;
-        matVermelho.color = corBranco;
+        matVermelho.color = corBranco;*/
 
         // DEIXANDO OS BOTOES BRANCOS
-        animatorAzul.colorAnimation = vetorAzul;
-        animatorAmarelo.colorAnimation = vetorAmarelo;
-        animatorVermelho.colorAnimation = vetorVermelho;
+        animatorAzul.colorAnimation = white;
+        animatorAmarelo.colorAnimation = white;
+        animatorVermelho.colorAnimation = white;
 
         // DEIXANDO O FUNDO BRANCO
         corFundo[0] = new Color(rateNoBurstWithWhite, rateNoBurstWithWhite, rateNoBurstWithWhite);

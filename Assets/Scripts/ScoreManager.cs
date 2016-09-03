@@ -3,8 +3,9 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour 
 {
-    int pontos = 0;
-    int combo = 0;
+    private int pointIncrement = 5;
+
+    int score = 0;
 
     ScoreGUI scoreGUI;
 
@@ -13,28 +14,16 @@ public class ScoreManager : MonoBehaviour
         scoreGUI = GameObject.Find("Panel/Score").GetComponent<ScoreGUI>();
     }
 
-    public void AumentaPontos(int quantidade)
+    public void GetPoints()
     {
-        pontos += quantidade;
-        scoreGUI.AtualizaPontos(pontos);
+        score += pointIncrement;
+        scoreGUI.AtualizaPontos(score);
+
+        GetComponent<SpecialManager>().RecalculaFundo();
     }
 
-    public void AumentaCombo()
+    public void ResetCombo()
     {
-        combo++;
-        GetComponent<SpecialManager>().RecalculaFundo(3);
-
-        if (combo >= 10)
-        {
-            //GetComponent<ScriptEspecial>().RecalculaFundo(30);
-            //print("Especial");
-            combo = 0;
-        }
-    }
-
-    public void ResetaCombo()
-    {
-        combo = 0;
         GetComponent<SpecialManager>().ResetaEspecial();
     }
 }

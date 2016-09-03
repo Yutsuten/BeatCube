@@ -61,12 +61,12 @@ public class TargetItem : MonoBehaviour {
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
     }
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<ScoreManager>().AumentaCombo();
+        GameObject.Find("GM").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
         //Invoke("DesabilitaColisao", tempoColisao);
