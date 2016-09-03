@@ -122,7 +122,7 @@ public class TargetItem : MonoBehaviour {
         else if (ID == 6)
         {
             //print("Tem que ativa o especial");
-            GameObject.Find("GM").GetComponent<SpecialManager>().ItemAtivaEspecial();
+            GameObject.Find("GM").GetComponent<SpecialManager>().ItemSpecialBonus();
         }
         else if(ID == 7)
         {

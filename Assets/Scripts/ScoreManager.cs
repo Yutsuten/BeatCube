@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
         score += pointIncrement;
         scoreGUI.AtualizaPontos(score);
 
-        GetComponent<SpecialManager>().RecalculaFundo();
+        GetComponent<SpecialManager>().UpdateSpecialGauge();
     }
 
     public void ResetCombo()

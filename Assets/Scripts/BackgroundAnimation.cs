@@ -59,7 +59,7 @@ public class BackgroundAnimation : MonoBehaviour
 
     private Color ColorWithSpecial()
     {
-        return new Color(NumberInInterval(color + specialInfluence), NumberInInterval(yo + specialInfluence), NumberInInterval(1 - color + specialInfluence));
+        return new Color(NumberInInterval(color - 0.15f + specialInfluence), NumberInInterval(yo + specialInfluence), NumberInInterval(0.7f - color + specialInfluence));
     }
 
     private void RecalculaContador()
@@ -69,7 +69,7 @@ public class BackgroundAnimation : MonoBehaviour
 
     public Color DevolveCor()
     {
-        return new Color(color, yo, 1 - color);
+        return ColorWithSpecial();
     }
 
     private float CorDoMeio()
