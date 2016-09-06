@@ -26,11 +26,11 @@ public class TargetItem : TargetColor
 
     void Start()
     {
+        base.Start();
+
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
-
-        //ID = transform.GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
 
         // Explosion audio
         audioExplosao = GameObject.Find("Sounds/Explosion");

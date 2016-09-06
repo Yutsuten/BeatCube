@@ -12,11 +12,14 @@ public class TargetColor : MonoBehaviour
     private float cor;
     private float fatorIncremento;
     private Color corRGB;
+    private Color white;
     private int corMax;
     private int biggerCube = 0;
 
-    void Start()
+    protected void Start()
     {
+        white = new Color(1f, 1f, 1f);
+
         fatorIncremento = Random.Range(0.01f, 0.04f);
         incrementaCor = 1;
         corMax = Random.Range(4, 7);
@@ -28,7 +31,15 @@ public class TargetColor : MonoBehaviour
     {
         CubeAnimationColor();
         for (int childIndex = 0; childIndex < transform.childCount - biggerCube; childIndex++)
-            transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(corRGB);
+        {
+            if (SpecialManager.SpecialActivated)
+            {
+                print(white);
+                transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(white);
+            } 
+            else
+                transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(corRGB);
+        }
     }
 
     public int Color

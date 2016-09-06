@@ -20,6 +20,8 @@ public class TargetCube : TargetColor
 
     void Start()
     {
+        base.Start();
+
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
