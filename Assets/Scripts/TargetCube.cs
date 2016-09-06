@@ -5,26 +5,20 @@ public class TargetCube : MonoBehaviour {
     
     protected string metodoAcerto, metodoIncremento;
 
-    private GameObject audioExplosao;
+    private AudioSource audioExplosao;
 
-    public float tExplosao = 1.2f;
-    public float minRotation = 50.0f;
-    public float maxRotation = 150.0f;
-    public float tempoColisao = 0.05f;
-    int corBola;
+    private float tExplosao = 1.2f;
+    private float minRotation = 50.0f;
+    private float maxRotation = 150.0f;
+    private float tempoColisao = 0.05f;
 
     private float velocidadeRotacaoX;
     private float velocidadeRotacaoY;
     private float velocidadeRotacaoZ;
 
-    protected Collider auxCol;
-    protected GameObject auxObj;
-
     public GameObject QuadradoMaior;
 
     protected bool houveColisao = false;
-
-    string color;
 
     void Start()
     {
@@ -36,7 +30,7 @@ public class TargetCube : MonoBehaviour {
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
         // Explosion audio
-        audioExplosao = GameObject.Find("Sounds/Explosion");
+        audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -46,8 +40,6 @@ public class TargetCube : MonoBehaviour {
 
     void OnTriggerEnter(Collider Col)
     {
-        //print(gameObject.tag + " " + Col.gameObject.tag);
-        auxCol = Col;
         if (!houveColisao)
         {
             // BURST ATIVADO
@@ -133,9 +125,6 @@ public class TargetCube : MonoBehaviour {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
         GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
-        /*scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
-        scripts.GetComponent<ScriptEspecial>().ResetaEspecial();
-        scripts.GetComponent<ScriptVidas>().DecLife(1);*/
     }
 
     public void Incremento(Collider col)
@@ -143,7 +132,7 @@ public class TargetCube : MonoBehaviour {
         //print("Erro imbecil");
         GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
 
-
+        int corBola;
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
         if (col.gameObject.tag == "Bola Vermelha")
@@ -154,7 +143,7 @@ public class TargetCube : MonoBehaviour {
         {
             corBola = 1;
         }
-        else if (col.gameObject.tag == "Bola Amarela")
+        else // if (col.gameObject.tag == "Bola Amarela")
         {
             corBola = 3;
         }
@@ -180,8 +169,6 @@ public class TargetCube : MonoBehaviour {
             }
             transform.DetachChildren();
             Destroy(transform.gameObject);
-            //scripts.GetComponent<ScriptPontuacao>().ResetaCombo();
-            //scripts.GetComponent<ScriptVidas>().DecLife(3);
             return;
         }
         GameObject obj = Instantiate(QuadradoMaior, transform.position, transform.rotation) as GameObject;
@@ -222,7 +209,6 @@ public class TargetCube : MonoBehaviour {
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
-        //scripts.GetComponent<ScriptPontuacao>().DecCombo();
     }
 
     void Explosao()
@@ -253,7 +239,7 @@ public class TargetCube : MonoBehaviour {
                 Destroy(transform.GetChild(j).gameObject, tExplosao);
             }
             transform.DetachChildren();
-            audioExplosao.GetComponent<AudioSource>().Play();
+            audioExplosao.Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
             bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
         }
@@ -273,7 +259,7 @@ public class TargetCube : MonoBehaviour {
                 Destroy(transform.GetChild(j).gameObject, tExplosao);
             }
             transform.DetachChildren();
-            audioExplosao.GetComponent<AudioSource>().Play();
+            audioExplosao.Play();
             Destroy(transform.gameObject);// destruindo o que foi acertado
         }
     }
@@ -286,7 +272,6 @@ public class TargetCube : MonoBehaviour {
     void OnDestroy()
     {
         GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
-        //print(gameObject.name + " foi destruido");
     }
 
     public void ParalisaObj()
