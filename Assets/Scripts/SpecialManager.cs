@@ -89,7 +89,7 @@ public class SpecialManager : MonoBehaviour
             specialColorRatio = ratioBeforeBurst * Mathf.Pow((special / fullSpecial), 2);
             backgroundAnimation.UpdateSpecialInfluence(specialColorRatio);
 
-            print(special + "/" + fullSpecial + " ~ Cor fundo = " + specialColorRatio);
+            //print(special + "/" + fullSpecial + " ~ Cor fundo = " + specialColorRatio);
 
             if (special >= fullSpecial)
             {
@@ -124,7 +124,7 @@ public class SpecialManager : MonoBehaviour
         specialColorRatio = ratioAfterBurst * Mathf.Pow((special / fullSpecial), 2) + 0.3f;
         backgroundAnimation.UpdateSpecialInfluence(specialColorRatio);
 
-        print(special + "/" + fullSpecial + " ~ Cor fundo = " + specialColorRatio);
+        //print(special + "/" + fullSpecial + " ~ Cor fundo = " + specialColorRatio);
 
         if (Time.time - specialBeginTime > tempoBurst)
             ResetSpecial();
