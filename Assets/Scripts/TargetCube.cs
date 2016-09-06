@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetCube : MonoBehaviour {
-    
-    protected string metodoAcerto, metodoIncremento;
-
+public class TargetCube : MonoBehaviour
+{
     private AudioSource audioExplosao;
 
     private float tExplosao = 1.2f;
@@ -22,9 +20,6 @@ public class TargetCube : MonoBehaviour {
 
     void Start()
     {
-        metodoAcerto = "chamaAcerto";
-        metodoIncremento = "chamaIncremento";
-
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
@@ -46,7 +41,6 @@ public class TargetCube : MonoBehaviour {
             if (SpecialManager.SpecialActivated && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")))
             {
                 //Acerto(Col);
-                Invoke(metodoAcerto,0);
                 Explosao();
                 Destroy(Col.gameObject);
             }
