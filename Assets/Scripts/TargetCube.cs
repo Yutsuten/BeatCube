@@ -1,22 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetCube : MonoBehaviour
+public class TargetCube : TargetColor
 {
+    // Audio
     private AudioSource audioExplosao;
 
+    // Movement and collisions
+    protected bool houveColisao = false;
     private float tExplosao = 1.2f;
     private float minRotation = 50.0f;
     private float maxRotation = 150.0f;
     private float tempoColisao = 0.05f;
+    public GameObject QuadradoMaior;
 
     private float velocidadeRotacaoX;
     private float velocidadeRotacaoY;
     private float velocidadeRotacaoZ;
-
-    public GameObject QuadradoMaior;
-
-    protected bool houveColisao = false;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class TargetCube : MonoBehaviour
     void Update()
     {
         transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+        UpdateChildColors();
     }
 
     void OnTriggerEnter(Collider Col)
@@ -146,13 +147,12 @@ public class TargetCube : MonoBehaviour
         if (QuadradoMaior == null)
         {
             Destroy(transform.GetChild(transform.childCount - 1).gameObject);
+            targetColor = 4;
             Vector3 centro;
             Vector3[] coordFora = new Vector3[13];
             centro = transform.position; // Obtendo a posicao do centro
             for (var j = 0; j < transform.childCount - 1; j += 1)
             { // Obtendo a posicao dos outros quadrados
-                transform.GetChild(j).GetComponent<TargetCubeFragment>().cubeColor = 4;
-                // TESTANDO CIMA
                 coordFora[j] = transform.GetChild(j).position;
                 transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
                 transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora[j] - centro) * Random.Range(150, 200));
@@ -172,22 +172,24 @@ public class TargetCube : MonoBehaviour
         obj.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         transform.parent = obj.transform;
         //print("Transform Obj Inst: " + obj.transform.rotation + " - Transform: " + transform.rotation);
-        var aux = obj.transform;
-        while (aux.childCount != 8) // MUDANDO A COR DE TODOS OS QUADRADOS DO MAIOR E MENOR
+        var aux = obj.GetComponent<TargetColor>();
+        while (aux.transform.childCount != 8) // MUDANDO A COR DE TODOS OS QUADRADOS DO MAIOR E MENOR
         {
-            for (var i = 0; i < aux.childCount - 1; i++)
+            aux.Color = aux.transform.GetChild(0).GetComponent<TargetColor>().Color;
+            /*for (var i = 0; i < aux.childCount - 1; i++)
             {
                 aux.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = aux.GetChild(aux.childCount - 1).GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
-            }
+            }*/
             // cor de todos os quadrados do maior = cor dos quadrados menor
-            aux.tag = aux.GetChild(aux.childCount - 1).tag;
-            aux = aux.GetChild(aux.childCount - 1);
+            aux.tag = aux.transform.GetChild(aux.transform.childCount - 1).tag;
+            aux = aux.transform.GetChild(aux.transform.childCount - 1).GetComponent<TargetColor>();
         }
         // PINTANDO OS QUADRADOS DO MENOR
-        for (var k = 0; k < aux.childCount; k++)
+        aux.Color = corBola;
+        /*for (var k = 0; k < aux.childCount; k++)
         {
-            aux.GetChild(k).GetComponent<TargetCubeFragment>().cubeColor = corBola;
-        }
+            aux.transform.GetChild(k).GetComponent<TargetCubeFragment>().cubeColor = corBola;
+        }*/
         // ARRUMANDO A TAG DO MENOR
         if (corBola == 1) // AZUL
         {
@@ -205,7 +207,7 @@ public class TargetCube : MonoBehaviour
         transform.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    void Explosao()
+    private void Explosao()
     {
         GameObject.Find("GM").GetComponent<ScoreManager>().GetPoints();
 
@@ -258,22 +260,14 @@ public class TargetCube : MonoBehaviour
         }
     }
 
-    void DesabilitaColisao()
+    private void DesabilitaColisao()
     {
         houveColisao = false;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
-    }
-
-    public void ParalisaObj()
-    {
-        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        velocidadeRotacaoX = 0;
-        velocidadeRotacaoY = 0;
-        velocidadeRotacaoZ = 0;
     }
 
     public void ChamaExplosao()

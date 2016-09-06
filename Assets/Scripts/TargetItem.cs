@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetItem : MonoBehaviour {
+public class TargetItem : TargetColor
+{
 
     private GameObject audioExplosao;
     //protected string metodoAcerto, metodoIncremento;
@@ -16,7 +17,7 @@ public class TargetItem : MonoBehaviour {
     //private Vector3 velocidadeAtual;
 
     public float tExplosao = 1.2f;
-    int ID;
+    //int ID;
 
     protected Collider auxCol;
     protected GameObject auxObj;
@@ -29,7 +30,7 @@ public class TargetItem : MonoBehaviour {
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
-        ID = transform.GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
+        //ID = transform.GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
 
         // Explosion audio
         audioExplosao = GameObject.Find("Sounds/Explosion");
@@ -38,6 +39,7 @@ public class TargetItem : MonoBehaviour {
     void Update()
     {
         transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+        UpdateChildColors();
     }
 
     void OnTriggerEnter(Collider Col)
@@ -114,17 +116,17 @@ public class TargetItem : MonoBehaviour {
 
     public void Efeito()
     {
-        if (ID == 5)
+        if (Color == 5)
         {
             //print("Vai aumenta a vida");
             GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().AumentaVida();
         }
-        else if (ID == 6)
+        else if (Color == 6)
         {
             //print("Tem que ativa o especial");
             GameObject.Find("GM").GetComponent<SpecialManager>().ItemSpecialBonus();
         }
-        else if(ID == 7)
+        else if (Color == 7)
         {
             //print("Tem q destrui tudo");
             GameObject.Find("GM").GetComponent<GameMananger>().ItemDestroiObj();

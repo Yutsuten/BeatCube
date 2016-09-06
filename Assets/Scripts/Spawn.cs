@@ -45,10 +45,7 @@ public class Spawn : MonoBehaviour
         gameManager.AddObjectToList(newTarget);
 
         // Setting color properties
-        for (int i = 0; i < newTarget.transform.childCount; i += 1)
-        {
-            newTarget.transform.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = cubeColor; // Attribute the color to child cubes
-        }
+        newTarget.GetComponent<TargetColor>().Color = cubeColor;
         newTarget.transform.tag = cubeTags[cubeColor - 1]; // Set the tag
 
         // Adding the velocity and instantiate
