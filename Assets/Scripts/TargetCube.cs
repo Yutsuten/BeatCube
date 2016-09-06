@@ -172,24 +172,17 @@ public class TargetCube : TargetColor
         obj.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         transform.parent = obj.transform;
         //print("Transform Obj Inst: " + obj.transform.rotation + " - Transform: " + transform.rotation);
-        var aux = obj.GetComponent<TargetColor>();
+        var aux = obj;
         while (aux.transform.childCount != 8) // MUDANDO A COR DE TODOS OS QUADRADOS DO MAIOR E MENOR
         {
-            aux.Color = aux.transform.GetChild(0).GetComponent<TargetColor>().Color;
-            /*for (var i = 0; i < aux.childCount - 1; i++)
-            {
-                aux.GetChild(i).GetComponent<TargetCubeFragment>().cubeColor = aux.GetChild(aux.childCount - 1).GetChild(0).GetComponent<TargetCubeFragment>().cubeColor;
-            }*/
+            aux.GetComponent<TargetCube>().BiggerCube = true;
+            aux.GetComponent<TargetCube>().Color = aux.transform.GetChild(aux.transform.childCount - 1).GetComponent<TargetCube>().Color;
             // cor de todos os quadrados do maior = cor dos quadrados menor
             aux.tag = aux.transform.GetChild(aux.transform.childCount - 1).tag;
-            aux = aux.transform.GetChild(aux.transform.childCount - 1).GetComponent<TargetColor>();
+            aux = aux.transform.GetChild(aux.transform.childCount - 1).gameObject;
         }
         // PINTANDO OS QUADRADOS DO MENOR
-        aux.Color = corBola;
-        /*for (var k = 0; k < aux.childCount; k++)
-        {
-            aux.transform.GetChild(k).GetComponent<TargetCubeFragment>().cubeColor = corBola;
-        }*/
+        aux.GetComponent<TargetCube>().Color = corBola;
         // ARRUMANDO A TAG DO MENOR
         if (corBola == 1) // AZUL
         {

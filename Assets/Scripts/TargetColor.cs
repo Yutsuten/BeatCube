@@ -13,6 +13,7 @@ public class TargetColor : MonoBehaviour
     private float fatorIncremento;
     private Color corRGB;
     private int corMax;
+    private int biggerCube = 0;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class TargetColor : MonoBehaviour
     protected void UpdateChildColors()
     {
         CubeAnimationColor();
-        for (int childIndex = 0; childIndex < transform.childCount; childIndex++)
+        for (int childIndex = 0; childIndex < transform.childCount - biggerCube; childIndex++)
             transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(corRGB);
     }
 
@@ -39,6 +40,14 @@ public class TargetColor : MonoBehaviour
         set
         {
             targetColor = value;
+        }
+    }
+
+    protected bool BiggerCube
+    {
+        set
+        {
+            biggerCube = value ? 1 : 0;
         }
     }
 
