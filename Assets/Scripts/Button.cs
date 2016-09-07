@@ -13,20 +13,12 @@ public class Button : MonoBehaviour
     
     Vector2 inicioToque, fimToque, diferenca;
 
-    bool congelado = false;
-    bool foiCongelado = false;
-
     bool gameOn = true;
 
-    int contador = 0;
     int Id;
-
-    Color[] CorPropria;
-
 
     void Start()
     {
-        CorPropria = GetComponent<ParticleAnimator>().colorAnimation;
         if (gameObject.name == "BotaoAzul")
         {
             Id = 1;
