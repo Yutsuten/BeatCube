@@ -9,18 +9,11 @@ public class SpecialManager : MonoBehaviour
     private const float ratioBeforeBurst = 0.55f;
     private const float ratioAfterBurst = 0.80f;
     private float tempoBurst = 10.0f;
-    public Material matAzul;
-    public Material matAmarelo;
-    public Material matVermelho;
     public Material matBranco;
 
     private float specialBeginTime;
     private float specialColorRatio = 0.0f;
     private float special = 0.0f;
-    /*private Color corAzul;
-    private Color corAmarelo;
-    private Color corVermelho;
-    private Color corBranco;*/
     private ParticleAnimator blueButton;
     private ParticleAnimator yellowButton;
     private ParticleAnimator redButton;
@@ -39,11 +32,6 @@ public class SpecialManager : MonoBehaviour
         redButton = GameObject.Find("Buttons/RedButton").GetComponent<ParticleAnimator>();
 
         backgroundAnimation = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
-
-        /*corAzul = new Vector4(0f, 0f, 1f, 1f);
-        corAmarelo = new Vector4(1f,1f, 0f, 1f);
-        corVermelho = new Vector4(1f, 0f, 0f, 1f);
-        corBranco = new Vector4(1f, 1f, 1f, 1f);*/
 
         for (var i = 0; i < 5; i += 1)
         {
