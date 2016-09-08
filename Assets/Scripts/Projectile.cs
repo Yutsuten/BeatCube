@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         {
             GetComponent<Renderer>().material.color = new Color(1, 0.5f, 1);
         }
-        else if (color == 3)
+        else //if (color == 3)
         {
             GetComponent<Renderer>().material.color = new Color(1, 1, 0.5f);
         }

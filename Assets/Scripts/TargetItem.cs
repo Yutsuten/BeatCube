@@ -46,7 +46,7 @@ public class TargetItem : TargetColor
     {
         //print(gameObject.tag + " " + Col.gameObject.name);
 
-        if (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha"))
+        if (Col.gameObject.tag.Equals("BlueSphere") || Col.gameObject.tag.Equals("YellowSphere") || Col.gameObject.tag.Equals("RedSphere"))
         {
             Destroy(Col.gameObject);
             Explosao();

@@ -8,12 +8,12 @@ public class Button : MonoBehaviour
 
     float tempoInicial, tempoFinal;
     float angulo;
-    
     Vector2 inicioToque, fimToque, diferenca;
+    private System.String[] sphereTags = { "BlueSphere", "RedSphere", "YellowSphere" };
 
-    bool gameOn = true;
-
-    int buttonColor;
+    private bool gameOn = true;
+    private int buttonColor;
+    
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class Button : MonoBehaviour
         {
             buttonColor = 2;
         }
-        else if (gameObject.name == "YellowButton")
+        else //if (gameObject.name == "YellowButton")
         {
             buttonColor = 3;
         }
@@ -105,6 +105,7 @@ public class Button : MonoBehaviour
                 // Instanciar a bola
                 GameObject bola = Instantiate(shpere, spawnPoint.transform.position, Quaternion.identity) as GameObject;
                 bola.GetComponent<Projectile>().DefineCor(buttonColor);
+                bola.tag = sphereTags[buttonColor - 1];
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
                 bola.GetComponent<Rigidbody>().AddForce(spawnPoint.right * forca);
