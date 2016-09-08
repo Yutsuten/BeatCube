@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
 {
     int color;
 
-    public void DefineCor(int color)
+    public void PaintShpere(int color)
     {
         this.color = color;
         if (color == 1)

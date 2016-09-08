@@ -6,9 +6,8 @@ public class Button : MonoBehaviour
     public GameObject shpere;
     public Transform spawnPoint;
 
-    float tempoInicial, tempoFinal;
-    float angulo;
-    Vector2 inicioToque, fimToque, diferenca;
+    private float initialTime, finalTime, angle;
+    Vector2 initialTouchPosition, finalTouchPosition;
     private System.String[] sphereTags = { "BlueSphere", "RedSphere", "YellowSphere" };
 
     private bool gameOn = true;
@@ -33,42 +32,42 @@ public class Button : MonoBehaviour
 
     void OnMouseDown()
     {
-        tempoInicial = Time.time;
-        inicioToque = Input.mousePosition;
+        initialTime = Time.time;
+        initialTouchPosition = Input.mousePosition;
     }
 
     void OnMouseUp()
     {
         if (gameOn)
         {
-            tempoFinal = Time.time;
+            finalTime = Time.time;
 
-            fimToque = Input.mousePosition;
+            finalTouchPosition = Input.mousePosition;
 
-            diferenca = fimToque - inicioToque;
-            if (diferenca.y != 0 || diferenca.x != 0)
+            Vector2 touchPositionDifference = finalTouchPosition - initialTouchPosition;
+            if (touchPositionDifference.y != 0 || touchPositionDifference.x != 0)
             {
-                if (diferenca.x == 0)
+                if (touchPositionDifference.x == 0)
                 {
-                    angulo = -90;
+                    angle = -90;
                 }
                 else
                 {
-                    angulo = Mathf.Atan(diferenca.y / diferenca.x);
-                    angulo = (180 * angulo) / Mathf.PI;
+                    angle = Mathf.Atan(touchPositionDifference.y / touchPositionDifference.x);
+                    angle = (180 * angle) / Mathf.PI;
 
-                    if (angulo < 20 && angulo >= 0)
+                    if (angle < 20 && angle >= 0)
                     {
-                        angulo = 20;
+                        angle = 20;
                     }
-                    else if (angulo > -20 && angulo <= 0)
+                    else if (angle > -20 && angle <= 0)
                     {
-                        angulo = -20;
+                        angle = -20;
                     }
                 }
 
-                float distancia = Mathf.Sqrt(Mathf.Pow(diferenca.x, 2) + Mathf.Pow(diferenca.y, 2));
-                float tempo = tempoFinal - tempoInicial;
+                float distancia = Mathf.Sqrt(Mathf.Pow(touchPositionDifference.x, 2) + Mathf.Pow(touchPositionDifference.y, 2));
+                float tempo = finalTime - initialTime;
 
                 if (distancia > 1500)
                 {
@@ -92,19 +91,19 @@ public class Button : MonoBehaviour
 
                 // Criacao da bola
                 // Se angulo for positivo
-                if (angulo >= 0)
+                if (angle >= 0)
                 {
-                    spawnPoint.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
+                    spawnPoint.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
                 }
                 // Se angulo for negativo
-                else if (angulo <= 0)
+                else if (angle <= 0)
                 {
-                    spawnPoint.rotation = Quaternion.AngleAxis(180 + angulo, Vector3.forward);
+                    spawnPoint.rotation = Quaternion.AngleAxis(180 + angle, Vector3.forward);
                 }
 
                 // Instanciar a bola
                 GameObject bola = Instantiate(shpere, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                bola.GetComponent<Projectile>().DefineCor(buttonColor);
+                bola.GetComponent<Projectile>().PaintShpere(buttonColor);
                 bola.tag = sphereTags[buttonColor - 1];
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
