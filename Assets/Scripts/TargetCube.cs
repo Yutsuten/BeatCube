@@ -41,65 +41,65 @@ public class TargetCube : TargetColor
         if (!houveColisao)
         {
             // BURST ATIVADO
-            if (SpecialManager.SpecialActivated && (Col.gameObject.tag.Equals("Bola Azul") || Col.gameObject.tag.Equals("Bola Amarela") || Col.gameObject.tag.Equals("Bola Vermelha")))
+            if (SpecialManager.SpecialActivated && (Col.gameObject.tag.Equals("BlueSphere") || Col.gameObject.tag.Equals("YellowSphere") || Col.gameObject.tag.Equals("RedSphere")))
             {
                 //Acerto(Col);
                 Explosao();
                 Destroy(Col.gameObject);
             }
             // COLISAO DAS BOLAS
-            else if (gameObject.tag.Equals("Target Azul"))
+            else if (gameObject.tag.Equals("BlueTarget"))
             {
-                if (Col.gameObject.tag.Equals("Bola Azul"))
+                if (Col.gameObject.tag.Equals("BlueSphere"))
                 {
                     //Acerto(Col);
                     Explosao();
                     Destroy(Col.gameObject);
                 }
-                else if(Col.gameObject.tag.Equals("Bola Amarela"))
+                else if(Col.gameObject.tag.Equals("YellowSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
                 }
-                else if (Col.gameObject.tag.Equals("Bola Vermelha"))
+                else if (Col.gameObject.tag.Equals("RedSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
                 }
             }
-            else if (gameObject.tag.Equals("Target Amarelo"))
+            else if (gameObject.tag.Equals("YellowTarget"))
             {
-                if (Col.gameObject.tag.Equals("Bola Amarela"))
+                if (Col.gameObject.tag.Equals("YellowSphere"))
                 {
                     //Acerto(Col);
                     Explosao();
                     Destroy(Col.gameObject);
                 }
-                else if (Col.gameObject.tag.Equals("Bola Azul"))
+                else if (Col.gameObject.tag.Equals("BlueSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
                 }
-                else if (Col.gameObject.tag.Equals("Bola Vermelha"))
+                else if (Col.gameObject.tag.Equals("RedSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
                 }
             }
-            else if (gameObject.tag.Equals("Target Vermelho"))
+            else if (gameObject.tag.Equals("RedTarget"))
             {
-                if (Col.gameObject.tag.Equals("Bola Vermelha"))
+                if (Col.gameObject.tag.Equals("RedSphere"))
                 {
                     //Acerto(Col);
                     Explosao();
                     Destroy(Col.gameObject);
                 }
-                else if (Col.gameObject.tag.Equals("Bola Amarela"))
+                else if (Col.gameObject.tag.Equals("YellowSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
                 }
-                else if (Col.gameObject.tag.Equals("Bola Azul"))
+                else if (Col.gameObject.tag.Equals("BlueSphere"))
                 {
                     //Incremento(quadradoMaior, Col);
                     Incremento(Col);
@@ -132,15 +132,15 @@ public class TargetCube : TargetColor
         int corBola;
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
-        if (col.gameObject.tag == "Bola Vermelha")
+        if (col.gameObject.tag == "RedSphere")
         {
             corBola = 2;
         }
-        else if (col.gameObject.tag == "Bola Azul")
+        else if (col.gameObject.tag == "BlueSphere")
         {
             corBola = 1;
         }
-        else // if (col.gameObject.tag == "Bola Amarela")
+        else // if (col.gameObject.tag == "YellowSphere")
         {
             corBola = 3;
         }

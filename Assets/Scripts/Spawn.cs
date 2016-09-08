@@ -6,7 +6,7 @@ public class Spawn : MonoBehaviour
     public GameObject cube;
     public GameObject item;
 
-    private System.String[] cubeTags = { "Target Azul", "Target Vermelho", "Target Amarelo", "Untagged", "Item" };
+    private System.String[] cubeTags = { "BlueTarget", "RedTarget", "YellowTarget", "Untagged", "Item" };
 
     private GameMananger gameManager;
 
