@@ -59,6 +59,6 @@ public class Projectile : MonoBehaviour
 
     void OnDestroy()
     {
-        GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
+        GameObject.Find("GameManager").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
     }
 }

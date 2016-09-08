@@ -100,7 +100,7 @@ public class Button : MonoBehaviour
                 GameObject bola = Instantiate(shpere, spawnPoint.transform.position, Quaternion.identity) as GameObject;
                 bola.GetComponent<Projectile>().SphereColor(buttonColor);
                 bola.tag = sphereTags[buttonColor - 1];
-                GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
+                GameObject.Find("GameManager").GetComponent<GameMananger>().AddObjectToList(bola);
 
                 bola.GetComponent<Rigidbody>().AddForce(spawnPoint.right * forca);
             }

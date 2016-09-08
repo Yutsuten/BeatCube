@@ -121,13 +121,13 @@ public class TargetCube : TargetColor
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
     }
 
     public void Incremento(Collider col)
     {
         //print("Erro imbecil");
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
 
         int corBola;
         houveColisao = true;
@@ -204,7 +204,7 @@ public class TargetCube : TargetColor
 
     private void Explosao()
     {
-        GameObject.Find("GM").GetComponent<ScoreManager>().GetPoints();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
@@ -262,7 +262,7 @@ public class TargetCube : TargetColor
 
     private void OnDestroy()
     {
-        GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
+        GameObject.Find("GameManager").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
     }
 
     public void ChamaExplosao()

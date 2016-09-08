@@ -63,12 +63,12 @@ public class TargetItem : TargetColor
     {
         Destroy(gameObject);
         GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GM").GetComponent<ScoreManager>().ResetCombo();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
     }
 
     void Explosao()
     {
-        GameObject.Find("GM").GetComponent<ScoreManager>().GetPoints();
+        GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
         //Invoke("DesabilitaColisao", tempoColisao);
@@ -102,7 +102,7 @@ public class TargetItem : TargetColor
 
     void OnDestroy()
     {
-        GameObject.Find("GM").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
+        GameObject.Find("GameManager").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
         //print(gameObject.name + " foi destruido");
     }
 
@@ -124,12 +124,12 @@ public class TargetItem : TargetColor
         else if (Color == 6)
         {
             //print("Tem que ativa o especial");
-            GameObject.Find("GM").GetComponent<SpecialManager>().ItemSpecialBonus();
+            GameObject.Find("GameManager").GetComponent<SpecialManager>().ItemSpecialBonus();
         }
         else if (Color == 7)
         {
             //print("Tem q destrui tudo");
-            GameObject.Find("GM").GetComponent<GameMananger>().ItemDestroiObj();
+            GameObject.Find("GameManager").GetComponent<GameMananger>().ItemDestroiObj();
         }
     }
     
