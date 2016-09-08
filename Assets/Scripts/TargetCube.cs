@@ -260,11 +260,6 @@ public class TargetCube : TargetColor
         houveColisao = false;
     }
 
-    private void OnDestroy()
-    {
-        GameObject.Find("GameManager").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
-    }
-
     public void ChamaExplosao()
     {
         Explosao();

@@ -100,12 +100,6 @@ public class TargetItem : TargetColor
         Efeito();
     }
 
-    void OnDestroy()
-    {
-        GameObject.Find("GameManager").GetComponent<GameMananger>().RemoveObjectFromList(this.gameObject);
-        //print(gameObject.name + " foi destruido");
-    }
-
     public void ParalisaObj()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);

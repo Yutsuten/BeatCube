@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class GameMananger : MonoBehaviour {
     bool gameOn;
     bool Pause;
-    public List<GameObject> ListaDeObjetos = new List<GameObject>();
 
     float tempoInstanciado;
     float tempoInstanciadoAnterior;
@@ -38,16 +37,6 @@ public class GameMananger : MonoBehaviour {
         //CriaObjeto(Random.RandomRange(0.4f, 0.8f));
 	}
 
-    public void AddObjectToList(GameObject gameObj)
-    {
-        ListaDeObjetos.Add(gameObj);
-    }
-
-    public void RemoveObjectFromList(GameObject gameObj)
-    {
-        ListaDeObjetos.Remove(gameObj);
-    }
-
     void OnGUI()
     {
         if (Pause)
@@ -67,34 +56,21 @@ public class GameMananger : MonoBehaviour {
         }
     }
 
+    public void ItemDestroiObj()
+    {
+
+    }
+
     public void FimDeJogo()
     {
-        for (int i = 0; i < ListaDeObjetos.Count; i++)
-        {
-            //ListaDeObjetos[i].SendMessage("ParalisaObj");
-        }
-
         gameOn = false;
         GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
         GameObject.Find("BotaoAzul").GetComponent<Button>().PauseGame();
         GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();
     }
 
-    public void ItemDestroiObj()
-    {
-        for (int i = 0; i < ListaDeObjetos.Count; i++)
-        {
-            //ListaDeObjetos[i].SendMessage("ChamaExplosao");
-        }
-    }
-
     private void PausaJogo()
     {
-        for (int i = 0; i < ListaDeObjetos.Count; i++)
-        {
-            //ListaDeObjetos[i].SendMessage("ParalisaObj");
-        }
-
         gameOn = false;
 
         GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
