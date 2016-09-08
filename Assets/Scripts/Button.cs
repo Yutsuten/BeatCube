@@ -3,10 +3,8 @@ using System.Collections;
 
 public class Button : MonoBehaviour 
 {
-    public GameObject Bola;
-    public Transform referencia;
-    
-    GameObject bola;
+    public GameObject shpere;
+    public Transform spawnPoint;
 
     float tempoInicial, tempoFinal;
     float angulo;
@@ -15,21 +13,21 @@ public class Button : MonoBehaviour
 
     bool gameOn = true;
 
-    int Id;
+    int buttonColor;
 
     void Start()
     {
-        if (gameObject.name == "BotaoAzul")
+        if (gameObject.name == "BlueButton")
         {
-            Id = 1;
+            buttonColor = 1;
         }
-        else if(gameObject.name == "BotaoVermelho")
+        else if(gameObject.name == "RedButton")
         {
-            Id = 2;
+            buttonColor = 2;
         }
-        else if (gameObject.name == "BotaoAmarelo")
+        else if (gameObject.name == "YellowButton")
         {
-            Id = 3;
+            buttonColor = 3;
         }
     }
 
@@ -96,20 +94,20 @@ public class Button : MonoBehaviour
                 // Se angulo for positivo
                 if (angulo >= 0)
                 {
-                    referencia.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
+                    spawnPoint.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
                 }
                 // Se angulo for negativo
                 else if (angulo <= 0)
                 {
-                    referencia.rotation = Quaternion.AngleAxis(180 + angulo, Vector3.forward);
+                    spawnPoint.rotation = Quaternion.AngleAxis(180 + angulo, Vector3.forward);
                 }
 
                 // Instanciar a bola
-                bola = Instantiate(Bola, referencia.transform.position, Quaternion.identity) as GameObject;
-                bola.GetComponent<Projectile>().DefineCor(Id);
+                GameObject bola = Instantiate(shpere, spawnPoint.transform.position, Quaternion.identity) as GameObject;
+                bola.GetComponent<Projectile>().DefineCor(buttonColor);
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 
-                bola.GetComponent<Rigidbody>().AddForce(referencia.right * forca);
+                bola.GetComponent<Rigidbody>().AddForce(spawnPoint.right * forca);
             }
         }
     }
