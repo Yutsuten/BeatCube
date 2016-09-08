@@ -71,13 +71,7 @@ public class TargetItem : TargetColor
         GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
-        //Invoke("DesabilitaColisao", tempoColisao);
-        //Destroy(col.gameObject);
 
-        var bolaMenor = transform.GetChild(transform.childCount - 1);
-        bolaMenor.transform.parent = null; // tirando o parentesco da bola menor
-        bolaMenor.GetComponent<Rigidbody>().isKinematic = false; // deixa de ser "estatico"
-        bolaMenor.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity; // recebendo a velocidade do que sera destruido
         // EXPLOSAO DOS QUADRADOS MAIS EXTERNOS
         Vector3 centro;
         Vector3[] coordFora = new Vector3[transform.childCount];
@@ -95,8 +89,6 @@ public class TargetItem : TargetColor
         transform.DetachChildren();
         audioExplosao.GetComponent<AudioSource>().Play();
         Destroy(transform.gameObject);// destruindo o que foi acertado
-        //bolaMenor.collider.enabled = true; // ativando as colisoes da bola menor
-        Destroy(bolaMenor.gameObject);
         Efeito();
     }
 
