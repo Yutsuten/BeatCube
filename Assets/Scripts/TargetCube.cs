@@ -44,7 +44,7 @@ public class TargetCube : TargetColor
             if (SpecialManager.SpecialActivated && (Col.gameObject.tag.Equals("BlueSphere") || Col.gameObject.tag.Equals("YellowSphere") || Col.gameObject.tag.Equals("RedSphere")))
             {
                 //Acerto(Col);
-                Explosao();
+                Explosion();
                 Destroy(Col.gameObject);
             }
             // COLISAO DAS BOLAS
@@ -53,7 +53,7 @@ public class TargetCube : TargetColor
                 if (Col.gameObject.tag.Equals("BlueSphere"))
                 {
                     //Acerto(Col);
-                    Explosao();
+                    Explosion();
                     Destroy(Col.gameObject);
                 }
                 else if(Col.gameObject.tag.Equals("YellowSphere"))
@@ -72,7 +72,7 @@ public class TargetCube : TargetColor
                 if (Col.gameObject.tag.Equals("YellowSphere"))
                 {
                     //Acerto(Col);
-                    Explosao();
+                    Explosion();
                     Destroy(Col.gameObject);
                 }
                 else if (Col.gameObject.tag.Equals("BlueSphere"))
@@ -91,7 +91,7 @@ public class TargetCube : TargetColor
                 if (Col.gameObject.tag.Equals("RedSphere"))
                 {
                     //Acerto(Col);
-                    Explosao();
+                    Explosion();
                     Destroy(Col.gameObject);
                 }
                 else if (Col.gameObject.tag.Equals("YellowSphere"))
@@ -124,7 +124,7 @@ public class TargetCube : TargetColor
         GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
     }
 
-    public void Incremento(Collider col)
+    private void Incremento(Collider col)
     {
         //print("Erro imbecil");
         GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
@@ -202,57 +202,63 @@ public class TargetCube : TargetColor
         transform.GetComponent<Rigidbody>().isKinematic = true;
     }
 
-    private void Explosao()
+    private void ExplodeSmallCube()
+    {
+        Vector3 centro2;
+        Vector3[] coordFora2 = new Vector3[transform.childCount];
+        centro2 = transform.position; // Obtendo a posicao do centro
+        for (int j = 0; j < transform.childCount; j++)
+        { // Obtendo a posicao dos outros quadrados
+            coordFora2[j] = transform.GetChild(j).position;
+            transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
+            transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora2[j] - centro2) * Random.Range(150, 200) * 2);
+            transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
+            transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
+            transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao * 2, transform.GetChild(j).localScale.x);
+            Destroy(transform.GetChild(j).gameObject, tExplosao);
+        }
+        transform.DetachChildren();
+        audioExplosao.Play();
+        Destroy(transform.gameObject);// destruindo o que foi acertado
+    }
+
+    private void ExplodeBigCube()
+    {
+        var bolaMenor = transform.GetChild(transform.childCount - 1);
+        bolaMenor.transform.parent = null; // tirando o parentesco da bola menor
+        bolaMenor.GetComponent<Rigidbody>().isKinematic = false; // deixa de ser "estatico"
+        bolaMenor.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity; // recebendo a velocidade do que sera destruido
+        // EXPLOSAO DOS QUADRADOS MAIS EXTERNOS
+        Vector3 centro;
+        Vector3[] coordFora = new Vector3[transform.childCount];
+        centro = transform.position; // Obtendo a posicao do centro
+        for (int j = 0; j < transform.childCount; j++)
+        { // Obtendo a posicao dos outros quadrados
+            coordFora[j] = transform.GetChild(j).position;
+            transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
+            transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora[j] - centro) * Random.Range(150, 200));
+            transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
+            transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
+            transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao, transform.GetChild(j).localScale.x * 0.5f);
+            Destroy(transform.GetChild(j).gameObject, tExplosao);
+        }
+        transform.DetachChildren();
+        audioExplosao.Play();
+        Destroy(transform.gameObject);// destruindo o que foi acertado
+        bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
+    }
+
+    private void Explosion()
     {
         GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
 
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
-        
+
         if (transform.childCount != 8) // Verifica se e o ultimo quadrado
-        { // EH UM CUBO GRANDE
-            var bolaMenor = transform.GetChild(transform.childCount - 1);
-            bolaMenor.transform.parent = null; // tirando o parentesco da bola menor
-            bolaMenor.GetComponent<Rigidbody>().isKinematic = false; // deixa de ser "estatico"
-            bolaMenor.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity; // recebendo a velocidade do que sera destruido
-            // EXPLOSAO DOS QUADRADOS MAIS EXTERNOS
-            Vector3 centro;
-            Vector3[] coordFora = new Vector3[transform.childCount];
-            centro = transform.position; // Obtendo a posicao do centro
-            for (int j = 0; j < transform.childCount; j++)
-            { // Obtendo a posicao dos outros quadrados
-                coordFora[j] = transform.GetChild(j).position;
-                transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
-                transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora[j] - centro) * Random.Range(150, 200));
-                transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
-                transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
-                transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao, transform.GetChild(j).localScale.x * 0.5f);
-                Destroy(transform.GetChild(j).gameObject, tExplosao);
-            }
-            transform.DetachChildren();
-            audioExplosao.Play();
-            Destroy(transform.gameObject);// destruindo o que foi acertado
-            bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
-        }
+            ExplodeBigCube(); // EH UM CUBO GRANDE
         else
-        { // EH O CUBO MENOR
-            Vector3 centro2;
-            Vector3[] coordFora2 = new Vector3[transform.childCount];
-            centro2 = transform.position; // Obtendo a posicao do centro
-            for (int j = 0; j < transform.childCount; j++)
-            { // Obtendo a posicao dos outros quadrados
-                coordFora2[j] = transform.GetChild(j).position;
-                transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
-                transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora2[j] - centro2) * Random.Range(150, 200) * 2);
-                transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
-                transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
-                transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao * 2, transform.GetChild(j).localScale.x);
-                Destroy(transform.GetChild(j).gameObject, tExplosao);
-            }
-            transform.DetachChildren();
-            audioExplosao.Play();
-            Destroy(transform.gameObject);// destruindo o que foi acertado
-        }
+            ExplodeSmallCube();
     }
 
     private void DesabilitaColisao()
@@ -262,6 +268,6 @@ public class TargetCube : TargetColor
 
     public void ChamaExplosao()
     {
-        Explosao();
+        Explosion();
     }
 }
