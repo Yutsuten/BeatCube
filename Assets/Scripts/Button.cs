@@ -6,7 +6,7 @@ public class Button : MonoBehaviour
     public GameObject shpere;
     public Transform spawnPoint;
 
-    private float initialTime, finalTime, angle;
+    private float initialTime, finalTime;
     Vector2 initialTouchPosition, finalTouchPosition;
     private System.String[] sphereTags = { "BlueSphere", "RedSphere", "YellowSphere" };
 
@@ -17,17 +17,11 @@ public class Button : MonoBehaviour
     void Start()
     {
         if (gameObject.name == "BlueButton")
-        {
             buttonColor = 1;
-        }
         else if(gameObject.name == "RedButton")
-        {
             buttonColor = 2;
-        }
         else //if (gameObject.name == "YellowButton")
-        {
             buttonColor = 3;
-        }
     }
 
     void OnMouseDown()
@@ -47,6 +41,7 @@ public class Button : MonoBehaviour
             Vector2 touchPositionDifference = finalTouchPosition - initialTouchPosition;
             if (touchPositionDifference.y != 0 || touchPositionDifference.x != 0)
             {
+                float angle;
                 if (touchPositionDifference.x == 0)
                 {
                     angle = -90;
@@ -112,12 +107,12 @@ public class Button : MonoBehaviour
         }
     }
 
-    public void PausaJogo()
+    public void PauseGame()
     {
         gameOn = false;
     }
 
-    public void VoltaAoJogo()
+    public void ResumeGame()
     {
         gameOn = true;
     }

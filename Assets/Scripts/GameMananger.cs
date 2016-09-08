@@ -75,9 +75,9 @@ public class GameMananger : MonoBehaviour {
         }
 
         gameOn = false;
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PausaJogo();
-        GameObject.Find("BotaoAzul").GetComponent<Button>().PausaJogo();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().PausaJogo();
+        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoAzul").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();
     }
 
     public void ItemDestroiObj()
@@ -97,18 +97,18 @@ public class GameMananger : MonoBehaviour {
 
         gameOn = false;
 
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PausaJogo();
-        GameObject.Find("BotaoAzul").GetComponent<Button>().PausaJogo();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().PausaJogo();
+        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoAzul").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();
     }
 
     private void ResumeJogo()
     {
         gameOn = true;
 
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().VoltaAoJogo();
-        GameObject.Find("BotaoAzul").GetComponent<Button>().VoltaAoJogo();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().VoltaAoJogo();
+        GameObject.Find("BotaoAmarelo").GetComponent<Button>().ResumeGame();
+        GameObject.Find("BotaoAzul").GetComponent<Button>().ResumeGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().ResumeGame();
     }
 
     private void ReiniciaJogo()
