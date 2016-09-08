@@ -44,7 +44,7 @@ public class Spawn : MonoBehaviour
         GameObject newTarget = Instantiate(targetType, new Vector3(Random.Range(-3.4f, 3.4f), 6.2f, -1f), Quaternion.identity) as GameObject;
 
         // Setting color properties
-        newTarget.GetComponent<TargetColor>().Color = cubeColor;
+        newTarget.GetComponent<CubeBehaviour>().Color = cubeColor;
         newTarget.transform.tag = cubeTags[cubeColor - 1]; // Set the tag
 
         // Adding the velocity and instantiate

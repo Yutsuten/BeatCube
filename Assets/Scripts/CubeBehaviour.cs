@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetColor : MonoBehaviour
+public class CubeBehaviour : MonoBehaviour
 {
     // Main color
     protected int targetColor;

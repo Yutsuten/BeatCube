@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetCube : TargetColor
+public class TargetCube : CubeBehaviour
 {
     // Audio
     private AudioSource audioExplosao;
