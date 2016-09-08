@@ -98,7 +98,7 @@ public class Button : MonoBehaviour
 
                 // Instanciar a bola
                 GameObject bola = Instantiate(shpere, spawnPoint.transform.position, Quaternion.identity) as GameObject;
-                bola.GetComponent<Projectile>().PaintShpere(buttonColor);
+                bola.GetComponent<Projectile>().SphereColor(buttonColor);
                 bola.tag = sphereTags[buttonColor - 1];
                 GameObject.Find("GM").GetComponent<GameMananger>().AddObjectToList(bola);
 

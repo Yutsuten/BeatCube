@@ -3,42 +3,42 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour 
 {
-    int color;
+    Renderer projectileRenderer;
+    Color projectileColor, white;
 
-    public void PaintShpere(int color)
+    void Start()
     {
-        this.color = color;
-        if (color == 1)
-        {
-            GetComponent<Renderer>().material.color = new Color(0.5f, 1, 1);
-        }
-        else if(color == 2)
-        {
-            GetComponent<Renderer>().material.color = new Color(1, 0.5f, 1);
-        }
-        else //if (color == 3)
-        {
-            GetComponent<Renderer>().material.color = new Color(1, 1, 0.5f);
-        }
+        projectileRenderer = GetComponent<Renderer>();
+        white = new Color(1, 1, 1);
     }
 
     void Update()
     {
-        if (!SpecialManager.SpecialActivated)
+        if (SpecialManager.SpecialActivated)
+            PaintShpere(white);
+        else
+            PaintShpere(projectileColor);
+    }
+
+    public void SphereColor(int colorId)
+    {
+        switch (colorId)
         {
-            if (color == 1)
-            {
-                GetComponent<Renderer>().material.color = new Color(GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 1.3f, 1, 1);
-            }
-            else if (color == 2)
-            {
-                GetComponent<Renderer>().material.color = new Color(1, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 0.3f, 1);
-            }
-            else if (color == 3)
-            {
-                GetComponent<Renderer>().material.color = new Color(1, 1, GameObject.Find("Background").GetComponent<BackgroundAnimation>().DevolveCor().g * 0.3f);
-            }
+            case 1:
+                projectileColor = new Color(0.5f, 1, 1);
+                break;
+            case 2:
+                projectileColor = new Color(1, 0.5f, 1);
+                break;
+            case 3:
+                projectileColor = new Color(1, 1, 0.5f);
+                break;
         }
+    }
+
+    private void PaintShpere(Color sphereColor)
+    {
+        projectileRenderer.material.color = sphereColor;
     }
 
     void OnTriggerEnter(Collider Col)

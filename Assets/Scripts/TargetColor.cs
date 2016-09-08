@@ -33,10 +33,7 @@ public class TargetColor : MonoBehaviour
         for (int childIndex = 0; childIndex < transform.childCount - biggerCube; childIndex++)
         {
             if (SpecialManager.SpecialActivated)
-            {
-                print(white);
                 transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(white);
-            } 
             else
                 transform.GetChild(childIndex).GetComponent<TargetCubeFragment>().PaintCube(corRGB);
         }
