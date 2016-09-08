@@ -188,15 +188,15 @@ public class TargetCube : TargetColor
         // ARRUMANDO A TAG DO MENOR
         if (corBola == 1) // AZUL
         {
-            aux.tag = "Target Azul";
+            aux.tag = "BlueTarget";
         }
         else if (corBola == 2) // VERMELHO
         {
-            aux.tag = "Target Vermelho";
+            aux.tag = "YellowTarget";
         }
         else if (corBola == 3) // AMARELO
         {
-            aux.tag = "Target Amarelo";
+            aux.tag = "RedTarget";
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
