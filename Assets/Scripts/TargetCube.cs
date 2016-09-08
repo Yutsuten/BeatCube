@@ -192,11 +192,11 @@ public class TargetCube : TargetColor
         }
         else if (corBola == 2) // VERMELHO
         {
-            aux.tag = "YellowTarget";
+            aux.tag = "RedTarget";
         }
         else if (corBola == 3) // AMARELO
         {
-            aux.tag = "RedTarget";
+            aux.tag = "YellowTarget";
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
