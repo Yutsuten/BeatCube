@@ -13,6 +13,8 @@ public class CubeBehaviour : MonoBehaviour
     private float velocidadeRotacaoY;
     private float velocidadeRotacaoZ;
     protected float tExplosao = 1.2f;
+    protected bool houveColisao = false;
+    protected float tempoColisao = 0.05f;
 
     // Main color
     protected int targetColor;
@@ -42,6 +44,9 @@ public class CubeBehaviour : MonoBehaviour
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
+
+        // Explosion audio
+        audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
     }
 
     protected void Update() 

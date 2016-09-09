@@ -4,16 +4,11 @@ using System.Collections;
 public class TargetCube : CubeBehaviour
 {
     // Movement and collisions
-    protected bool houveColisao = false;
-    private float tempoColisao = 0.05f;
     public GameObject QuadradoMaior;
 
     void Start()
     {
         base.Start();
-
-        // Explosion audio
-        audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -224,7 +219,7 @@ public class TargetCube : CubeBehaviour
         if (transform.childCount != 8) // Verifica se e o ultimo quadrado
             ExplodeBigCube(); // EH UM CUBO GRANDE
         else
-            ExplodeSmallCube();
+            base.ExplodeSmallCube();
     }
 
     private void DesabilitaColisao()

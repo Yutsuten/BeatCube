@@ -3,42 +3,17 @@ using System.Collections;
 
 public class TargetItem : CubeBehaviour
 {
-
-    private GameObject audioExplosao;
-    //protected string metodoAcerto, metodoIncremento;
-
-    public float minRotation = 50.0f;
-    public float maxRotation = 150.0f;
-
-    private float velocidadeRotacaoX;
-    private float velocidadeRotacaoY;
-    private float velocidadeRotacaoZ;
-
-    //private Vector3 velocidadeAtual;
-
-    public float tExplosao = 1.2f;
-    //int ID;
-
-    protected Collider auxCol;
-    protected GameObject auxObj;
-
-    protected bool houveColisao = false;
+    private Collider auxCol;
+    private GameObject auxObj;
 
     void Start()
     {
         base.Start();
-
-        velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
-        velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
-        velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
-
-        // Explosion audio
-        audioExplosao = GameObject.Find("Sounds/Explosion");
     }
 
     void Update()
     {
-        transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+        base.Update();
         UpdateChildColors();
     }
 
@@ -72,8 +47,9 @@ public class TargetItem : CubeBehaviour
 
         houveColisao = true;
 
+        ExplodeSmallCube();
         // EXPLOSAO DOS QUADRADOS MAIS EXTERNOS
-        Vector3 centro;
+        /*Vector3 centro;
         Vector3[] coordFora = new Vector3[transform.childCount];
         centro = transform.position; // Obtendo a posicao do centro
         for (int j = 0; j < transform.childCount; j++)
@@ -88,16 +64,17 @@ public class TargetItem : CubeBehaviour
         }
         transform.DetachChildren();
         audioExplosao.GetComponent<AudioSource>().Play();
-        Destroy(transform.gameObject);// destruindo o que foi acertado
+        Destroy(transform.gameObject);*/ // destruindo o que foi acertado
         Efeito();
     }
 
     public void ParalisaObj()
     {
+        /*
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
         velocidadeRotacaoX = 0;
         velocidadeRotacaoY = 0;
-        velocidadeRotacaoZ = 0;
+        velocidadeRotacaoZ = 0;*/
     }
 
     public void Efeito()
