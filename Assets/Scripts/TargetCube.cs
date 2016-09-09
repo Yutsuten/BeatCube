@@ -3,28 +3,14 @@ using System.Collections;
 
 public class TargetCube : CubeBehaviour
 {
-    // Audio
-    private AudioSource audioExplosao;
-
     // Movement and collisions
     protected bool houveColisao = false;
-    private float tExplosao = 1.2f;
-    private float minRotation = 50.0f;
-    private float maxRotation = 150.0f;
     private float tempoColisao = 0.05f;
     public GameObject QuadradoMaior;
-
-    private float velocidadeRotacaoX;
-    private float velocidadeRotacaoY;
-    private float velocidadeRotacaoZ;
 
     void Start()
     {
         base.Start();
-
-        velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
-        velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
-        velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
         // Explosion audio
         audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
@@ -32,7 +18,7 @@ public class TargetCube : CubeBehaviour
 
     void Update()
     {
-        transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+        base.Update();
         UpdateChildColors();
     }
 
@@ -200,26 +186,6 @@ public class TargetCube : CubeBehaviour
         }
         transform.GetComponent<Rigidbody>().GetComponent<Collider>().enabled = false;
         transform.GetComponent<Rigidbody>().isKinematic = true;
-    }
-
-    private void ExplodeSmallCube()
-    {
-        Vector3 centro2;
-        Vector3[] coordFora2 = new Vector3[transform.childCount];
-        centro2 = transform.position; // Obtendo a posicao do centro
-        for (int j = 0; j < transform.childCount; j++)
-        { // Obtendo a posicao dos outros quadrados
-            coordFora2[j] = transform.GetChild(j).position;
-            transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
-            transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora2[j] - centro2) * Random.Range(150, 200) * 2);
-            transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
-            transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
-            transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao * 2, transform.GetChild(j).localScale.x);
-            Destroy(transform.GetChild(j).gameObject, tExplosao);
-        }
-        transform.DetachChildren();
-        audioExplosao.Play();
-        Destroy(transform.gameObject);// destruindo o que foi acertado
     }
 
     private void ExplodeBigCube()
