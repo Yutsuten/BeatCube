@@ -1,8 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetColor : MonoBehaviour
+public class CubeBehaviour : MonoBehaviour
 {
+    // Audio
+    protected AudioSource audioExplosao;
+
+    // Cube movement
+    protected float minRotation = 50.0f;
+    protected float maxRotation = 150.0f;
+    private float velocidadeRotacaoX;
+    private float velocidadeRotacaoY;
+    private float velocidadeRotacaoZ;
+    protected float tExplosao = 1.2f;
+    protected bool houveColisao = false;
+    protected float tempoColisao = 0.05f;
+
     // Main color
     protected int targetColor;
 
@@ -16,8 +29,12 @@ public class TargetColor : MonoBehaviour
     private int corMax;
     private int biggerCube = 0;
 
+    // Scripts
+    protected LifeManager lifeManager;
+
     protected void Start()
     {
+        // Color
         white = new Color(1f, 1f, 1f);
 
         fatorIncremento = Random.Range(0.01f, 0.04f);
@@ -25,9 +42,45 @@ public class TargetColor : MonoBehaviour
         corMax = Random.Range(4, 7);
         cor = Random.Range(100, corMax * 100); // SE FOR QUADRADOS NORMAIS
         cor /= 1000;
+
+        // Rotation
+        velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
+        velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
+        velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
+
+        // Load scripts
+        audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
+        lifeManager = GameObject.Find("Panel/Lifes").GetComponent<LifeManager>();
     }
 
-    protected void UpdateChildColors()
+    protected void Update() 
+    {
+        transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+
+        UpdateChildColors();
+    }
+
+    protected void ExplodeSmallCube()
+    {
+        Vector3 centro2;
+        Vector3[] coordFora2 = new Vector3[transform.childCount];
+        centro2 = transform.position; // Obtendo a posicao do centro
+        for (int j = 0; j < transform.childCount; j++)
+        { // Obtendo a posicao dos outros quadrados
+            coordFora2[j] = transform.GetChild(j).position;
+            transform.GetChild(j).GetComponent<Rigidbody>().isKinematic = false;
+            transform.GetChild(j).GetComponent<Rigidbody>().AddForce((coordFora2[j] - centro2) * Random.Range(150, 200) * 2);
+            transform.GetChild(j).GetComponent<Rigidbody>().constraints = 0; // Eliminando o "travamento" da posicao em z
+            transform.GetChild(j).GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
+            transform.GetChild(j).GetComponent<TargetCubeFragment>().Destroi(tExplosao * 2, transform.GetChild(j).localScale.x);
+            Destroy(transform.GetChild(j).gameObject, tExplosao);
+        }
+        transform.DetachChildren();
+        audioExplosao.Play();
+        Destroy(transform.gameObject);// destruindo o que foi acertado
+    }
+
+    private void UpdateChildColors()
     {
         CubeAnimationColor();
         for (int childIndex = 0; childIndex < transform.childCount - biggerCube; childIndex++)
