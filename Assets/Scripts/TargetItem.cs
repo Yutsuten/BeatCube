@@ -6,9 +6,19 @@ public class TargetItem : CubeBehaviour
     private Collider auxCol;
     private GameObject auxObj;
 
+    // Scripts
+    ScoreManager scoreManager;
+    SpecialManager specialManager;
+    GameMananger gameManager;
+
     void Start()
     {
         base.Start();
+
+        // Load scripts
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        specialManager = GameObject.Find("GameManager").GetComponent<SpecialManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameMananger>();
     }
 
     void Update()
@@ -34,13 +44,13 @@ public class TargetItem : CubeBehaviour
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
+        lifeManager.DiminuiVida();
+        scoreManager.ResetCombo();
     }
 
     protected void Explosion()
     {
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
+        scoreManager.GetPoints();
 
         houveColisao = true;
 
@@ -51,11 +61,11 @@ public class TargetItem : CubeBehaviour
     public void Efeito()
     {
         if (Color == 5)
-            GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().AumentaVida();
+            lifeManager.AumentaVida();
         else if (Color == 6)
-            GameObject.Find("GameManager").GetComponent<SpecialManager>().ItemSpecialBonus();
+            specialManager.ItemSpecialBonus();
         else if (Color == 7)
-            GameObject.Find("GameManager").GetComponent<GameMananger>().ItemDestroiObj();
+            gameManager.ItemDestroiObj();
     }
 
     public void ChamaExplosao()

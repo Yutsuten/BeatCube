@@ -29,6 +29,9 @@ public class CubeBehaviour : MonoBehaviour
     private int corMax;
     private int biggerCube = 0;
 
+    // Scripts
+    protected LifeManager lifeManager;
+
     protected void Start()
     {
         // Color
@@ -45,8 +48,9 @@ public class CubeBehaviour : MonoBehaviour
         velocidadeRotacaoY = Random.Range(minRotation, maxRotation);
         velocidadeRotacaoZ = Random.Range(minRotation, maxRotation);
 
-        // Explosion audio
+        // Load scripts
         audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
+        lifeManager = GameObject.Find("Panel/Lifes").GetComponent<LifeManager>();
     }
 
     protected void Update() 

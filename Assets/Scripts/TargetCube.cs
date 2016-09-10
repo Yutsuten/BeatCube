@@ -6,9 +6,16 @@ public class TargetCube : CubeBehaviour
     // Movement and collisions
     public GameObject QuadradoMaior;
 
+    // Scripts
+    ScoreManager scoreManager;
+
     void Start()
     {
         base.Start();
+
+        // Load scripts
+        lifeManager = GameObject.Find("Panel/Lifes").GetComponent<LifeManager>();
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -100,30 +107,25 @@ public class TargetCube : CubeBehaviour
     private void CuboEsquecido()
     {
         Destroy(gameObject);
-        GameObject.Find("Panel/Lifes").GetComponent<LifeManager>().DiminuiVida();
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
+        lifeManager.DiminuiVida();
+        scoreManager.ResetCombo();
     }
 
     private void Incremento(Collider col)
     {
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
+        scoreManager.ResetCombo();
 
         int corBola;
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
         if (col.gameObject.tag == "RedSphere")
-        {
             corBola = 2;
-        }
         else if (col.gameObject.tag == "BlueSphere")
-        {
             corBola = 1;
-        }
         else // if (col.gameObject.tag == "YellowSphere")
-        {
             corBola = 3;
-        }
         Destroy(col.gameObject);
+
         // SE O QUADRADO JA TA NO TAMANHO MAXIMO E O JOGADOR ERROU DENOVO
         if (QuadradoMaior == null)
         {
@@ -146,6 +148,7 @@ public class TargetCube : CubeBehaviour
             Destroy(transform.gameObject);
             return;
         }
+
         GameObject obj = Instantiate(QuadradoMaior, transform.position, transform.rotation) as GameObject;
         // ADICIONANDO A ROTACAO DO QUADRADO MAIOR
         obj.GetComponent<Rigidbody>().AddTorque(Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation), Random.Range(minRotation, maxRotation));
@@ -208,7 +211,7 @@ public class TargetCube : CubeBehaviour
 
     protected void Explosion()
     {
-        GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
+        scoreManager.GetPoints();
 
         houveColisao = true;
         Invoke("DesabilitaColisao", tempoColisao);
