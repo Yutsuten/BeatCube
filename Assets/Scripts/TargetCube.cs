@@ -14,7 +14,6 @@ public class TargetCube : CubeBehaviour
     void Update()
     {
         base.Update();
-        UpdateChildColors();
     }
 
     void OnTriggerEnter(Collider Col)
@@ -107,7 +106,6 @@ public class TargetCube : CubeBehaviour
 
     private void Incremento(Collider col)
     {
-        //print("Erro imbecil");
         GameObject.Find("GameManager").GetComponent<ScoreManager>().ResetCombo();
 
         int corBola;
@@ -154,7 +152,6 @@ public class TargetCube : CubeBehaviour
         // ajustar angulos dos quadrados e velocidade
         obj.GetComponent<Rigidbody>().velocity = transform.GetComponent<Rigidbody>().velocity;
         transform.parent = obj.transform;
-        //print("Transform Obj Inst: " + obj.transform.rotation + " - Transform: " + transform.rotation);
         var aux = obj;
         while (aux.transform.childCount != 8) // MUDANDO A COR DE TODOS OS QUADRADOS DO MAIOR E MENOR
         {
@@ -209,7 +206,7 @@ public class TargetCube : CubeBehaviour
         bolaMenor.GetComponent<Collider>().enabled = true; // ativando as colisoes da bola menor
     }
 
-    private void Explosion()
+    protected void Explosion()
     {
         GameObject.Find("GameManager").GetComponent<ScoreManager>().GetPoints();
 

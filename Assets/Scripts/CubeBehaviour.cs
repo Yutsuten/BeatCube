@@ -52,6 +52,8 @@ public class CubeBehaviour : MonoBehaviour
     protected void Update() 
     {
         transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
+
+        UpdateChildColors();
     }
 
     protected void ExplodeSmallCube()
@@ -74,7 +76,7 @@ public class CubeBehaviour : MonoBehaviour
         Destroy(transform.gameObject);// destruindo o que foi acertado
     }
 
-    protected void UpdateChildColors()
+    private void UpdateChildColors()
     {
         CubeAnimationColor();
         for (int childIndex = 0; childIndex < transform.childCount - biggerCube; childIndex++)
