@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class LifeGUI : MonoBehaviour 
@@ -6,6 +7,7 @@ public class LifeGUI : MonoBehaviour
     bool ativa;
 
     BackgroundAnimation backgroundAnimation;
+    RawImage lifeTexture;
 
 	// Use this for initialization
 	void Start () 
@@ -13,15 +15,16 @@ public class LifeGUI : MonoBehaviour
         ativa = true;
 
         backgroundAnimation = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
+        lifeTexture = GetComponent<RawImage>();
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        GetComponent<GUITexture>().color = backgroundAnimation.DevolveCor();
+        lifeTexture.color = backgroundAnimation.DevolveCor();
         if(!ativa)
         {
-            GetComponent<GUITexture>().color = new Color(GetComponent<GUITexture>().color.r, GetComponent<GUITexture>().color.g, GetComponent<GUITexture>().color.b, 0.3f);
+            lifeTexture.color = new Color(lifeTexture.color.r, lifeTexture.color.g, lifeTexture.color.b, 0.3f);
         }
 	}
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameTime : MonoBehaviour 
@@ -6,21 +7,21 @@ public class GameTime : MonoBehaviour
     float tempo;
     float tempoInicio;
     BackgroundAnimation scriptMusica;
-    GUIText guiText;
+    Text timeText;
 
 	void Start () 
     {
         tempo = 0;
         tempoInicio = Time.time;
         scriptMusica = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
-        guiText = GetComponent<GUIText>();
+        timeText = GetComponent<Text>();
 	}
 	
 	void Update () 
     {
-        guiText.color = scriptMusica.DevolveCor();
+        timeText.color = scriptMusica.DevolveCor();
         tempo = Time.time - tempoInicio;
-        guiText.text = Mathf.RoundToInt(tempo).ToString();
+        timeText.text = Mathf.RoundToInt(tempo).ToString();
     }
 
     public float TimeElapsed()
