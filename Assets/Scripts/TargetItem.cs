@@ -7,7 +7,6 @@ public class TargetItem : CubeBehaviour
     private GameObject auxObj;
 
     // Scripts
-    ScoreManager scoreManager;
     SpecialManager specialManager;
     GameMananger gameManager;
 
@@ -16,7 +15,6 @@ public class TargetItem : CubeBehaviour
         base.Start();
 
         // Load scripts
-        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
         specialManager = GameObject.Find("GameManager").GetComponent<SpecialManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameMananger>();
     }
@@ -39,13 +37,6 @@ public class TargetItem : CubeBehaviour
             aux.x *= -1;
             transform.GetComponent<Rigidbody>().velocity = aux;
         }
-    }
-
-    private void CuboEsquecido()
-    {
-        Destroy(gameObject);
-        lifeManager.DiminuiVida();
-        scoreManager.ResetCombo();
     }
 
     protected void Explosion()
