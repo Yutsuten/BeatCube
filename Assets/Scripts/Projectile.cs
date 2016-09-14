@@ -14,10 +14,17 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
+        CheckIfOnScreen();
         if (SpecialManager.SpecialActivated)
             PaintShpere(white);
         else
             PaintShpere(projectileColor);
+    }
+
+    private void CheckIfOnScreen()
+    {
+        if (transform.position.y >= 8)
+            Destroy(this.gameObject);
     }
 
     public void SphereColor(int colorId)
@@ -49,11 +56,6 @@ public class Projectile : MonoBehaviour
             Vector3 vetorAux = transform.GetComponent<Rigidbody>().velocity;
             vetorAux.x *= -1;
             transform.GetComponent<Rigidbody>().velocity = vetorAux;
-        }
-        // If, form some reason, the cube is going up instead of down 
-        else if (Col.gameObject.tag.Equals("Teto"))
-        {
-            Destroy(gameObject);
         }
     }
 }
