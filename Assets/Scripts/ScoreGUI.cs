@@ -10,9 +10,7 @@ public class ScoreGUI : MonoBehaviour
 	void Start () 
     {
         backgroundAnimation = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
-        print(backgroundAnimation);
         scoreText = GetComponent<Text>();
-        print(scoreText);
 	}
 	
 	void Update () 
