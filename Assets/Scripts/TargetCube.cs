@@ -14,7 +14,7 @@ public class TargetCube : CubeBehaviour
         base.Start();
 
         // Load scripts
-        lifeManager = GameObject.Find("Panel/Lifes").GetComponent<LifeManager>();
+        lifeManager = GameObject.Find("Panel").GetComponent<LifeManager>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 

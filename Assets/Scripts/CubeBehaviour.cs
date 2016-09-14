@@ -50,7 +50,7 @@ public class CubeBehaviour : MonoBehaviour
 
         // Load scripts
         audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
-        lifeManager = GameObject.Find("Panel/Lifes").GetComponent<LifeManager>();
+        lifeManager = GameObject.Find("Panel").GetComponent<LifeManager>();
     }
 
     protected void Update() 
