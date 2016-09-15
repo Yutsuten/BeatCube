@@ -4,8 +4,8 @@ using System.Collections;
 public class Button : MonoBehaviour 
 {
     public GameObject shpere;
-    public Transform spawnPoint;
 
+    private Transform spawnPoint;
     private float initialTime, finalTime;
     Vector2 initialTouchPosition, finalTouchPosition;
     private System.String[] sphereTags = { "BlueSphere", "RedSphere", "YellowSphere" };
@@ -16,6 +16,7 @@ public class Button : MonoBehaviour
 
     void Start()
     {
+        spawnPoint = transform.GetChild(0).transform;
         if (gameObject.name == "BlueButton")
             buttonColor = 1;
         else if(gameObject.name == "RedButton")
