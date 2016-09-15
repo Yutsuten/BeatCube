@@ -6,16 +6,9 @@ public class TargetCube : CubeBehaviour
     // Movement and collisions
     public GameObject QuadradoMaior;
 
-    // Scripts
-    ScoreManager scoreManager;
-
     void Start()
     {
         base.Start();
-
-        // Load scripts
-        lifeManager = GameObject.Find("Panel").GetComponent<LifeManager>();
-        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 
     void Update()
@@ -92,23 +85,8 @@ public class TargetCube : CubeBehaviour
                     Incremento(Col);
                 }
             }
-                
-            if (Col.gameObject.tag.Equals("Destroi Cubo"))
-            {
-                Destroy(gameObject);
-            }
-            else if (Col.gameObject.tag.Equals("Cubo Esquecido"))
-            {
-                CuboEsquecido();
-            }
-        }
-    }
 
-    private void CuboEsquecido()
-    {
-        Destroy(gameObject);
-        lifeManager.DiminuiVida();
-        scoreManager.ResetCombo();
+        }
     }
 
     private void Incremento(Collider col)

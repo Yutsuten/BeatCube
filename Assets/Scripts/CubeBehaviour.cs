@@ -31,6 +31,7 @@ public class CubeBehaviour : MonoBehaviour
 
     // Scripts
     protected LifeManager lifeManager;
+    protected ScoreManager scoreManager;
 
     protected void Start()
     {
@@ -51,6 +52,7 @@ public class CubeBehaviour : MonoBehaviour
         // Load scripts
         audioExplosao = GameObject.Find("Sounds/Explosion").GetComponent<AudioSource>();
         lifeManager = GameObject.Find("Panel").GetComponent<LifeManager>();
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
     }
 
     protected void Update() 
@@ -58,6 +60,22 @@ public class CubeBehaviour : MonoBehaviour
         transform.Rotate(velocidadeRotacaoX * Time.deltaTime, velocidadeRotacaoY * Time.deltaTime, velocidadeRotacaoZ * Time.deltaTime);
 
         UpdateChildColors();
+
+        CheckIfOnScreen();
+    }
+
+    private void CheckIfOnScreen()
+    {
+        // Is going up for some reason - just destroy it
+        if (transform.position.y >= 6)
+            Destroy(this.gameObject);
+        // Player missed it
+        if (transform.position.y <= -6)
+        {
+            Destroy(gameObject);
+            lifeManager.DiminuiVida();
+            scoreManager.ResetCombo();
+        }
     }
 
     protected void ExplodeSmallCube()
