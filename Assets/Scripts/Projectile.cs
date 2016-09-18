@@ -3,12 +3,19 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour 
 {
-    Renderer projectileRenderer;
-    Color projectileColor, white;
+    private Renderer projectileRenderer;
+    private Color projectileColor, white;
+    private Rigidbody rigidbody;
+
+    // Wall
+    private float wallDistance = 3.0f; // From center
+    private bool hitRightWall = false;
+    private bool hitLeftWall = false;
 
     void Start()
     {
         projectileRenderer = GetComponent<Renderer>();
+        rigidbody = transform.GetComponent<Rigidbody>();
         white = new Color(1, 1, 1);
     }
 
@@ -23,8 +30,30 @@ public class Projectile : MonoBehaviour
 
     private void CheckIfOnScreen()
     {
+        // Hit right wall
+        if (transform.position.x > wallDistance && !hitRightWall)
+        {
+            hitRightWall = true;
+            hitLeftWall = false;
+            HitWall();
+        }
+        // Hit left wall
+        if (transform.position.x < -wallDistance && !hitLeftWall)
+        {
+            hitRightWall = false;
+            hitLeftWall = true;
+            HitWall();
+        }
+        // Did not hit a cube
         if (transform.position.y >= 8)
             Destroy(this.gameObject);
+    }
+
+    private void HitWall()
+    {
+        Vector3 projectileVelocity = rigidbody.velocity;
+        projectileVelocity.x *= -1;
+        rigidbody.velocity = projectileVelocity;
     }
 
     public void SphereColor(int colorId)
@@ -46,16 +75,5 @@ public class Projectile : MonoBehaviour
     private void PaintShpere(Color sphereColor)
     {
         projectileRenderer.material.color = sphereColor;
-    }
-
-    void OnTriggerEnter(Collider Col)
-    {
-        // When hitting on the wall
-        if (Col.gameObject.tag.Equals("Parede"))
-        {
-            Vector3 vetorAux = transform.GetComponent<Rigidbody>().velocity;
-            vetorAux.x *= -1;
-            transform.GetComponent<Rigidbody>().velocity = vetorAux;
-        }
     }
 }

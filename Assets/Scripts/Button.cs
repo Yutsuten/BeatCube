@@ -84,6 +84,7 @@ public class Button : MonoBehaviour
                 {
                     forca = 2100;
                 }
+                forca = 2100;
 
                 // Criacao da bola
                 // Se angulo for positivo

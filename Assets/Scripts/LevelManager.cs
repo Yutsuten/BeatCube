@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
         spawn = this.gameObject.GetComponent<Spawn>();
         gameTime = GameObject.Find("Panel/Time").GetComponent<GameTime>();
 
-        Invoke("NextTarget", firstTargetTime);
+        //Invoke("NextTarget", firstTargetTime);
     }
 
     private void NextTarget()
