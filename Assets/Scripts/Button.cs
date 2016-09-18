@@ -62,27 +62,27 @@ public class Button : MonoBehaviour
                     }
                 }
 
-                float distancia = Mathf.Sqrt(Mathf.Pow(touchPositionDifference.x, 2) + Mathf.Pow(touchPositionDifference.y, 2));
-                float tempo = finalTime - initialTime;
+                float distance = Mathf.Sqrt(Mathf.Pow(touchPositionDifference.x, 2) + Mathf.Pow(touchPositionDifference.y, 2));
+                float timeDifference = finalTime - initialTime;
 
-                if (distancia > 1500)
+                if (distance > 1500)
                 {
-                    distancia = 1500;
+                    distance = 1500;
                 }
-                if (tempo < 0.08)
+                if (timeDifference < 0.08)
                 {
-                    tempo = 0.08f;
+                    timeDifference = 0.08f;
                 }
 
-                int forca = (int)(distancia / (tempo + 0.3f));
+                int strength = (int)(distance / (timeDifference + 0.3f));
 
-                if (forca < 600)
+                if (strength < 550)
                 {
-                    forca = 600;
+                    strength = 550;
                 }
-                else if (forca > 2100)
+                else if (strength > 800)
                 {
-                    forca = 2100;
+                    strength = 800;
                 }
 
                 // Criacao da bola
@@ -102,7 +102,7 @@ public class Button : MonoBehaviour
                 bola.GetComponent<Projectile>().SphereColor(buttonColor);
                 bola.tag = sphereTags[buttonColor - 1];
 
-                bola.GetComponent<Rigidbody>().AddForce(spawnPoint.right * forca);
+                bola.GetComponent<Rigidbody>().AddForce(spawnPoint.right * strength);
             }
         }
     }
