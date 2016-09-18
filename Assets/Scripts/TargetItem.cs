@@ -31,12 +31,6 @@ public class TargetItem : CubeBehaviour
             Destroy(Col.gameObject);
             Explosion();
         }
-        else if (Col.gameObject.tag.Equals("Parede"))
-        {
-            Vector3 aux = transform.GetComponent<Rigidbody>().velocity;
-            aux.x *= -1;
-            transform.GetComponent<Rigidbody>().velocity = aux;
-        }
     }
 
     protected void Explosion()
