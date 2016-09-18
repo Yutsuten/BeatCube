@@ -5,6 +5,7 @@ public class CubeBehaviour : MonoBehaviour
 {
     // Audio
     protected AudioSource audioExplosao;
+    private Rigidbody rigidbody;
 
     // Cube movement
     protected float minRotation = 50.0f;
@@ -15,6 +16,11 @@ public class CubeBehaviour : MonoBehaviour
     protected float tExplosao = 1.2f;
     protected bool houveColisao = false;
     protected float tempoColisao = 0.05f;
+
+    // Wall
+    private float wallDistance = 2.8f; // From center
+    private bool hitRightWall = false;
+    private bool hitLeftWall = false;
 
     // Main color
     protected int targetColor;
@@ -35,6 +41,8 @@ public class CubeBehaviour : MonoBehaviour
 
     protected void Start()
     {
+        rigidbody = transform.GetComponent<Rigidbody>();
+
         // Color
         white = new Color(1f, 1f, 1f);
 
@@ -66,6 +74,20 @@ public class CubeBehaviour : MonoBehaviour
 
     private void CheckIfOnScreen()
     {
+        // Hit right wall
+        if (transform.position.x > wallDistance && !hitRightWall)
+        {
+            hitRightWall = true;
+            hitLeftWall = false;
+            HitWall();
+        }
+        // Hit left wall
+        if (transform.position.x < -wallDistance && !hitLeftWall)
+        {
+            hitRightWall = false;
+            hitLeftWall = true;
+            HitWall();
+        }
         // Is going up for some reason - just destroy it
         if (transform.position.y >= 6)
             Destroy(this.gameObject);
@@ -76,6 +98,13 @@ public class CubeBehaviour : MonoBehaviour
             lifeManager.DiminuiVida();
             scoreManager.ResetCombo();
         }
+    }
+
+    private void HitWall()
+    {
+        Vector3 projectileVelocity = rigidbody.velocity;
+        projectileVelocity.x *= -1;
+        rigidbody.velocity = projectileVelocity;
     }
 
     protected void ExplodeSmallCube()

@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody rigidbody;
 
     // Wall
-    private float wallDistance = 3.0f; // From center
+    private float wallDistance = 2.8f; // From center
     private bool hitRightWall = false;
     private bool hitLeftWall = false;
 
