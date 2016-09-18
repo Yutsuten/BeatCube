@@ -41,7 +41,7 @@ public class Spawn : MonoBehaviour
 
     private void CreateTarget(GameObject targetType, int cubeColor, float direction, float intensity)
     {
-        GameObject newTarget = Instantiate(targetType, new Vector3(Random.Range(-3.4f, 3.4f), 5.9f, -1f), Quaternion.identity) as GameObject;
+        GameObject newTarget = Instantiate(targetType, new Vector3(Random.Range(-2.6f, 2.6f), 5.9f, -1f), Quaternion.identity) as GameObject;
 
         // Setting color properties
         newTarget.GetComponent<CubeBehaviour>().Color = cubeColor;
