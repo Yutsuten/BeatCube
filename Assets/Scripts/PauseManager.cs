@@ -53,10 +53,6 @@ public class PauseManager : MonoBehaviour
         buttonContinue.GetComponent<Button>().interactable = true;
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
-        if (state) // Pause
-            gameMusic.Pause();
-        else // Resume
-            gameMusic.UnPause();
     }
 
     private void PauseGame()
@@ -64,6 +60,18 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0;
         ShowPauseButtons(true);
         ProjectileButton.PauseGame(true);
+        gameMusic.Pause();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        buttonContinue.GetComponent<Button>().interactable = false;
+        textGameOver.SetActive(true);
+        buttonContinue.SetActive(true);
+        buttonRestart.SetActive(true);
+        ProjectileButton.PauseGame(true);
+        gameMusic.Pause();
     }
 
     private void DestroyGameObjects(GameObject[] clones)
@@ -77,6 +85,7 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1.0f;
         ShowPauseButtons(false);
         ProjectileButton.PauseGame(false);
+        gameMusic.UnPause();
     }
 
     public void ButtonRestart_OnClick()
