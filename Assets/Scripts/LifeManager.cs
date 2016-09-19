@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LifeManager : MonoBehaviour {
-
+public class LifeManager : MonoBehaviour
+{
+    private PauseManager pauseManager;
     private int lifes = 10;
+
+    void Start()
+    {
+        pauseManager = GameObject.Find("GameManager").GetComponent<PauseManager>();
+    }
 
     private void UpdateGUI()
     {
@@ -21,8 +27,8 @@ public class LifeManager : MonoBehaviour {
 
         UpdateGUI();
 
-        //GetComponent<GameMananger>().CancelInvoke();
-        //GetComponent<GameMananger>().FimDeJogo();
+        if (lifes == 0)
+            pauseManager.GameOver();
     }
 
     public void AumentaVida()
