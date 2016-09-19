@@ -8,9 +8,19 @@ public class PauseManager : MonoBehaviour
     private string textoAbout = "LTIA";
     private string lbAbout;
 
-    public void Test()
+    public void ButtonContinue_OnClick()
     {
-        Debug.Log("ButtonContinue_Clicked");
+        Debug.Log("ButtonContinue_OnClick");
+    }
+
+    public void ButtonRetry_OnClick()
+    {
+        Debug.Log("ButtonRetry_OnClick");
+    }
+
+    public void ButtonQuit_OnClick()
+    {
+        Debug.Log("ButtonQuit_OnClick");
     }
 
     public void Pause()
