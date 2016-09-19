@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PauseManager : MonoBehaviour 
@@ -49,6 +50,7 @@ public class PauseManager : MonoBehaviour
 
     private void ShowPauseButtons(bool state)
     {
+        buttonContinue.GetComponent<Button>().interactable = true;
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
         if (state) // Pause
@@ -61,7 +63,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0;
         ShowPauseButtons(true);
-        Button.PauseGame(true);
+        ProjectileButton.PauseGame(true);
     }
 
     private void DestroyGameObjects(GameObject[] clones)
@@ -74,7 +76,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         ShowPauseButtons(false);
-        Button.PauseGame(false);
+        ProjectileButton.PauseGame(false);
     }
 
     public void ButtonRestart_OnClick()
@@ -96,8 +98,6 @@ public class PauseManager : MonoBehaviour
         gameMusic.Play();
 
         // Resume game
-        Time.timeScale = 1.0f;
-        ShowPauseButtons(false);
-        Button.PauseGame(false);
+        ButtonContinue_OnClick();
     }
 }
