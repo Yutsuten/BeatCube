@@ -10,7 +10,7 @@ public class Button : MonoBehaviour
     Vector2 initialTouchPosition, finalTouchPosition;
     private System.String[] sphereTags = { "BlueSphere", "RedSphere", "YellowSphere" };
 
-    private bool gameOn = true;
+    private static bool gameOn = true;
     private int buttonColor;
     
 
@@ -107,13 +107,8 @@ public class Button : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    public static void PauseGame(bool pause)
     {
-        gameOn = false;
-    }
-
-    public void ResumeGame()
-    {
-        gameOn = true;
+        gameOn = !pause;
     }
 }

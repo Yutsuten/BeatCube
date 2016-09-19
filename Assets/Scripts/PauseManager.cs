@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour
         buttonQuit = GameObject.Find("UserInterface/ButtonQuit");
 
         // Hiding buttons by default
-        ShowButtons(false);
+        ShowPauseButtons(false);
     }
 
     void Update()
@@ -27,23 +27,29 @@ public class PauseManager : MonoBehaviour
         {
             touchPosition = Input.mousePosition;
             if (Input.mousePosition.y / Screen.height > 1 - pauseArea)
-            {
-                Time.timeScale = 0;
-                ShowButtons(true);
-            }
+                PauseGame();
         }
     }
 
-    private void ShowButtons(bool state)
+    private void ShowPauseButtons(bool state)
     {
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
         buttonQuit.SetActive(state);
     }
 
+    private void PauseGame()
+    {
+        Time.timeScale = 0;
+        ShowPauseButtons(true);
+        Button.PauseGame(true);
+    }
+
     public void ButtonContinue_OnClick()
     {
-        Debug.Log("ButtonContinue_OnClick");
+        Time.timeScale = 1.0f;
+        ShowPauseButtons(false);
+        Button.PauseGame(false);
     }
 
     public void ButtonRestart_OnClick()

@@ -64,27 +64,27 @@ public class GameMananger : MonoBehaviour {
     public void FimDeJogo()
     {
         gameOn = false;
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
+        /*GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
         GameObject.Find("BotaoAzul").GetComponent<Button>().PauseGame();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();*/
     }
 
     private void PausaJogo()
     {
         gameOn = false;
 
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
+        /*GameObject.Find("BotaoAmarelo").GetComponent<Button>().PauseGame();
         GameObject.Find("BotaoAzul").GetComponent<Button>().PauseGame();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().PauseGame();*/
     }
 
     private void ResumeJogo()
     {
         gameOn = true;
 
-        GameObject.Find("BotaoAmarelo").GetComponent<Button>().ResumeGame();
+        /*GameObject.Find("BotaoAmarelo").GetComponent<Button>().ResumeGame();
         GameObject.Find("BotaoAzul").GetComponent<Button>().ResumeGame();
-        GameObject.Find("BotaoVermelho").GetComponent<Button>().ResumeGame();
+        GameObject.Find("BotaoVermelho").GetComponent<Button>().ResumeGame();*/
     }
 
     private void ReiniciaJogo()
