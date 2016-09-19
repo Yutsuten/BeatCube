@@ -9,9 +9,20 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
+        // Getting button objects
         buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
         buttonQuit = GameObject.Find("UserInterface/ButtonQuit");
+
+        // Hiding buttons by default
+        ShowButtons(false);
+    }
+
+    private void ShowButtons(bool state)
+    {
+        buttonContinue.SetActive(state);
+        buttonRestart.SetActive(state);
+        buttonQuit.SetActive(state);
     }
 
     public void ButtonContinue_OnClick()
