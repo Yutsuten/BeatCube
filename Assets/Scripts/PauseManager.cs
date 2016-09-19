@@ -5,6 +5,7 @@ public class PauseManager : MonoBehaviour
 {
     private GameObject buttonContinue;
     private GameObject buttonRestart;
+    private GameObject textGameOver;
 
     private AudioSource gameMusic;
     private ScoreManager scoreManager;
@@ -19,6 +20,8 @@ public class PauseManager : MonoBehaviour
         // Getting button objects
         buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
+        // Getting game over text
+        textGameOver = GameObject.Find("UserInterface/TextGameOver");
 
         gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
@@ -27,6 +30,9 @@ public class PauseManager : MonoBehaviour
 
         // Hiding buttons by default
         ShowPauseButtons(false);
+
+        // Hiding game over text by default
+        textGameOver.SetActive(false);
     }
 
     void Update()
