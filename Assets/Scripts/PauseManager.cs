@@ -13,9 +13,9 @@ public class PauseManager : MonoBehaviour
         Debug.Log("ButtonContinue_OnClick");
     }
 
-    public void ButtonRetry_OnClick()
+    public void ButtonRestart_OnClick()
     {
-        Debug.Log("ButtonRetry_OnClick");
+        Debug.Log("ButtonRestart_OnClick");
     }
 
     public void ButtonQuit_OnClick()
