@@ -4,8 +4,7 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour 
 {
     private int pointIncrement = 5;
-
-    int score = 0;
+    private int score = 0;
 
     ScoreGUI scoreGUI;
 
@@ -25,5 +24,12 @@ public class ScoreManager : MonoBehaviour
     public void ResetCombo()
     {
         GetComponent<SpecialManager>().ResetSpecial();
+    }
+
+    public void ResetScore()
+    {
+        ResetCombo();
+        score = 0;
+        scoreGUI.AtualizaPontos(0);
     }
 }

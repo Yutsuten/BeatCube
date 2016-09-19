@@ -5,7 +5,11 @@ public class PauseManager : MonoBehaviour
 {
     private GameObject buttonContinue;
     private GameObject buttonRestart;
+
     private AudioSource gameMusic;
+    private ScoreManager scoreManager;
+    private GameTime gameTime;
+    private LifeManager lifeManager;
 
     private Vector2 touchPosition;
     private float pauseArea = 0.3f; // From upper screen, in that percentage, if the user clicks he/she activates the pause
@@ -17,6 +21,9 @@ public class PauseManager : MonoBehaviour
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
 
         gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        gameTime = GameObject.Find("UserInterface/Time").GetComponent<GameTime>();
+        lifeManager = GameObject.Find("UserInterface").GetComponent<LifeManager>();
 
         // Hiding buttons by default
         ShowPauseButtons(false);
@@ -41,7 +48,7 @@ public class PauseManager : MonoBehaviour
         if (state) // Pause
             gameMusic.Pause();
         else // Resume
-            gameMusic.Play();
+            gameMusic.UnPause();
     }
 
     private void PauseGame()
@@ -66,11 +73,6 @@ public class PauseManager : MonoBehaviour
 
     public void ButtonRestart_OnClick()
     {
-        // Resume game
-        Time.timeScale = 1.0f;
-        ShowPauseButtons(false);
-        Button.PauseGame(false);
-
         // Destry all cubes
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowTarget"));
@@ -81,8 +83,16 @@ public class PauseManager : MonoBehaviour
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowSphere"));
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("RedSphere"));
 
-        // Reset score
+        scoreManager.ResetScore();
+        gameTime.ResetTime();
+        lifeManager.ResetLifes();
+        gameMusic.Stop();
+        gameMusic.Play();
 
+        // Resume game
+        Time.timeScale = 1.0f;
+        ShowPauseButtons(false);
+        Button.PauseGame(false);
     }
 
     public void ButtonQuit_OnClick()
