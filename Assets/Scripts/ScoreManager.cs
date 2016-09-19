@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        scoreGUI = GameObject.Find("Panel/Score").GetComponent<ScoreGUI>();
+        scoreGUI = GameObject.Find("UserInterface/Score").GetComponent<ScoreGUI>();
     }
 
     public void GetPoints()
