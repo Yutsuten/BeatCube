@@ -6,6 +6,7 @@ public class PauseManager : MonoBehaviour
     private GameObject buttonContinue;
     private GameObject buttonRestart;
     private GameObject buttonQuit;
+    private AudioSource gameMusic;
 
     private Vector2 touchPosition;
     private float pauseArea = 0.3f; // From upper screen, in that percentage, if the user clicks he/she activates the pause
@@ -17,6 +18,8 @@ public class PauseManager : MonoBehaviour
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
         buttonQuit = GameObject.Find("UserInterface/ButtonQuit");
 
+        gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
+
         // Hiding buttons by default
         ShowPauseButtons(false);
     }
@@ -27,11 +30,21 @@ public class PauseManager : MonoBehaviour
             PauseGame();
     }
 
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            PauseGame();
+    }
+
     private void ShowPauseButtons(bool state)
     {
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
         buttonQuit.SetActive(state);
+        if (state) // Pause
+            gameMusic.Pause();
+        else // Resume
+            gameMusic.Play();
     }
 
     private void PauseGame()
