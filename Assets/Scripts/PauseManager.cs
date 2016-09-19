@@ -51,6 +51,12 @@ public class PauseManager : MonoBehaviour
         Button.PauseGame(true);
     }
 
+    private void DestroyGameObjects(GameObject[] clones)
+    {
+        for (int i = 0; i < clones.Length; i++)
+            Destroy(clones[i]);
+    }
+
     public void ButtonContinue_OnClick()
     {
         Time.timeScale = 1.0f;
@@ -64,9 +70,19 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1.0f;
         ShowPauseButtons(false);
         Button.PauseGame(false);
+
         // Destry all cubes
-        GameObject cube;
-        //while (cube = GameObject.Find(""))
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("RedTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("Item"));
+        // Destroy all projectiles
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueSphere"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowSphere"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("RedSphere"));
+
+        // Reset score
+
     }
 
     public void ButtonQuit_OnClick()
