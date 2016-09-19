@@ -94,9 +94,4 @@ public class PauseManager : MonoBehaviour
         ShowPauseButtons(false);
         Button.PauseGame(false);
     }
-
-    public void ButtonQuit_OnClick()
-    {
-        Application.Quit();
-    }
 }
