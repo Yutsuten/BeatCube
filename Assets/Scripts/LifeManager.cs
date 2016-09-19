@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LifeManager : MonoBehaviour {
 
-    int lifes = 10;
+    private int lifes = 10;
 
     private void UpdateGUI()
     {
@@ -32,5 +32,12 @@ public class LifeManager : MonoBehaviour {
             lifes = 10;
 
         UpdateGUI();
+    }
+
+    public void ResetLifes()
+    {
+        lifes = 10;
+        for (int i = 1; i < 11; i++)
+            transform.GetChild(i).GetComponent<LifeGUI>().Ativa();
     }
 }

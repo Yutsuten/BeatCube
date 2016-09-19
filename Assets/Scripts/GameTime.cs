@@ -4,20 +4,19 @@ using System.Collections;
 
 public class GameTime : MonoBehaviour 
 {
-    float tempo;
+    float tempo = 0;
     float tempoInicio;
     BackgroundAnimation scriptMusica;
     Text timeText;
 
 	void Start () 
     {
-        tempo = 0;
         tempoInicio = Time.time;
         scriptMusica = GameObject.Find("Background").GetComponent<BackgroundAnimation>();
         timeText = GetComponent<Text>();
 	}
 	
-	void Update () 
+	void Update ()
     {
         timeText.color = scriptMusica.DevolveCor();
         tempo = Time.time - tempoInicio;
@@ -27,5 +26,12 @@ public class GameTime : MonoBehaviour
     public float TimeElapsed()
     {
         return Mathf.RoundToInt(tempo);
+    }
+
+    public void ResetTime()
+    {
+        tempoInicio = Time.time;
+        tempo = 0;
+        timeText.text = "0";
     }
 }

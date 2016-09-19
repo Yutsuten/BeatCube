@@ -3,108 +3,100 @@ using System.Collections;
 
 public class PauseManager : MonoBehaviour 
 {
-    private GUIStyle styleAbout = new GUIStyle();
-    private bool onPause;
-    private string textoAbout = "LTIA";
-    private string lbAbout;
+    private GameObject buttonContinue;
+    private GameObject buttonRestart;
 
-    public void Pause()
+    private AudioSource gameMusic;
+    private ScoreManager scoreManager;
+    private GameTime gameTime;
+    private LifeManager lifeManager;
+
+    private Vector2 touchPosition;
+    private float pauseArea = 0.3f; // From upper screen, in that percentage, if the user clicks he/she activates the pause
+
+    void Start()
+    {
+        // Getting button objects
+        buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
+        buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
+
+        gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
+        scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
+        gameTime = GameObject.Find("UserInterface/Time").GetComponent<GameTime>();
+        lifeManager = GameObject.Find("UserInterface").GetComponent<LifeManager>();
+
+        // Hiding buttons by default
+        ShowPauseButtons(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetMouseButtonDown(0) && Input.mousePosition.y / Screen.height > 1 - pauseArea)) // Left Click on upper screen, or esc
+            PauseGame();
+    }
+
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+            PauseGame();
+    }
+
+    private void ShowPauseButtons(bool state)
+    {
+        buttonContinue.SetActive(state);
+        buttonRestart.SetActive(state);
+        if (state) // Pause
+            gameMusic.Pause();
+        else // Resume
+            gameMusic.UnPause();
+    }
+
+    private void PauseGame()
     {
         Time.timeScale = 0;
-        onPause = true;
+        ShowPauseButtons(true);
+        Button.PauseGame(true);
     }
 
-    public void ResetaLbAbout()
+    private void DestroyGameObjects(GameObject[] clones)
     {
-        lbAbout = "About";
-        styleAbout.normal.textColor = Color.white;
+        for (int i = 0; i < clones.Length; i++)
+            Destroy(clones[i]);
     }
 
-    public void BeginGame()
+    public void ButtonContinue_OnClick()
     {
-        lbAbout = "Click here to pause...";
-        Invoke("styleEscuro", 0.4f);
-        Invoke("styleClaro", 0.8f);
-        Invoke("styleEscuro", 1.2f);
+        Time.timeScale = 1.0f;
+        ShowPauseButtons(false);
+        Button.PauseGame(false);
     }
 
-    private void styleEscuro()
+    public void ButtonRestart_OnClick()
     {
-        lbAbout = "";
+        // Destry all cubes
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("RedTarget"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("Item"));
+        // Destroy all projectiles
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueSphere"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowSphere"));
+        DestroyGameObjects(GameObject.FindGameObjectsWithTag("RedSphere"));
+
+        scoreManager.ResetScore();
+        gameTime.ResetTime();
+        lifeManager.ResetLifes();
+        gameMusic.Stop();
+        gameMusic.Play();
+
+        // Resume game
+        Time.timeScale = 1.0f;
+        ShowPauseButtons(false);
+        Button.PauseGame(false);
     }
 
-    private void styleClaro()
+    public void ButtonQuit_OnClick()
     {
-        lbAbout = "Click here to pause...";
+        Application.Quit();
     }
-
-    private void EnableTargets()
-    { // DUCPLICATA DE SCRIPTVIDAS
-        //ScriptAlvo.DESTROY_ALL_TARGETS = false;
-    }
-
-    void OnGUI()
-    {/*
-        //GUI.Box(new Rect(0, 0, Screen.width, 0.12*Screen.height), ""); // 1 - 380.0/Screen.height
-        if (!ScriptMenu.menuEnabled)
-            GUI.Label(new Rect(20 * Screen.width / 100, 5 * Screen.height / 100, Screen.width / 10, Screen.height / 30), "" + lbAbout, styleAbout);
-        else
-            GUI.Label(new Rect(40 * Screen.width / 100, 5 * Screen.height / 100, Screen.width / 10, Screen.height / 30), "" + lbAbout, styleAbout);
-        if (onPause)
-        {
-            // SE ESTIVER EM JOGO
-            if (!ScriptMenu.menuEnabled)
-            {
-                GUI.Box(new Rect((Screen.width - (Screen.width / 2)) * 0.5f, 33 * Screen.height / 100, Screen.width / 2, Screen.height / 3.25f), "");
-                if (GUI.Button(new Rect((Screen.width - (Screen.width / 4)) * 0.5f, 35 * Screen.height / 100, Screen.width / 4, Screen.height / 15), "Resume"))
-                {
-                    onPause = false;
-                    Time.timeScale = 1.0f;
-                }
-                if (GUI.Button(new Rect((Screen.width - (Screen.width / 4)) * 0.5f, 45 * Screen.height / 100, Screen.width / 4, Screen.height / 15), "Restart"))
-                {  // DUPLICATA DE SCRIPT LIVES
-                    GetComponent<ScriptPontuacao>().ResetaContadores();
-                    GetComponent<LevelManager>().AtualizaLevel();
-                    GetComponent<ScriptVidas>().ResetLives();
-                    GetComponent<ScriptEspecial>().ResetaEspecial();
-                    GetComponent<ScriptJogador>().enabled = true;
-                    ScriptAlvo.DESTROY_ALL_TARGETS = true;
-                    Invoke("EnableTargets", 0.05f);
-                    Time.timeScale = 1.0f;
-                    onPause = false;
-                }
-                if (GUI.Button(new Rect((Screen.width - (Screen.width / 3.5f)) * 0.5f, 55 * Screen.height / 100, Screen.width / 3.5f, Screen.height / 15), "Main Menu"))
-                {  // DUPLICATA DE SCRIPT LIVES
-                    GetComponent<ScriptPontuacao>().ResetaContadores();
-                    GetComponent<ScriptMenu>().EnableMenu();
-                    GetComponent<ScriptVidas>().ResetLives();
-                    GetComponent<ScriptEspecial>().ResetaEspecial();
-                    ScriptAlvo.DESTROY_ALL_TARGETS = true;
-                    GetComponent<ScriptJogador>().enabled = true;
-                    Invoke("EnableTargets", 0.05f);
-                    Time.timeScale = 1.0f;
-                    onPause = false;
-                }
-            }
-            else // ESTA NO MENU PRINCIPAL AINDA
-            {
-                GUI.Box(new Rect((Screen.width - (Screen.width / 2)) * 0.5f, 33 * Screen.height / 100, Screen.width / 2, Screen.height / 3.25f), "");
-                GUI.Label(new Rect(43 * Screen.width / 100, 40 * Screen.height / 100, Screen.width / 2, Screen.height / 2), textoAbout, styleAbout);
-                if (GUI.Button(new Rect((Screen.width - (Screen.width / 3.5f)) * 0.5f, 55 * Screen.height / 100, Screen.width / 3.5f, Screen.height / 15), "OK"))
-                {
-                    onPause = false;
-                    Time.timeScale = 1.0f;
-                }
-            }
-        }*/
-    }
-
-	// Use this for initialization
-	void Start () 
-    {
-        styleAbout.fontSize = Screen.width / 15;
-        styleAbout.normal.textColor = Color.white;
-        lbAbout = "About";
-        onPause = false;
-	}
 }

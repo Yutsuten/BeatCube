@@ -4,14 +4,13 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour 
 {
     private int pointIncrement = 5;
-
-    int score = 0;
+    private int score = 0;
 
     ScoreGUI scoreGUI;
 
     void Start()
     {
-        scoreGUI = GameObject.Find("Panel/Score").GetComponent<ScoreGUI>();
+        scoreGUI = GameObject.Find("UserInterface/Score").GetComponent<ScoreGUI>();
     }
 
     public void GetPoints()
@@ -25,5 +24,12 @@ public class ScoreManager : MonoBehaviour
     public void ResetCombo()
     {
         GetComponent<SpecialManager>().ResetSpecial();
+    }
+
+    public void ResetScore()
+    {
+        ResetCombo();
+        score = 0;
+        scoreGUI.AtualizaPontos(0);
     }
 }
