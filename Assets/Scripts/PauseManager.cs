@@ -8,34 +8,39 @@ public class PauseManager : MonoBehaviour
     private string textoAbout = "LTIA";
     private string lbAbout;
 
+    public void Test()
+    {
+        Debug.Log("ButtonContinue_Clicked");
+    }
+
     public void Pause()
     {
-        Time.timeScale = 0;
-        onPause = true;
+        /*Time.timeScale = 0;
+        onPause = true;*/
     }
 
     public void ResetaLbAbout()
     {
-        lbAbout = "About";
-        styleAbout.normal.textColor = Color.white;
+        /*lbAbout = "About";
+        styleAbout.normal.textColor = Color.white;*/
     }
 
     public void BeginGame()
     {
-        lbAbout = "Click here to pause...";
+        /*lbAbout = "Click here to pause...";
         Invoke("styleEscuro", 0.4f);
         Invoke("styleClaro", 0.8f);
-        Invoke("styleEscuro", 1.2f);
+        Invoke("styleEscuro", 1.2f);*/
     }
 
     private void styleEscuro()
     {
-        lbAbout = "";
+        /*lbAbout = "";*/
     }
 
     private void styleClaro()
     {
-        lbAbout = "Click here to pause...";
+        /*lbAbout = "Click here to pause...";*/
     }
 
     private void EnableTargets()
@@ -102,9 +107,9 @@ public class PauseManager : MonoBehaviour
 	// Use this for initialization
 	void Start () 
     {
-        styleAbout.fontSize = Screen.width / 15;
+        /*styleAbout.fontSize = Screen.width / 15;
         styleAbout.normal.textColor = Color.white;
         lbAbout = "About";
-        onPause = false;
+        onPause = false;*/
 	}
 }
