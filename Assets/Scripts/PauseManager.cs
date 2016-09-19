@@ -90,6 +90,9 @@ public class PauseManager : MonoBehaviour
 
     public void ButtonRestart_OnClick()
     {
+        // Hide Game Over text
+        textGameOver.SetActive(false);
+
         // Destry all cubes
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowTarget"));
