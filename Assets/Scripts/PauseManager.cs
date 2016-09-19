@@ -7,6 +7,9 @@ public class PauseManager : MonoBehaviour
     private GameObject buttonRestart;
     private GameObject buttonQuit;
 
+    private Vector2 touchPosition;
+    private float pauseArea = 0.3f; // From upper screen, in that percentage, if the user clicks he/she activates the pause
+
     void Start()
     {
         // Getting button objects
@@ -16,6 +19,19 @@ public class PauseManager : MonoBehaviour
 
         // Hiding buttons by default
         ShowButtons(false);
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) // Left Click
+        {
+            touchPosition = Input.mousePosition;
+            if (Input.mousePosition.y / Screen.height > 1 - pauseArea)
+            {
+                Time.timeScale = 0;
+                ShowButtons(true);
+            }
+        }
     }
 
     private void ShowButtons(bool state)
