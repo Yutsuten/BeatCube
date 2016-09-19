@@ -5,7 +5,6 @@ public class PauseManager : MonoBehaviour
 {
     private GameObject buttonContinue;
     private GameObject buttonRestart;
-    private GameObject buttonQuit;
     private AudioSource gameMusic;
 
     private Vector2 touchPosition;
@@ -16,7 +15,6 @@ public class PauseManager : MonoBehaviour
         // Getting button objects
         buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
-        buttonQuit = GameObject.Find("UserInterface/ButtonQuit");
 
         gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
 
@@ -40,7 +38,6 @@ public class PauseManager : MonoBehaviour
     {
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
-        buttonQuit.SetActive(state);
         if (state) // Pause
             gameMusic.Pause();
         else // Resume
@@ -63,7 +60,13 @@ public class PauseManager : MonoBehaviour
 
     public void ButtonRestart_OnClick()
     {
-        Debug.Log("ButtonRestart_OnClick");
+        // Resume game
+        Time.timeScale = 1.0f;
+        ShowPauseButtons(false);
+        Button.PauseGame(false);
+        // Destry all cubes
+        GameObject cube;
+        //while (cube = GameObject.Find(""))
     }
 
     public void ButtonQuit_OnClick()
