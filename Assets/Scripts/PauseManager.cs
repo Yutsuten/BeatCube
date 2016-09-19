@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PauseManager : MonoBehaviour 
 {
     private GameObject buttonContinue;
     private GameObject buttonRestart;
+    private GameObject textGameOver;
 
     private AudioSource gameMusic;
     private ScoreManager scoreManager;
@@ -19,6 +21,8 @@ public class PauseManager : MonoBehaviour
         // Getting button objects
         buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
         buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
+        // Getting game over text
+        textGameOver = GameObject.Find("UserInterface/TextGameOver");
 
         gameMusic = GameObject.Find("Sounds/Music").GetComponent<AudioSource>();
         scoreManager = GameObject.Find("GameManager").GetComponent<ScoreManager>();
@@ -27,6 +31,9 @@ public class PauseManager : MonoBehaviour
 
         // Hiding buttons by default
         ShowPauseButtons(false);
+
+        // Hiding game over text by default
+        textGameOver.SetActive(false);
     }
 
     void Update()
@@ -43,19 +50,28 @@ public class PauseManager : MonoBehaviour
 
     private void ShowPauseButtons(bool state)
     {
+        buttonContinue.GetComponent<Button>().interactable = true;
         buttonContinue.SetActive(state);
         buttonRestart.SetActive(state);
-        if (state) // Pause
-            gameMusic.Pause();
-        else // Resume
-            gameMusic.UnPause();
     }
 
     private void PauseGame()
     {
         Time.timeScale = 0;
         ShowPauseButtons(true);
-        Button.PauseGame(true);
+        ProjectileButton.PauseGame(true);
+        gameMusic.Pause();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        buttonContinue.GetComponent<Button>().interactable = false;
+        textGameOver.SetActive(true);
+        buttonContinue.SetActive(true);
+        buttonRestart.SetActive(true);
+        ProjectileButton.PauseGame(true);
+        gameMusic.Pause();
     }
 
     private void DestroyGameObjects(GameObject[] clones)
@@ -68,11 +84,15 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         ShowPauseButtons(false);
-        Button.PauseGame(false);
+        ProjectileButton.PauseGame(false);
+        gameMusic.UnPause();
     }
 
     public void ButtonRestart_OnClick()
     {
+        // Hide Game Over text
+        textGameOver.SetActive(false);
+
         // Destry all cubes
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("YellowTarget"));
@@ -90,8 +110,6 @@ public class PauseManager : MonoBehaviour
         gameMusic.Play();
 
         // Resume game
-        Time.timeScale = 1.0f;
-        ShowPauseButtons(false);
-        Button.PauseGame(false);
+        ButtonContinue_OnClick();
     }
 }
