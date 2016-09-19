@@ -23,12 +23,8 @@ public class PauseManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // Left Click
-        {
-            touchPosition = Input.mousePosition;
-            if (Input.mousePosition.y / Screen.height > 1 - pauseArea)
-                PauseGame();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape) || (Input.GetMouseButtonDown(0) && Input.mousePosition.y / Screen.height > 1 - pauseArea)) // Left Click on upper screen, or esc
+            PauseGame();
     }
 
     private void ShowPauseButtons(bool state)
@@ -59,6 +55,6 @@ public class PauseManager : MonoBehaviour
 
     public void ButtonQuit_OnClick()
     {
-        Debug.Log("ButtonQuit_OnClick");
+        Application.Quit();
     }
 }
