@@ -3,10 +3,16 @@ using System.Collections;
 
 public class PauseManager : MonoBehaviour 
 {
-    private GUIStyle styleAbout = new GUIStyle();
-    private bool onPause;
-    private string textoAbout = "LTIA";
-    private string lbAbout;
+    private GameObject buttonContinue;
+    private GameObject buttonRestart;
+    private GameObject buttonQuit;
+
+    void Start()
+    {
+        buttonContinue = GameObject.Find("UserInterface/ButtonContinue");
+        buttonRestart = GameObject.Find("UserInterface/ButtonRestart");
+        buttonQuit = GameObject.Find("UserInterface/ButtonQuit");
+    }
 
     public void ButtonContinue_OnClick()
     {
