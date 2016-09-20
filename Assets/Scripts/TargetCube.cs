@@ -107,6 +107,9 @@ public class TargetCube : CubeBehaviour
         // SE O QUADRADO JA TA NO TAMANHO MAXIMO E O JOGADOR ERROU DENOVO
         if (QuadradoMaior == null)
         {
+            lifeManager.DiminuiVida();
+            lifeManager.DiminuiVida();
+            lifeManager.DiminuiVida();
             Destroy(transform.GetChild(transform.childCount - 1).gameObject);
             targetColor = 4;
             Vector3 centro;
