@@ -8,16 +8,12 @@ public class Spawn : MonoBehaviour
 
     private System.String[] cubeTags = { "BlueTarget", "RedTarget", "YellowTarget", "Untagged", "Item" };
 
-    private GameMananger gameManager;
-
     private float timing;
 
 	// Use this for initialization
 	void Start () 
     {
         timing = 0;
-        // Getting access to other scripts
-        gameManager = this.gameObject.GetComponent<GameMananger>();
 	}
 
     public void SpawnObject(float direction, float intensity)

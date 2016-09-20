@@ -8,7 +8,6 @@ public class TargetItem : CubeBehaviour
 
     // Scripts
     SpecialManager specialManager;
-    GameMananger gameManager;
 
     void Start()
     {
@@ -16,7 +15,6 @@ public class TargetItem : CubeBehaviour
 
         // Load scripts
         specialManager = GameObject.Find("GameManager").GetComponent<SpecialManager>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameMananger>();
     }
 
     void Update()
@@ -49,8 +47,8 @@ public class TargetItem : CubeBehaviour
             lifeManager.AumentaVida();
         else if (Color == 6)
             specialManager.ItemSpecialBonus();
-        else if (Color == 7)
-            gameManager.ItemDestroiObj();
+        //else if (Color == 7)
+            //gameManager.ItemDestroiObj();
     }
 
     public void ChamaExplosao()
