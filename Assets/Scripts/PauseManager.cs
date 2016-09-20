@@ -59,7 +59,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0;
         ShowPauseButtons(true);
-        ProjectileButton.PauseGame(true);
+        ProjectileButton.DisableNewProjectiles(true);
         gameMusic.Pause();
     }
 
@@ -70,7 +70,7 @@ public class PauseManager : MonoBehaviour
         textGameOver.SetActive(true);
         buttonContinue.SetActive(true);
         buttonRestart.SetActive(true);
-        ProjectileButton.PauseGame(true);
+        ProjectileButton.DisableNewProjectiles(true);
         gameMusic.Pause();
     }
 
@@ -84,7 +84,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         ShowPauseButtons(false);
-        ProjectileButton.PauseGame(false);
+        ProjectileButton.DisableNewProjectiles(false);
         gameMusic.UnPause();
     }
 
