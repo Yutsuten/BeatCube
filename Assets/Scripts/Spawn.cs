@@ -6,7 +6,7 @@ public class Spawn : MonoBehaviour
     public GameObject cube;
     public GameObject item;
 
-    private System.String[] cubeTags = { "BlueTarget", "RedTarget", "YellowTarget", "Untagged", "Item" };
+    private System.String[] cubeTags = { "BlueTarget", "RedTarget", "YellowTarget", "Untagged", "Item", "Item" };
 
     private float timing;
 
@@ -18,10 +18,10 @@ public class Spawn : MonoBehaviour
 
     public void SpawnObject(float direction, float intensity)
     {
-        if (Random.Range(0, 100) < 80)
+        if (Random.Range(0, 100) < 95)
             CreateTarget(cube, CubeColor(), direction, intensity);
         else
-            CreateTarget(item, 5, direction, intensity);
+            CreateTarget(item, Random.Range(5, 7), direction, intensity);
     }
 
     private int CubeColor()
