@@ -25,20 +25,24 @@ public class LevelManager : MonoBehaviour
         float timeNow = 2 * gameTime.TimeElapsed();
         float spawnSpeed;
         // Difficulties
-        if (timeNow <= 49) // easy
-            spawnSpeed = initialSpawnSpeed - (timeNow / 490); // spawn from 2.0f to 1.9f
-        else if (timeNow <= 169) // medium
-            spawnSpeed = initialSpawnSpeed - 0.1f * (Mathf.Sqrt(timeNow) - 6f); // spawn from 1.9f to 1.3f
-        else if (timeNow <= 360) // hard
+        if (timeNow <= 90) // easy
+            spawnSpeed = initialSpawnSpeed - (timeNow / 112.5f); // spawn from 2.0f to 1.2f
+        /*else if (timeNow <= 120) // medium
+            spawnSpeed = initialSpawnSpeed - 0.1f * (Mathf.Sqrt(timeNow) - 6f);*/ // spawn from 1.9f to 1.3f
+        else if (timeNow <= 150) // medium
             spawnSpeed = 1.15f;
-        else if (timeNow <= 480) // very hard
+        else if (timeNow <= 240) // hard
             spawnSpeed = 1.00f;
-        else if (timeNow <= 600) // insane
+        else if (timeNow <= 330) // very hard
             spawnSpeed = 0.90f;
-        else if (timeNow <= 720) // wow
+        else if (timeNow <= 430) // insane
             spawnSpeed = 0.80f;
-        else // impossible
+        else if (timeNow <= 600) // impossible
             spawnSpeed = 0.70f;
+        else if (timeNow <= 600) // inhumane
+            spawnSpeed = 0.60f;
+        else // god
+            spawnSpeed = 0.50f;
         Invoke("NextTarget", spawnSpeed);
     }
 

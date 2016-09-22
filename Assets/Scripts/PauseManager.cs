@@ -83,6 +83,7 @@ public class PauseManager : MonoBehaviour
     public void ButtonContinue_OnClick()
     {
         Time.timeScale = 1.0f;
+        textGameOver.SetActive(false);
         ShowPauseButtons(false);
         ProjectileButton.DisableNewProjectiles(false);
         gameMusic.UnPause();

@@ -6,7 +6,7 @@ public class SpecialManager : MonoBehaviour
     public static bool SpecialActivated = false;
 
     private const float fullSpecial = 50.0f;
-    private const float ratioBeforeBurst = 0.55f;
+    private const float ratioBeforeBurst = 0.9f;
     private const float ratioAfterBurst = 0.80f;
     private float tempoBurst = 10.0f;
     public Material matBranco;
@@ -99,7 +99,7 @@ public class SpecialManager : MonoBehaviour
         yellowButton.colorAnimation = white;
         redButton.colorAnimation = white;
 
-        InvokeRepeating("ActivatedSpecial", 0.2f, 0.2f);
+        InvokeRepeating("ActivatedSpecial", 0.1f, 0.1f);
     }
 
     private void ActivatedSpecial()
@@ -109,7 +109,12 @@ public class SpecialManager : MonoBehaviour
         special = (special < 0) ? 0 : special;
 
         // AS CORES VAO VOLTANDO CONFORME GASTA O BURST
-        specialColorRatio = ratioAfterBurst * Mathf.Pow((special / fullSpecial), 2) + 0.3f;
+        if (special > 2.5f)
+            specialColorRatio = ratioAfterBurst * (special / fullSpecial);
+        else if (special > 1.6f)
+            specialColorRatio = 0.4f;
+        else
+            specialColorRatio = -0.05f;
         backgroundAnimation.UpdateSpecialInfluence(specialColorRatio);
 
         //print(special + "/" + fullSpecial + " ~ Cor fundo = " + specialColorRatio);
