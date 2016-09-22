@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     {
         spawn.SpawnObject(Direction(), Velocity());
 
-        float timeNow = gameTime.TimeElapsed();
+        float timeNow = 2 * gameTime.TimeElapsed();
         float spawnSpeed;
         // Difficulties
         if (timeNow <= 49) // easy
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
         }
         else // insane
         {
-            spawnSpeed = 1.1f;
+            spawnSpeed = 1.05f;
         }
         Invoke("NextTarget", spawnSpeed);
     }
