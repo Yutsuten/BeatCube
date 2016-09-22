@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
 
     private float Velocity()
     {
-        float velocity = 60 + 2.5f * Mathf.Sqrt(3 * gameTime.TimeElapsed()) + Random.RandomRange(-5f, 10f);
+        float velocity = 60 + 2.5f * Mathf.Sqrt(3 * gameTime.TimeElapsed()) + Random.Range(-5f, 10f);
         // if velocity gets too big, debuff it a little
         if (velocity > 150)
             velocity = 150 + ((velocity - 150) / 3);

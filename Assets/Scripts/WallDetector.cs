@@ -4,7 +4,7 @@ using System.Collections;
 public class WallDetector : MonoBehaviour
 {
     // The object's rigidbody
-    private Rigidbody rigidbody;
+    private Rigidbody objectRigidbody;
 
     // Wall
     private float wallDistance = 2.8f; // From center
@@ -13,7 +13,7 @@ public class WallDetector : MonoBehaviour
 
     protected void Start()
     {
-        rigidbody = transform.GetComponent<Rigidbody>();
+        objectRigidbody = transform.GetComponent<Rigidbody>();
     }
 
     protected void Update()
@@ -45,8 +45,8 @@ public class WallDetector : MonoBehaviour
 
     private void HitWall()
     {
-        Vector3 projectileVelocity = rigidbody.velocity;
+        Vector3 projectileVelocity = objectRigidbody.velocity;
         projectileVelocity.x *= -1;
-        rigidbody.velocity = projectileVelocity;
+        objectRigidbody.velocity = projectileVelocity;
     }
 }

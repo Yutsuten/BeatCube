@@ -8,14 +8,6 @@ public class Spawn : MonoBehaviour
 
     private System.String[] cubeTags = { "BlueTarget", "RedTarget", "YellowTarget", "Untagged", "Item", "Item" };
 
-    private float timing;
-
-	// Use this for initialization
-	void Start () 
-    {
-        timing = 0;
-	}
-
     public void SpawnObject(float direction, float intensity)
     {
         if (Random.Range(0, 100) < 95)
