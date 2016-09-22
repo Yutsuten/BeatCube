@@ -3,6 +3,8 @@ using System.Collections;
 
 public class TargetItem : CubeBehaviour
 {
+    public GameObject effectTextMesh;
+
     private Collider auxCol;
     private GameObject auxObj;
 
@@ -34,9 +36,7 @@ public class TargetItem : CubeBehaviour
     protected void Explosion()
     {
         scoreManager.GetPoints();
-
         houveColisao = true;
-
         ExplodeSmallCube();
         Efeito();
     }
@@ -44,11 +44,21 @@ public class TargetItem : CubeBehaviour
     public void Efeito()
     {
         if (Color == 5)
+        {
             lifeManager.AumentaVida();
+            ShowEffectText("+life");
+        }
         else if (Color == 6)
+        {
             specialManager.ItemSpecialBonus();
-        //else if (Color == 7)
-            //gameManager.ItemDestroiObj();
+            ShowEffectText("+special");
+        }
+    }
+
+    private void ShowEffectText(string effectText)
+    {
+        GameObject objectTextMesh = Instantiate(effectTextMesh, new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), Quaternion.identity) as GameObject;
+        objectTextMesh.GetComponent<ItemTextAnimation>().SetText(effectText);
     }
 
     public void ChamaExplosao()
