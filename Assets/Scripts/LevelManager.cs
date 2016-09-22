@@ -57,6 +57,6 @@ public class LevelManager : MonoBehaviour
             velocity = 150 + ((velocity - 150) / 3);
         else if (velocity > 200)
             velocity = 200;
-        return Random.Range(70, 140);
+        return velocity;
     }
 }
