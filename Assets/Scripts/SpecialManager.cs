@@ -5,7 +5,7 @@ public class SpecialManager : MonoBehaviour
 {
     public static bool SpecialActivated = false;
 
-    private const float fullSpecial = 30.0f;
+    private const float fullSpecial = 50.0f;
     private const float ratioBeforeBurst = 0.55f;
     private const float ratioAfterBurst = 0.80f;
     private float tempoBurst = 10.0f;
