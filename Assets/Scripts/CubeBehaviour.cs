@@ -22,11 +22,10 @@ public class CubeBehaviour : WallDetector
     // Auxiliaries
     private float velMudaPreto = 1.2f;
     private int incrementaCor;
-    private float cor;
+    private float cor, corMax;
     private float fatorIncremento;
     private Color corRGB;
     private Color white;
-    private int corMax;
     private int biggerCube = 0;
 
     // Scripts
@@ -42,9 +41,8 @@ public class CubeBehaviour : WallDetector
 
         fatorIncremento = Random.Range(0.01f, 0.04f);
         incrementaCor = 1;
-        corMax = Random.Range(4, 7);
-        cor = Random.Range(100, corMax * 100); // SE FOR QUADRADOS NORMAIS
-        cor /= 1000;
+        corMax = Random.Range(0.5f, 0.7f);
+        cor = 0.5f;
 
         // Rotation
         velocidadeRotacaoX = Random.Range(minRotation, maxRotation);
@@ -120,6 +118,8 @@ public class CubeBehaviour : WallDetector
         set
         {
             targetColor = value;
+            if (value > 4)
+                corMax = 1;
         }
     }
 
@@ -135,7 +135,7 @@ public class CubeBehaviour : WallDetector
     {
         if (targetColor != 4) // not black
         {
-            if ((cor >= (float)corMax / 10) || (cor <= 0.1))
+            if ((cor >= corMax) || (cor <= 0.1f))
             {
                 incrementaCor *= -1;
             }
@@ -152,11 +152,11 @@ public class CubeBehaviour : WallDetector
                 case 3:
                     corRGB = new Color(1, 1, cor);
                     break;
-                case 5:
-                    corRGB = new Color(1, cor, cor);
+                case 5: // Extra fife
+                    corRGB = new Color(1, 0, cor);
                     break;
-                case 6:
-                    corRGB = new Color(cor, cor, cor);
+                case 6: // Special gauge bonus
+                    corRGB = new Color(0, 1, cor);
                     break;
                 case 7:
                     corRGB = new Color(1, cor, 0.3f);
