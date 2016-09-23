@@ -16,6 +16,8 @@ public class PauseManager : MonoBehaviour
     private Vector2 touchPosition;
     private float pauseArea = 0.3f; // From upper screen, in that percentage, if the user clicks he/she activates the pause
 
+    private bool gameover = false;
+
     void Start()
     {
         // Getting button objects
@@ -57,14 +59,18 @@ public class PauseManager : MonoBehaviour
 
     private void PauseGame()
     {
-        Time.timeScale = 0;
-        ShowPauseButtons(true);
-        ProjectileButton.DisableNewProjectiles(true);
-        gameMusic.Pause();
+        if (!gameover)
+        {
+            Time.timeScale = 0;
+            ShowPauseButtons(true);
+            ProjectileButton.DisableNewProjectiles(true);
+            gameMusic.Pause();
+        }
     }
 
     public void GameOver()
     {
+        gameover = true;
         Time.timeScale = 0;
         buttonContinue.GetComponent<Button>().interactable = false;
         textGameOver.SetActive(true);
@@ -83,7 +89,6 @@ public class PauseManager : MonoBehaviour
     public void ButtonContinue_OnClick()
     {
         Time.timeScale = 1.0f;
-        textGameOver.SetActive(false);
         ShowPauseButtons(false);
         ProjectileButton.DisableNewProjectiles(false);
         gameMusic.UnPause();
@@ -93,6 +98,7 @@ public class PauseManager : MonoBehaviour
     {
         // Hide Game Over text
         textGameOver.SetActive(false);
+        gameover = false;
 
         // Destry all cubes
         DestroyGameObjects(GameObject.FindGameObjectsWithTag("BlueTarget"));
