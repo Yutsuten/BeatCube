@@ -91,7 +91,7 @@ public class TargetCube : CubeBehaviour
 
     private void Incremento(Collider col)
     {
-        scoreManager.ResetCombo();
+        //scoreManager.ResetCombo();
 
         int corBola;
         houveColisao = true;
