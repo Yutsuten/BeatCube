@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
         else if (timeNow <= 720) // inhumane
             spawnSpeed = 0.60f;
         else // god
-            spawnSpeed = 0.50f;
+            spawnSpeed = 0.55f;
         Invoke("NextTarget", spawnSpeed);
     }
 

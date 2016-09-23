@@ -50,7 +50,7 @@ public class ProjectileButton : MonoBehaviour
         float timeDifference = finalTime - initialTime;
 
         // Check if the user moved enough pixels
-        if (distance < 50)
+        if (distance < 30)
             return;
 
         if (distance > 800)
