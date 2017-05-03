@@ -11,7 +11,7 @@
 3. [Equipe](#equipe)
 
 ## Sobre o jogo
-BeatCube é um jogo que desafia a velocidade do jogador em destruir alvos que aparecem constantemente e que estão em movimento.
+BeatCube é um jogo para Android que desafia a velocidade do jogador em destruir alvos que aparecem constantemente e que estão em movimento.
 
 ### Jogabilidade
 Existem 3 cores diferentes de cubos:
@@ -61,7 +61,7 @@ Estes itens podem ser atingidos por qualquer cor de projétil.
 3. [Team](#team)
 
 ## About the game
-BeatCube is a game that challenges the speed of the player to destroy targets that appear constantly and that are in movement.
+BeatCube is a Android game that challenges the speed of the player to destroy targets that appear constantly and that are in movement.
 
 ### Gameplay
 There are 3 different colors of cubes:
@@ -111,12 +111,37 @@ These items can be hit by any color of projectile.
 3. [チーム](#チーム)
 
 ## ゲームについて
+BeatCubeは絶え間なく出現して動いているターゲットを破壊するため、プレイヤーのスピードに挑戦するAndroidゲームです。
 
 ### ゲームプレイ
+立方体には3種類の色があります：
+青、黄、赤です。
+これらの立方体を破壊するには、対応する色の発射体でそれらを打つ必要があります。
+成功した場合、立方体は破壊され、プレイヤーは5ポイントを得ます。
+色を間違えた場合、立方体は別の立方体レイヤーを取得します。
+この場合、レイヤーごとに1つずつ、連続して2回正しい色で最大の立方体をヒットする必要があります。
+しかし、それぞれのレイヤーが異なる色を持っているので、
+間違えない方がいいです！
+
+立方体が到達できるレイヤーの最大数は3なので、
+プレイヤーが再び間違った場合、3つのライフが失われてしまいます。
+スクリーンを横切るように立方体を残したら、プレイヤーはライフを失う。
+失われたライフの数は、立方体が持っていたレイヤーの数に相当します。
+
+プレイヤーは10ライフで始まり、立方体はゆっくりと現れますが、
+時間が経過すると立方体がより速く表示されるようになります。
 
 ### スペシャル
+長い時間ミスをしなければ、スペシャルが起動されます。
+限られた時間の間、すべての立方体が白くなり、
+色を気にせずに立方体を破壊することができます。
 
 ### アイテム
+立方体の代わりにランダムに表示される2種類のアイテムがあります。
+- スペシャルの起動をスピードアップするアイテム
+- ライフを回復するアイテム。
+
+これらのアイテムは、任意の色の発射物によって撃たれることが出来ます。
 
 ## ビデオ
 [![BeatCube Gameplay: Youtube video](http://img.youtube.com/vi/G-SsgKep4CA/0.jpg)](https://www.youtube.com/watch?v=G-SsgKep4CA "Beat Cube Gameplay")
