@@ -13,6 +13,8 @@
 ## Sobre o jogo
 BeatCube é um jogo para Android que desafia a velocidade do jogador em destruir alvos que aparecem constantemente e que estão em movimento.
 
+Download: [Google Play](https://play.google.com/store/apps/details?id=com.ltia.beatcube&hl=en)
+
 ### Jogabilidade
 Existem 3 cores diferentes de cubos:
 azul, amarelo e vermelho.
@@ -63,6 +65,8 @@ Estes itens podem ser atingidos por qualquer cor de projétil.
 ## About the game
 BeatCube is a Android game that challenges the speed of the player to destroy targets that appear constantly and that are in movement.
 
+Download: [Google Play](https://play.google.com/store/apps/details?id=com.ltia.beatcube&hl=en)
+
 ### Gameplay
 There are 3 different colors of cubes:
 blue, yellow and red.
@@ -112,6 +116,8 @@ These items can be hit by any color of projectile.
 
 ## ゲームについて
 BeatCubeは絶え間なく出現して動いているターゲットを破壊するため、プレイヤーのスピードに挑戦するAndroidゲームです。
+
+ダウンロード： [Google Play](https://play.google.com/store/apps/details?id=com.ltia.beatcube&hl=ja)
 
 ### ゲームプレイ
 立方体には3種類の色があります：
