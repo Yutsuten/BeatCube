@@ -14,12 +14,11 @@
 BeatCube é um jogo que desafia a velocidade do jogador em destruir alvos que aparecem constantemente e que estão em movimento.
 
 ### Jogabilidade
-
 Existem 3 cores diferentes de cubos:
 azul, amarelo e vermelho.
 E para destruir estes cubos, é necessário acertá-los com um projétil de cor correspondente.
-Se acertar, o cubo é destruído e o jogador ganha um ponto.
-Se errar, o cubo ganha mais uma camada de cubos.
+Se acertar, o cubo é destruído e o jogador ganha 5 pontos.
+Se errar a cor, o cubo ganha mais uma camada de cubos.
 Neste caso, é necessário acertar o cubo maior com a cor correta 2 vezes consecutivas, uma para cada camada.
 Mas vale lembrar que cada camada possui cores diferentes,
 então é melhor não errar!
@@ -62,13 +61,37 @@ Estes itens podem ser atingidos por qualquer cor de projétil.
 3. [Team](#team)
 
 ## About the game
+BeatCube is a game that challenges the speed of the player to destroy targets that appear constantly and that are in movement.
 
 ### Gameplay
+There are 3 different colors of cubes:
+blue, yellow and red.
+To destroy these cubes, it is necessary to hit them with a projectile of the corresponding color.
+If successful, the cube is destroyed and the player gains 5 points.
+If mistakes the color, the cube gains another layer of cubes.
+In this case, it is necessary to hit the biggest cube with the correct color 2 consecutive times, one for each layer.
+But it is worth remembering that each layer has different colors,
+so it is better not to mistake!
+
+The maximum number of layers a cube can reach is 3,
+if the player mistakes again, 3 lives are lost.
+Leaving a cube to cross the screen also makes the player lose lives.
+The number of lives lost is equivalent to the number of layers the cube had.
+
+The player starts with 10 lives and the cubes appear slowly,
+but as the time passes, the cubes appear faster and faster.
 
 ### Special
+Staying for a long time without making mistakes activates a special
+which causes all the cubes to go white for a limited time,
+and in this state it is possible to destroy the cubes without worrying about the colors.
 
 ### Items
+There are 2 different types of items that randomly appear in place of cubes:
+- Item that speeds up the activation of the special;
+- Item that recovers a life.
 
+These items can be hit by any color of projectile.
 
 ## Video
 [![BeatCube Gameplay: Youtube video](http://img.youtube.com/vi/G-SsgKep4CA/0.jpg)](https://www.youtube.com/watch?v=G-SsgKep4CA "Beat Cube Gameplay")
